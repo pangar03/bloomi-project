@@ -1,1 +1,71 @@
 @import "tailwindcss";
+@import "tailwindcss/preflight.css" layer(base);
+
+@theme {
+    /* ============ COLORS ============= */
+    --color-primary-lighter: #fce6d0;
+    --color-primary-light: #ffbf7e;
+    --color-primary: #fd8b18;
+    --color-primary-dark: #c26100;
+    --color-primary-darker: #703800;
+    --color-accent-lighter: #d8efff;
+    --color-accent-light: #80ccff;
+    --color-accent: #3aaffe;
+    --color-accent-dark: #1685cf;
+    --color-accent-darker: #004d81;
+    --color-yellow-lighter: #ffefc3;
+    --color-yellow-light: #f3d582;
+    --color-yellow: #fdc938;
+    --color-yellow-dark: #b78f22;
+    --color-yellow-darker: #614700;
+    --color-purple-lighter: #f2e6ff;
+    --color-purple-light: #cd9dff;
+    --color-purple: #a45fed;
+    --color-purple-dark: #7b43b5;
+    --color-purple-darker: #3f1b65;
+    --color-red-lighter: #ffbdbe;
+    --color-red-light: #f57275;
+    --color-red: #da4447;
+    --color-red-dark: #b12c2e;
+    --color-red-darker: #741618;
+    --color-gray-light: #d5d5d5;
+    --color-gray: #7d7d7d;
+    --color-gray-dark: #424242;
+    --color-white: #ffffff;
+    --color-black: #141414;
+    /* ============ COLORS ============= */
+
+    /* ============ SPACING ============= */
+    --radius-sharp: 0px;
+    --radius-default: 16px;
+    --radius-rounded: 32px;
+    --spacing-s: 8px;
+    --spacing-m: 16px;
+    --spacing-l: 24px;
+    --spacing-xl: 32px;
+    --spacing-2xl: 40px;
+    --spacing-3xl: 48px;
+    --spacing-4xl: 64px;
+    --spacing-5xl: 80px;
+    /* ============ SPACING ============= */
+
+    /* ============ FONT-SIZE ============= */
+    --font-size-xs: 8px;
+    --font-size-s: 14px;
+    --font-size-m: 20px;
+    --font-size-l: 36px;
+    --font-size-xl: 48px;
+    --font-size-2xl: 64px;
+    --font-size-3xl: 80px;
+    /* ============ FONT-SIZE ============= */
+
+    /* ============ SHADOW ============= */
+    /* Use CTA, Accent, Regular and Red for the buttons*/
+    --shadow-cta: 0 3px 0 0 #703800;
+    --shadow-accent: 0 3px 0 0 #004d81;
+    --shadow-regular: 0 3px 0 0 #424242;
+    --shadow-red: 0 3px 0 0 #741618;
+    --shadow-task: 0 2px 4px 0 rgba(112, 56, 0, 0.25);
+    --shadow-purple: 0 2px 4px 0 rgba(205, 157, 255, 0.25);
+    /* ============ SHADOW ============= */
+}
