@@ -8,7 +8,8 @@ const Button = ({ variant = "primary", children, ...props }) => {
       "bg-[#fd8b18] text-white shadow-cta active:bg-[#703800] active:shadow-none",
     accent:
       "bg-[#3aaffe] text-white shadow-accent active:bg-accent-darker",
-    red: "bg-[#da4447] text-white shadow-red active:bg-[#b12c2e] active:shadow-none",
+    red:
+      "bg-[#da4447] text-white shadow-red active:bg-[#b12c2e] active:shadow-none",
     white:
       "bg-white text-black border-2 border-black shadow-regular active:bg-[#424242] active:text-white active:shadow-none",
   };
