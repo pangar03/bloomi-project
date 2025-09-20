@@ -2,22 +2,19 @@
 import { useState } from "react";
 import "./App.css";
 import CheckButton from "./components/checkButton/checkButton";
-import ButtonOrange from "./components/buttons/buttonOrange";
-import ButtonBlue from "./components/buttons/buttonBlue";
-import WhiteButton from "./components/buttons/whiteButton";
-import RedButton from "./components/buttons/redButton";
-
+import Button from "./components/buttons/button";
 
     
 function App() {
     return (
         <>
-            <ButtonOrange />
-            <ButtonBlue />
             <CheckButton />
-            <WhiteButton />
-            <RedButton />
-            </>
+            <Button variant="primary">Login</Button>
+            <Button variant="white">Register</Button>
+            <Button variant="accent">Continuar</Button>
+            <Button variant="red">Eliminar</Button>
+
+        </>
     );
 }
 
