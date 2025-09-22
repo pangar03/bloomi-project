@@ -1,21 +1,9 @@
-/* eslint-disable no-unused-vars */
-import { useState } from "react";
+import React from "react";
 import "./App.css";
-import CheckButton from "./components/checkButton/checkButton";
-import Button from "./components/buttons/button";
+import "./index.css";
 
-    
 function App() {
-    return (
-        <>
-            <CheckButton />
-            <Button variant="primary">Login</Button>
-            <Button variant="white">Register</Button>
-            <Button variant="accent">Continuar</Button>
-            <Button variant="red">Eliminar</Button>
-
-        </>
-    );
+    return <></>;
 }
 
 export default App;
