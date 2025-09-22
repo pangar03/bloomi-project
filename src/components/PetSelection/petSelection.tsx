@@ -1,5 +1,7 @@
-import PetMiniature, { PetVariant } from "../PetMiniature/petMiniature";
+import PetMiniature from "../PetMiniature/petMiniature";
 import Button from "../buttons/button";
+
+type PetVariant = "BunnyBerry" | "FloraBunny" | "CatMora" | "Fallxie";
 
 interface Pet {
   name: string;
@@ -23,9 +25,9 @@ const PetSelectionModal: React.FC = () => {
         {pets.map((pet) => (
           <div key={pet.name} className="flex flex-col items-center">
             
-            <PetMiniature variant={pet.variant} locked={pet.locked} />
+            <PetMiniature variant={pet.variant} />
 
-            {pet.locked && <Button text="Buy Now" />}
+            {pet.locked && <Button>Buy Now</Button>}
           </div>
         ))}
       </div>
