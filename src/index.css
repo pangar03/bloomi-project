@@ -1,7 +1,7 @@
 @import "tailwindcss";
 @import "tailwindcss/preflight.css" layer(base);
 
-@theme {
+:root {
     /* ============ COLORS ============= */
     --color-primary-lighter: #fce6d0;
     --color-primary-light: #ffbf7e;
