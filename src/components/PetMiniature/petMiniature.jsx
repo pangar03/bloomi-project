@@ -13,7 +13,17 @@ const pets = [
 
 const PetMiniature = () => {
     return (
-        <div className="pet-miniature"></div>
+        <div className="pet-miniature">
+            {pets.map((pet, index) => (
+                <div
+          key={index}
+          className="flex items-center justify-center rounded-lg shadow-md p-4"
+          style={{ backgroundColor: pet.bgColor }}
+        >
+          <img src={pet.image} alt={pet.name} className="w-24 h-24 object-contain" />
+        </div>
+            ))}
+        </div>
     )
 }
 
