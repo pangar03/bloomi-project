@@ -1,4 +1,6 @@
-const Button = ({ variant = "primary", children }) => {
+const Button = ({ variant = "primary", children, onClick }) => {
+
+  //estilo base del boton.
   const baseClasses = `
     font-bold px-6 py-2 rounded-full transition-all duration-150
   `;
@@ -15,8 +17,8 @@ const Button = ({ variant = "primary", children }) => {
   };
 
   return (
-    <button className={`${baseClasses} ${variants[variant]}`}>
-      {children} 
+    <button className={`${baseClasses} ${variants[variant]}`} onClick={onClick}>
+      {children}
     </button>
   );
 };
@@ -24,3 +26,4 @@ const Button = ({ variant = "primary", children }) => {
 export default Button;
 
 //children = lo que va dentro del boton <Button>children</Button>
+//<button className={`${baseClasses} ${variants[variant]}`} onClick={onClick}> en esta linea le digo a react: que aplique todas las clases de baseClasses y además las clases que correspondan a la variante seleccionada. 
