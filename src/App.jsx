@@ -1,12 +1,9 @@
-import './App.css'
-import Emojis from './components/MoodEmojis/emojis'
-import PetMiniature from './components/PetMiniature/petMiniature';
+import React from "react";
+import "./App.css";
+import "./index.css";
 
 function App() {
-  return <>
-    <Emojis />
-    <PetMiniature />
-  </>;
+  return <></>;
 }
 
 export default App;
