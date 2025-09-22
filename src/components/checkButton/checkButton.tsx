@@ -1,6 +1,11 @@
 import { useState } from "react";
 
-const CheckButton = ({ isChecked, onClick }) => {
+type CheckButtonProps = React.HTMLAttributes<HTMLButtonElement> & {
+    isChecked: boolean;
+    onClick: () => void;
+};
+
+const CheckButton = ({ isChecked, onClick, ...props }: CheckButtonProps) => {
     const [isCheckedState, setIsCheckedState] = useState(isChecked);
 
     const handleClick = () => {
@@ -10,7 +15,7 @@ const CheckButton = ({ isChecked, onClick }) => {
 
     return (
         <button
-            className={`${isCheckedState ? "bg-gray shadow-regular" : "bg-primary shadow-cta hover:bg-primary-light hover:cursor-pointer"} rounded-rounded inline-flex items-center p-2.5 gap-2.5`}
+            className={`${props} ${isCheckedState ? "bg-gray shadow-regular" : "bg-primary shadow-cta hover:bg-primary-light hover:cursor-pointer"} rounded-rounded inline-flex items-center p-2.5 gap-2.5`}
             onClick={handleClick}
         >
             <svg

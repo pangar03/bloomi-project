@@ -1,8 +1,17 @@
-const Button = ({ variant = "primary", children, onClick }) => {
+type ButtonProps = React.HTMLAttributes<HTMLButtonElement> & {
+    variant?: "primary" | "accent" | "red" | "white";
+    onClick?: () => void;
+    children: React.ReactNode;
+};
+
+const Button = ({
+    variant = "primary",
+    children,
+    onClick,
+    ...props
+}: ButtonProps) => {
     //estilo base del boton.
-    const baseClasses = `
-    font-bold px-6 py-2 rounded-full transition-all duration-150
-  `;
+    const baseClasses = `font-bold px-6 py-2 rounded-full transition-all duration-150`;
 
     const variants = {
         primary:
@@ -14,7 +23,7 @@ const Button = ({ variant = "primary", children, onClick }) => {
 
     return (
         <button
-            className={`${baseClasses} ${variants[variant]}`}
+            className={`${props} ${baseClasses} ${variants[variant]}`}
             onClick={onClick}
         >
             {children}
