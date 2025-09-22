@@ -1,7 +1,8 @@
-import naranja from '../../assets/naranja.svg'
-import frambuesa from '../../assets/rosa.svg'
-import mora from '../../assets/azul.svg'
-import fresa from '../../assets/verde.svg'
+import naranja from '../../assets/pets/naranja.svg'
+import frambuesa from '../../assets/pets/frambuesa.svg'
+import mora from '../../assets/pets/mora.svg'
+import fresa from '../../assets/pets/fresa.svg'
+
 
 
 const pets = [
@@ -20,7 +21,7 @@ const PetMiniature = () => {
           className="flex items-center justify-center rounded-lg shadow-md p-4"
           style={{ backgroundColor: pet.bgColor }}
         >
-          <img src={pet.image} alt={pet.name} className="w-24 h-24 object-contain" />
+          <img src={pet.img} alt={pet.name} className="w-24 h-24 object-contain" />
         </div>
             ))}
         </div>
