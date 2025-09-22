@@ -9,4 +9,12 @@ const pets = [
     { name: 'Frambuesa', img: frambuesa, bgColor: "#F7B2C4" },
     { name: 'Mora', img: mora, bgColor: "#E6CFFD" },
     { name: 'Fresa', img: fresa, bgColor: "#F08080" },
-]
+];
+
+const PetMiniature = () => {
+    return (
+        <div className="pet-miniature"></div>
+    )
+}
+
+export default PetMiniature
