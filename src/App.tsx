@@ -1,10 +1,15 @@
 import "./App.css";
 import "./index.css";
-import TaskIcon from "./components/cards/taskCard/taskIcon";
+import TaskCard from "./components/cards/taskCard/taskCard";
 
 function App() {
     return <>
-        <TaskIcon variant="TaskIcon" />
+        <div className="p-4 space-y-4">
+            <TaskCard variant="active" taskName="Brush Teeth" reward={10} />
+            <TaskCard variant="completed" taskName="Read Book" />
+            <TaskCard variant="deletable" taskName="Exercise" />
+            <TaskCard variant="basic" taskName="Meditation" />
+        </div>
     </>;
 }
 

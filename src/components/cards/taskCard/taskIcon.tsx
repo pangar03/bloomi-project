@@ -1,9 +1,10 @@
 import CircleContainer from "../../RoundedContainer/circleContainer";
-import type { IconVariant } from "../../../types/IconVariants";
 import Icon from "../../Icon/Icon";
 
+type TaskIconVariant = "TaskIcon" | "BookIcon";
+
 type TaskIconProps = React.HTMLAttributes<HTMLDivElement> & {
-    variant?: IconVariant;
+    variant?: TaskIconVariant;
 };
 
 const TaskIcon = ({ variant = "TaskIcon", className, ...props }: TaskIconProps) => {
