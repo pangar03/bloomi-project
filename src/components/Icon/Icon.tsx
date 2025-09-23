@@ -10,7 +10,7 @@ import TargetIcon from "../../assets/icons/target.svg";
 import BackwardsIcon from "../../assets/icons/backwards.svg";
 
 type IconVariant =
-    | "CoinIcon"
+    | "CoinIcon" //usare este
     | "HomeIcon"
     | "StoreIcon"
     | "JournalIcon"
