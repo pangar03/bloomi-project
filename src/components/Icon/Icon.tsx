@@ -11,6 +11,7 @@ import BackwardsIcon from "../../assets/icons/backwards.svg";
 import type { IconVariant } from "../../types/IconVariants";
 
 const IconStyles: Record<IconVariant, string> = {
+
     CoinIcon: "filter drop-shadow-yellow fill-yellow",
     HomeIcon: "stroke-accent hover:cursor-pointer hover:stroke-accent-darker",
     StoreIcon: "stroke-accent hover:cursor-pointer hover:stroke-accent-darker",
