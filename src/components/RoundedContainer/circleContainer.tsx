@@ -14,7 +14,8 @@ const styleVariants = {
 const CircleContainer = ({ children, variant, ...props }: ContainerProps) => {
     return (
         <div
-            className={`p-2 w-fit rounded-full flex items-center justify-center shadow-accent ${styleVariants[variant || "blue"]} ${props.className}`}
+            className={`p-2 w-fit rounded-full flex items-center justify-center shadow-accent ${styleVariants[variant || "blue"]}`}
+            {...props}
         >
             {children}
         </div>
