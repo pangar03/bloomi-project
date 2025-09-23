@@ -23,8 +23,9 @@ const Button = ({
 
     return (
         <button
-            className={`${props} ${baseClasses} ${variants[variant]}`}
+            className={`${baseClasses} ${variants[variant]}`}
             onClick={onClick}
+            {...props}
         >
             {children}
         </button>

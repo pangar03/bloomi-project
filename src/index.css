@@ -64,10 +64,13 @@
     --shadow-cta: 0 3px 0 0 #703800;
     --shadow-accent: 0 3px 0 0 #004d81;
     --shadow-regular: 0 3px 0 0 #424242;
+    --drop-shadow-yellow: 0 1px 0 #614700;
     --shadow-red: 0 3px 0 0 #741618;
     --shadow-task: 0 2px 4px 0 rgba(112, 56, 0, 0.25);
     --shadow-purple: 0 2px 4px 0 rgba(205, 157, 255, 0.25);
     /* ============ SHADOW ============= */
-  
+
+    /* ============ FONT-FAMILY ============= */
+    --font-family-primary: "Baloo 2", "sans-serif";
     /* ============ FONT-FAMILY ============= */
 }
