@@ -15,8 +15,9 @@ const CheckButton = ({ isChecked, onClick, ...props }: CheckButtonProps) => {
 
     return (
         <button
-            className={`${props} ${isCheckedState ? "bg-gray shadow-regular" : "bg-primary shadow-cta hover:bg-primary-light hover:cursor-pointer"} rounded-rounded inline-flex items-center p-2.5 gap-2.5`}
+            className={`${isCheckedState ? "bg-gray shadow-regular" : "bg-primary shadow-cta hover:bg-primary-light hover:cursor-pointer"} rounded-rounded inline-flex items-center p-2.5 gap-2.5`}
             onClick={handleClick}
+            {...props}
         >
             <svg
                 xmlns="http://www.w3.org/2000/svg"
