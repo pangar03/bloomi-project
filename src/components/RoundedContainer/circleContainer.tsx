@@ -8,6 +8,7 @@ type ContainerProps = React.HTMLAttributes<HTMLDivElement> & {
 const styleVariants = {
     blue: "bg-accent-lighter border-[3.5px] border-accent hover:border-accent-darker",
     red: "bg-red-lighter border-[3.5px] border-red hover:border-red-darker",
+    blueTask: "bg-accent-lighter border-[3.5px] border-accent",
 };
 
 // Way of using: <CircleContainer variant="blue|red">[IN HERE YOU PUT WHATEVER GOES INSIDE THE CONTAINER, LIKE ICON, H1, P, ETC]</CircleContainer>

@@ -8,4 +8,6 @@ export type IconVariant =
     | "HangerIcon"
     | "TrashcanIcon"
     | "TargetIcon"
+    | "ToothIcon"
+    | "BookIcon"
     | "BackwardsIcon";
