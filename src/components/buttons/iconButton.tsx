@@ -14,7 +14,9 @@ const IconButton = ({ variant, onClick, ...props }: ButtonProps) => {
             onClick={onClick}
             {...props}
         >
-            <CircleContainer>
+            <CircleContainer
+                variant={variant === "LogoutIcon" ? "red" : "blue"}
+            >
                 {/* Adjust for responsiveness */}
                 <Icon variant={variant} className="w-4 h-4" />
             </CircleContainer>
