@@ -1,4 +1,4 @@
-type ButtonProps = React.HTMLAttributes<HTMLButtonElement> & {
+type ButtonProps = React.ButtonHTMLAttributes<HTMLButtonElement> & {
     variant?: "primary" | "accent" | "red" | "white";
     onClick?: () => void;
     children: React.ReactNode;
@@ -10,7 +10,7 @@ const Button = ({
     onClick,
     ...props
 }: ButtonProps) => {
-    //estilo base del boton.
+
     const baseClasses = `font-bold px-6 py-2 rounded-full transition-all duration-150`;
 
     const variants = {
