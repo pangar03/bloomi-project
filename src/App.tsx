@@ -1,14 +1,15 @@
 import "./App.css";
 import "./index.css";
-import TaskCard from "./components/cards/taskCard/taskCard";
+import GoalCard from "./components/cards/goalCard/goalCard";
 
 function App() {
     return <>
         <div className="p-4 space-y-4">
-            <TaskCard variant="active" taskName="Brush Teeth" reward={10} />
-            <TaskCard variant="completed" taskName="Read Book" />
-            <TaskCard variant="deletable" taskName="Exercise" />
-            <TaskCard variant="basic" taskName="Meditation" />
+            {/* Goal completado */}
+            <GoalCard variant="completed" goalName="Goal" reward={100} />
+            
+            {/* Goal en progreso */}
+            <GoalCard variant="progress" goalName="Goal" reward={100} progress="0/15" />
         </div>
     </>;
 }

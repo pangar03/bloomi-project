@@ -10,4 +10,5 @@ export type IconVariant =
   | "TargetIcon"
   | "TaskIcon"
   | "BookIcon"
+  | "GoalIcon"
   | "BackwardsIcon";

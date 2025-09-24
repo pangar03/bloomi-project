@@ -10,7 +10,10 @@ import TargetIcon from "../../assets/icons/target.svg";
 import BackwardsIcon from "../../assets/icons/backwards.svg";
 import TaskIcon from "../../assets/icons/Task-Icon.svg";
 import BookIcon from "../../assets/icons/Books-Icon2.svg";
+import GoalIcon from "../../assets/icons/goal.svg";
 import type { IconVariant } from "../../types/IconVariants";
+
+
 
 const IconStyles: Record<IconVariant, string> = {
 
@@ -26,6 +29,7 @@ const IconStyles: Record<IconVariant, string> = {
     BackwardsIcon: "fill-red hover:cursor-pointer hover:fill-red-darker",
     TaskIcon: "!fill-current !stroke-current", 
     BookIcon: "!fill-current !stroke-current", 
+    GoalIcon: "",
 };
 
 interface IconProps {
@@ -44,8 +48,9 @@ const ICONS: Record<IconVariant, React.FC<React.SVGProps<SVGSVGElement>>> = {
     TrashcanIcon: TrashcanIcon,
     TargetIcon: TargetIcon,
     BackwardsIcon: BackwardsIcon,
-    TaskIcon: TaskIcon, //task icon
+    TaskIcon: TaskIcon, 
     BookIcon: BookIcon,
+    GoalIcon: GoalIcon,
 };
 
 const Icon: React.FC<IconProps> = ({ variant = "CoinIcon", className }) => {
