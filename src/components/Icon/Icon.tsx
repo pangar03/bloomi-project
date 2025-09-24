@@ -8,20 +8,10 @@ import HangerIcon from "../../assets/icons/hanger.svg";
 import TrashcanIcon from "../../assets/icons/trashcan.svg";
 import TargetIcon from "../../assets/icons/target.svg";
 import BackwardsIcon from "../../assets/icons/backwards.svg";
+import type { IconVariant } from "../../types/IconVariants";
 
-type IconVariant =
-    | "CoinIcon"
-    | "HomeIcon"
-    | "StoreIcon"
-    | "JournalIcon"
-    | "SettingsIcon"
-    | "LogoutIcon"
-    | "HangerIcon"
-    | "TrashcanIcon"
-    | "TargetIcon"
-    | "BackwardsIcon";
+const IconStyles: Record<IconVariant, string> = {
 
-const IconStyles = {
     CoinIcon: "filter drop-shadow-yellow fill-yellow",
     HomeIcon: "stroke-accent hover:cursor-pointer hover:stroke-accent-darker",
     StoreIcon: "stroke-accent hover:cursor-pointer hover:stroke-accent-darker",
