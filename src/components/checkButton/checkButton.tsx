@@ -16,7 +16,7 @@ const CheckButton = ({ isChecked, onClick, variant = "default", ...props }: Chec
 
     const getButtonStyle = () => {
         if (variant === "blue") {
-            return isCheckedState ? "bg-accent shadow-accent" : "bg-accent shadow-accent hover:bg-accent-darker hover:cursor-pointer";
+            return isCheckedState ? "bg-accent shadow-accent" : "bg-accent shadow-accent";
         }
         return isCheckedState ? "bg-gray shadow-regular" : "bg-primary shadow-cta hover:bg-primary-light hover:cursor-pointer";
     };
