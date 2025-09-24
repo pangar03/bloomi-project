@@ -31,7 +31,7 @@ GoalCardProps) => {
             
             <div className="flex flex-col items-center gap-1">
                 {variant === "completed" ? (
-                    <CheckButton isChecked={true} onClick={() => {}} />
+                    <CheckButton variant="blue" isChecked={true} onClick={() => {}} />
                 ) : (
                     <span className="text-sm font-medium text-gray-dark">({progress})</span>
                 )}
