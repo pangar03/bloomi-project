@@ -3,5 +3,8 @@ import Button from "../buttons/button";
 import '../../assets/icons/coin.svg'
 
 interface StoreItemProps {
-    
+    petVariant?: "BunnyBerry" | "FloraBunny" | "CatMora" | "Fallxie";
+    price: number;
+    onBuy?: () => void;
+    className?: string;
 }
