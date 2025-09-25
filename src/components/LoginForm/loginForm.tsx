@@ -1,5 +1,6 @@
 import { useState } from "react";
 import Button from "../buttons/button";
+import Input from "../Input/input";
 
 const LoginForm = () => {
   const [email, setEmail] = useState("");
@@ -17,21 +18,22 @@ const LoginForm = () => {
     >
       <h1 className="text-3xl font-bold text-center">Login</h1>
 
-      <input
+      <Input
         type="email"
+        label="Email"
         placeholder="e-mail"
         value={email}
         onChange={(e) => setEmail(e.target.value)}
-        className="border-2 border-blue-800 rounded-2xl px-4 py-3 text-blue-900"
         required
       />
 
-      <input
+      <Input
         type="password"
+        label="Password"
         placeholder="password"
         value={password}
         onChange={(e) => setPassword(e.target.value)}
-        className="border-2 border-blue-800 rounded-2xl px-4 py-3 text-blue-900"
+        withToggle
         required
       />
 
