@@ -33,7 +33,6 @@ const LoginForm = () => {
         placeholder="password"
         value={password}
         onChange={(e) => setPassword(e.target.value)}
-        withToggle
         required
       />
 
