@@ -8,3 +8,7 @@ interface StoreItemProps {
     onBuy?: () => void;
     className?: string;
 }
+
+const StoreItem: React.FC<StoreItemProps> = ({
+    
+})
