@@ -33,7 +33,7 @@ const JournalForm = ({
 
     return (
         <form
-            className="w-[20%] min-w-[380px] flex flex-col items-center p-8 bg-accent-darker rounded-rounded"
+            className="min-w-[30%] flex flex-col items-center p-8 bg-accent-darker rounded-rounded lg:ml-16"
             onSubmit={handleSubmit}
         >
             <div className="w-full mb-2">
@@ -43,6 +43,7 @@ const JournalForm = ({
             </div>
             <div className="w-full mb-4 p-4 border-t-1 border-white">
                 <input
+                    placeholder="Write your thoughts here..."
                     type="text"
                     className="w-full min-h-32 bg-white p-2 rounded-default resize-none focus:outline-none focus:ring-2 focus:ring-accent overflow-y-auto text-wrap"
                     value={formData.entry}
