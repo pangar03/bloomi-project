@@ -50,13 +50,13 @@
     /* ============ SPACING ============= */
 
     /* ============ FONT-SIZE ============= */
-    --font-size-xs: 8px;
-    --font-size-s: 14px;
-    --font-size-m: 20px;
-    --font-size-l: 36px;
-    --font-size-xl: 48px;
-    --font-size-2xl: 64px;
-    --font-size-3xl: 80px;
+    --text-xs: 8px;
+    --text-s: 14px;
+    --text-m: 20px;
+    --text-l: 36px;
+    --text-xl: 48px;
+    --text-2xl: 64px;
+    --text-3xl: 80px;
     /* ============ FONT-SIZE ============= */
 
     /* ============ SHADOW ============= */
