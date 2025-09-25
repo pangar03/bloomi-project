@@ -10,5 +10,8 @@ interface StoreItemProps {
 }
 
 const StoreItem: React.FC<StoreItemProps> = ({
-    
+    petVariant = "CatMora",
+    price,
+    onBuy,
+    className,
 })
