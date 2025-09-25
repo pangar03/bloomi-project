@@ -1,7 +1,7 @@
 import { useState } from "react";
 import TaskCard from "../cards/taskCard/taskCard";
 
-// Definir el tipo de datos para las tareas
+
 type Task = {
     id: string;
     taskName: string;
@@ -18,8 +18,8 @@ const TaskList = () => {
     const [tasks, setTasks] = useState(sampleTasks);
 
     const handleTaskCheck = (taskId: string) => {
-        setTasks(prevTasks => 
-            prevTasks.map(task => 
+        setTasks(tasks => 
+            tasks.map(task => 
                 task.id === taskId 
                     ? { ...task, variant: task.variant === "completed" ? "active" : "completed" }
                     : task
@@ -28,7 +28,7 @@ const TaskList = () => {
     };
 
     const handleTaskDelete = (taskId: string) => {
-        setTasks(prevTasks => prevTasks.filter(task => task.id !== taskId));
+        setTasks(tasks => tasks.filter(task => task.id !== taskId));
     };
 
     return (
