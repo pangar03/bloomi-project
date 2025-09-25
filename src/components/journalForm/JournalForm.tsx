@@ -3,7 +3,11 @@ import type { MoodDataType } from "../../types/MoodData";
 import Emojis from "../MoodEmojis/emojis";
 import Button from "../buttons/button";
 
-const JournalForm = () => {
+const JournalForm = ({
+    onSubmit,
+}: {
+    onSubmit: (data: MoodDataType) => void;
+}) => {
     const [formData, setFormData] = useState({
         date: new Date(),
         mood: null,
@@ -13,7 +17,7 @@ const JournalForm = () => {
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
         setFormData({ ...formData, date: new Date() });
-        console.log(formData);
+        onSubmit(formData);
     };
 
     const handleChange = (
