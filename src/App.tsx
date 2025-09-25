@@ -1,8 +1,12 @@
 import "./App.css";
 import "./index.css";
+import TaskList from "./components/taskList/taskList";
 
 function App() {
-    return <></>;
+    return <>
+        <TaskList />
+    
+    </>;
 }
 
 export default App;
