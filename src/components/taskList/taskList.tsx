@@ -2,7 +2,7 @@ import { useState } from "react";
 import TaskCard from "../cards/taskCard/taskCard";
 
 // Definir el tipo de datos para las tareas
-interface Task {
+type Task = {
     id: string;
     taskName: string;
     reward: number;
