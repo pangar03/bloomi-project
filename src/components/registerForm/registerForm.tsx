@@ -1,9 +1,11 @@
 import { useState } from "react";
 import Button from "../buttons/button";
+import Input from "../Input/input";
 
 const RegisterForm = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -17,30 +19,30 @@ const RegisterForm = () => {
     >
       <h1 className="text-3xl font-bold text-center">Register</h1>
 
-      <input
+      <Input
         type="email"
+        label="Email"
         placeholder="e-mail"
         value={email}
         onChange={(e) => setEmail(e.target.value)}
-        className="border-2 border-blue-800 rounded-2xl px-4 py-3 text-blue-900"
         required
       />
 
-      <input
+      <Input
         type="password"
+        label="Password"
         placeholder="password"
         value={password}
         onChange={(e) => setPassword(e.target.value)}
-        className="border-2 border-blue-800 rounded-2xl px-4 py-3 text-blue-900"
         required
       />
 
-      <input
+      <Input
         type="password"
+        label="Confirm Password"
         placeholder="confirm password"
-        value={password}
-        onChange={(e) => setPassword(e.target.value)}
-        className="border-2 border-blue-800 rounded-2xl px-4 py-3 text-blue-900"
+        value={confirmPassword}
+        onChange={(e) => setConfirmPassword(e.target.value)}
         required
       />
 
