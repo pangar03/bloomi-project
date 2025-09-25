@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 
 const habitIcons = [
   '🦷', // tooth icon placeholder
@@ -27,9 +27,8 @@ const NewHabit: React.FC = () => {
   };
 
   const handleSave = () => {
-    // For now just alert the habit name and icon
+ 
     alert(`Habit saved: ${habitName} with icon ${selectedIcon}`);
-    // Reset form
     setHabitName('');
     setSelectedIcon(habitIcons[0]);
     setModalOpen(false);
