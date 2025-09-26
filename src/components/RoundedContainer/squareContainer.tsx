@@ -15,7 +15,8 @@ const styleVariants = {
 const SquareContainer = ({ children, variant, ...props }: ContainerProps) => {
     return (
         <div
-            className={`w-fit flex items-center justify-center ${styleVariants[variant || "blue"]} ${props.className}`}
+            className={`w-fit flex items-center justify-center ${styleVariants[variant || "blue"]}`}
+            {...props}
         >
             {children}
         </div>

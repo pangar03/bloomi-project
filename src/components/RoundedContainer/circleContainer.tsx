@@ -8,13 +8,15 @@ type ContainerProps = React.HTMLAttributes<HTMLDivElement> & {
 const styleVariants = {
     blue: "bg-accent-lighter border-[3.5px] border-accent hover:border-accent-darker",
     red: "bg-red-lighter border-[3.5px] border-red hover:border-red-darker",
+    blueTask: "bg-accent-lighter border-[3.5px] border-accent",
 };
 
 // Way of using: <CircleContainer variant="blue|red">[IN HERE YOU PUT WHATEVER GOES INSIDE THE CONTAINER, LIKE ICON, H1, P, ETC]</CircleContainer>
 const CircleContainer = ({ children, variant, ...props }: ContainerProps) => {
     return (
         <div
-            className={`p-2 w-fit rounded-full flex items-center justify-center shadow-accent ${styleVariants[variant || "blue"]} ${props.className}`}
+            className={`p-2 w-fit rounded-full flex items-center justify-center shadow-accent ${styleVariants[variant || "blue"]}`}
+            {...props}
         >
             {children}
         </div>
