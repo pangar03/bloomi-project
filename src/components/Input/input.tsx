@@ -1,16 +1,13 @@
 import { useState } from "react";
+import type { InputProps } from "../../types/InputTypes";
 
-type CustomInputProps = {
-  placeholder?: string;
-  type?: string;
-};
-
-const CustomInput = ({ placeholder, type = "text" }: CustomInputProps) => {
+const Input = ({ placeholder, type = "text", label }: InputProps) => {
   const [inputValue, setInputValue] = useState("");
 
   return (
     <input
       type={type}
+      aria-label={label}
       value={inputValue}
       onChange={(e) => setInputValue(e.target.value)}
       placeholder={placeholder}
@@ -19,4 +16,4 @@ const CustomInput = ({ placeholder, type = "text" }: CustomInputProps) => {
   );
 };
 
-export default CustomInput;
+export default Input;

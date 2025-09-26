@@ -37,7 +37,7 @@ const LoginForm = () => {
       />
 
       <p className="text-sm text-blue-900">
-        Don’t have an account?{" "}
+        Dont have an account?{" "}
         <a href="/register" className="font-semibold underline">
           Register Here
         </a>
