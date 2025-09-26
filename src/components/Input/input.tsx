@@ -1,13 +1,12 @@
 import { useState } from "react";
 import type { InputProps } from "../../types/InputTypes";
 
-const Input = ({ placeholder, type = "text", label }: InputProps) => {
+const Input = ({ placeholder, type = "text",}: InputProps) => {
   const [inputValue, setInputValue] = useState("");
 
   return (
     <input
       type={type}
-      aria-label={label}
       value={inputValue}
       onChange={(e) => setInputValue(e.target.value)}
       placeholder={placeholder}

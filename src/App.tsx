@@ -1,12 +1,11 @@
 import "./App.css";
 import "./index.css";
-import Input from "./components/Input/input";
+import LoginForm from "./components/LoginForm/loginForm";
 
 function App() {
     return (
         <>
-            <Input />
-            <Input/>
+            <LoginForm />
         </>
     );
 }
