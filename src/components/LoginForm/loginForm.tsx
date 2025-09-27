@@ -8,19 +8,18 @@ const LoginForm = () => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    console.log("Email:", email, "Password:", password);
   };
 
   return (
     <form
       onSubmit={handleSubmit}
-      className="flex flex-col gap-4 w-full max-w-sm mx-auto"
+      className="flex flex-col gap-2 w-full max-w-sm mx-auto"
     >
-      <h1 className="text-3xl font-bold text-center">Login</h1>
+      <h1 className="text-xl font-bold text-center">Login</h1>
 
       <Input
         type="email"
-        label="Email"
+        label="Put your email here "
         placeholder="e-mail"
         value={email}
         onChange={(e) => setEmail(e.target.value)}
@@ -29,7 +28,7 @@ const LoginForm = () => {
 
       <Input
         type="password"
-        label="Password"
+        label="Enter your password"
         placeholder="password"
         value={password}
         onChange={(e) => setPassword(e.target.value)}
