@@ -1,20 +1,24 @@
 import CheckButton from "../../checkButton/checkButton";
+import type { Goal } from "../../../types/Goal";
 import Icon from "../../Icon/Icon";
 
-type GoalCardProps = React.HTMLAttributes<HTMLDivElement> & {
-    variant?: "completed" | "progress";
-    goalName?: string;
-    reward?: number;
-    progress?: string;
-};
+type GoalCardProps = React.HTMLAttributes<HTMLDivElement> &
+    Goal & {
+        onClick: () => void;
+    };
 
 const GoalCard = ({
-    variant = "completed",
     goalName = "Goal",
+    trackedTaskId,
     reward = 100,
-    progress = "0/15",
+    progress = 0,
+    goal = 15,
+    onClick,
     ...props
 }: GoalCardProps) => {
+    const variant =
+        progress && goal && progress >= goal ? "completed" : "progress";
+
     return (
         <div
             className="bg-purple-lighter rounded-default p-4 flex items-center max-w-sm justify-between shadow-purple"
@@ -30,11 +34,13 @@ const GoalCard = ({
                     <CheckButton
                         variant="blue"
                         isChecked={true}
-                        onClick={() => {}}
+                        onClick={() => {
+                            onClick();
+                        }}
                     />
                 ) : (
                     <span className="text-sm font-medium text-gray-dark">
-                        ({progress})
+                        ({`${progress}/${goal}`})
                     </span>
                 )}
                 <div className="flex items-center gap-1">
