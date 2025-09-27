@@ -21,7 +21,7 @@ const GoalCard = ({
 
     return (
         <div
-            className="bg-purple-lighter rounded-default p-4 flex items-center max-w-sm justify-between shadow-purple"
+            className="bg-purple-lighter rounded-default p-4 flex items-center w-full justify-between shadow-purple"
             {...props}
         >
             <div className="flex items-center gap-4">
