@@ -11,83 +11,76 @@ const PetDisplay: React.FC<PetDisplayProps> = ({
     className = "", 
     size = "medium" 
 }) => {
-    const sizeClasses = {
-        small: "w-16 h-16",
-        medium: "w-24 h-24", 
-        large: "w-32 h-32"
+    // Tamaños más simples
+    const sizes = {
+        small: 60,
+        medium: 80, 
+        large: 100
     };
+
+    const currentSize = sizes[size];
 
     return (
         <div className={`relative ${className}`}>
-            
+            {/* Marco circular principal */}
             <CircleContainer 
                 variant="blue" 
-                className={`${sizeClasses[size]} relative overflow-hidden`}
+                className="relative"
+                style={{ width: currentSize, height: currentSize }}
             >
-                
-                <div className="relative w-full h-full flex items-center justify-center">
+                {/* Personaje de fresa usando SVG - mucho más simple */}
+                <svg 
+                    width={currentSize * 0.8} 
+                    height={currentSize * 0.8} 
+                    viewBox="0 0 100 100"
+                    className="absolute inset-0 m-auto"
+                >
+                    {/* Cuerpo del personaje */}
+                    <circle cx="50" cy="70" r="15" fill="#F5F5DC" />
                     
-                    <div className="absolute bottom-2 w-8 h-6 bg-cream rounded-full"></div>
+                    {/* Cabeza */}
+                    <circle cx="50" cy="45" r="20" fill="#F5F5DC" />
                     
-                   
-                    <div className="relative w-12 h-12">
-                        
-                        <div className="absolute top-0 left-1/2 transform -translate-x-1/2 w-10 h-8 bg-red-500 rounded-full">
-                            
-                            <div className="absolute top-1 left-1 w-1 h-1 bg-pink-200 rounded-full"></div>
-                            <div className="absolute top-2 left-3 w-1 h-1 bg-pink-200 rounded-full"></div>
-                            <div className="absolute top-1 left-5 w-1 h-1 bg-pink-200 rounded-full"></div>
-                            <div className="absolute top-3 left-2 w-1 h-1 bg-pink-200 rounded-full"></div>
-                            <div className="absolute top-3 left-4 w-1 h-1 bg-pink-200 rounded-full"></div>
-                        </div>
-                        
-                        
-                        <div className="absolute -top-1 left-1/2 transform -translate-x-1/2">
-                            <div className="w-1 h-2 bg-green-600"></div>
-                            <div className="absolute -top-1 -left-1 w-2 h-1 bg-green-500 rounded-full transform rotate-45"></div>
-                            <div className="absolute -top-1 -right-1 w-2 h-1 bg-green-500 rounded-full transform -rotate-45"></div>
-                        </div>
-                        
-                       
-                        <div className="absolute top-3 left-1/2 transform -translate-x-1/2">
-                            
-                            <div className="flex space-x-1">
-                                <div className="w-2 h-2 bg-black rounded-full relative">
-                                    <div className="absolute top-0.5 left-0.5 w-0.5 h-0.5 bg-white rounded-full"></div>
-                                </div>
-                                <div className="w-2 h-2 bg-black rounded-full relative">
-                                    <div className="absolute top-0.5 left-0.5 w-0.5 h-0.5 bg-white rounded-full"></div>
-                                </div>
-                            </div>
-                            
-                           
-                            <div className="w-1 h-1 bg-black transform rotate-45 mx-auto mt-1"></div>
-                            
-                            
-                            <div className="w-2 h-0.5 bg-black rounded-full mx-auto mt-1"></div>
-                            
-                            
-                            <div className="absolute -left-2 top-2 w-1 h-1 bg-pink-300 rounded-full"></div>
-                            <div className="absolute -right-2 top-2 w-1 h-1 bg-pink-300 rounded-full"></div>
-                            
-                            
-                            <div className="absolute top-1 left-0 w-0.5 h-0.5 bg-brown-600 rounded-full"></div>
-                            <div className="absolute top-2 left-1 w-0.5 h-0.5 bg-brown-600 rounded-full"></div>
-                            <div className="absolute top-1 right-0 w-0.5 h-0.5 bg-brown-600 rounded-full"></div>
-                        </div>
-                        
-                        
-                        <div className="absolute -top-1 -left-1 w-2 h-2 bg-cream rounded-full border border-gray-300">
-                            <div className="absolute top-1 left-0.5 w-1 h-1 bg-pink-300 rounded-full transform rotate-45"></div>
-                        </div>
-                        <div className="absolute -top-1 -right-1 w-2 h-2 bg-cream rounded-full border border-gray-300">
-                            <div className="absolute top-1 right-0.5 w-1 h-1 bg-pink-300 rounded-full transform rotate-45"></div>
-                        </div>
-                    </div>
-                </div>
+                    {/* Cabello de fresa */}
+                    <ellipse cx="50" cy="35" rx="18" ry="12" fill="#FF6B6B" />
+                    
+                    {/* Semillas de fresa */}
+                    <circle cx="42" cy="30" r="1.5" fill="#FFB3BA" />
+                    <circle cx="50" cy="28" r="1.5" fill="#FFB3BA" />
+                    <circle cx="58" cy="30" r="1.5" fill="#FFB3BA" />
+                    <circle cx="45" cy="35" r="1.5" fill="#FFB3BA" />
+                    <circle cx="55" cy="35" r="1.5" fill="#FFB3BA" />
+                    
+                    {/* Tallo y hojas */}
+                    <rect x="49" y="20" width="2" height="8" fill="#4CAF50" />
+                    <ellipse cx="45" cy="22" rx="4" ry="2" fill="#4CAF50" transform="rotate(-30 45 22)" />
+                    <ellipse cx="55" cy="22" rx="4" ry="2" fill="#4CAF50" transform="rotate(30 55 22)" />
+                    
+                    {/* Ojos */}
+                    <circle cx="45" cy="40" r="3" fill="black" />
+                    <circle cx="55" cy="40" r="3" fill="black" />
+                    <circle cx="46" cy="39" r="1" fill="white" />
+                    <circle cx="56" cy="39" r="1" fill="white" />
+                    
+                    {/* Nariz */}
+                    <polygon points="50,45 48,48 52,48" fill="black" />
+                    
+                    {/* Boca */}
+                    <path d="M 45 52 Q 50 55 55 52" stroke="black" strokeWidth="1" fill="none" />
+                    
+                    {/* Mejillas */}
+                    <circle cx="40" cy="48" r="2" fill="#FFB3BA" />
+                    <circle cx="60" cy="48" r="2" fill="#FFB3BA" />
+                    
+                    {/* Orejas */}
+                    <circle cx="35" cy="35" r="6" fill="#F5F5DC" stroke="#DDD" strokeWidth="1" />
+                    <circle cx="65" cy="35" r="6" fill="#F5F5DC" stroke="#DDD" strokeWidth="1" />
+                    <circle cx="36" cy="36" r="2" fill="#FFB3BA" />
+                    <circle cx="64" cy="36" r="2" fill="#FFB3BA" />
+                </svg>
             </CircleContainer>
             
-            
+            {/* Ícono de colgador */}
             <div className="absolute -top-2 -left-2">
                 <CircleContainer variant="blue" className="w-8 h-8">
                     <Icon variant="HangerIcon" className="w-4 h-4" />
