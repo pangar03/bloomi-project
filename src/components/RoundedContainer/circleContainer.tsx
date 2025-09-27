@@ -12,10 +12,15 @@ const styleVariants = {
 };
 
 // Way of using: <CircleContainer variant="blue|red">[IN HERE YOU PUT WHATEVER GOES INSIDE THE CONTAINER, LIKE ICON, H1, P, ETC]</CircleContainer>
-const CircleContainer = ({ children, variant, ...props }: ContainerProps) => {
+const CircleContainer = ({
+    children,
+    variant,
+    className,
+    ...props
+}: ContainerProps) => {
     return (
         <div
-            className={`p-2 w-fit rounded-full flex items-center justify-center ${styleVariants[variant || "blue"]}`}
+            className={`p-2 w-fit rounded-full flex items-center justify-center ${styleVariants[variant || "blue"]} ${className}`}
             {...props}
         >
             {children}

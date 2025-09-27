@@ -20,9 +20,10 @@ const IconButton = ({ variant, onClick, className, ...props }: ButtonProps) => {
                         ? "red"
                         : "blue"
                 }
+                className={className}
             >
                 {/* Adjust for responsiveness */}
-                <Icon variant={variant} className={` ${className}`} />
+                <Icon variant={variant} />
             </CircleContainer>
         </button>
     );

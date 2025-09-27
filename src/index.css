@@ -74,3 +74,9 @@
     --font-family-primary: "Baloo 2", "sans-serif";
     /* ============ FONT-FAMILY ============= */
 }
+
+/* ============ SCROLLBAR ============= */
+.custom-scrollbar::-webkit-scrollbar {
+    width: 6px;
+}
+/* ============ SCROLLBAR ============= */
