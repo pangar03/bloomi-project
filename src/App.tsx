@@ -1,11 +1,18 @@
 import "./App.css";
 import "./index.css";
-import StoreItem from "./components/storeItem/storeItem";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import Login from "./pages/login";
+
 
 function App() {
-    return <>
-    <StoreItem price={100} />
-    </>;
+    return (
+      <Router>
+        <Routes>
+          <Route path="/" element={<Login />} />
+          <Route path="/login" element={<Login />} />
+        </Routes>
+      </Router>
+    );
 }
 
 export default App;
