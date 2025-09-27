@@ -1,38 +1,38 @@
-import { useState } from "react";
 import GoalCard from "../cards/goalCard/goalCard";
+import type { Goal } from "../../types/Goal";
 
-type Goal = {
-    id: string;
-    goalName: string;
-    reward: number;
-    variant: "completed" | "progress";
-    progress?: string;
+type GoalListProps = React.HTMLAttributes<HTMLDivElement> & {
+    goalList: Goal[];
+    setGoalList: React.Dispatch<React.SetStateAction<Goal[]>>;
+    setCoins?: React.Dispatch<React.SetStateAction<number>>;
 };
-
-const sampleGoals: Goal[] = [];
-
-const GoalList = () => {
-    const [goals, setGoals] = useState(sampleGoals);
-
+const GoalList: React.FC<GoalListProps> = ({
+    goalList,
+    setGoalList,
+    setCoins,
+    className,
+}) => {
     const handleGoalCheck = (goalId: string) => {
-        setGoals(goals => 
-            goals.map(goal => 
-                goal.id === goalId 
-                    ? { ...goal, variant: goal.variant === "completed" ? "progress" : "completed" }
-                    : goal
-            )
+        setGoalList((previous) =>
+            previous.filter((goal) => goal.id !== goalId)
         );
+        setCoins?.((previous) => {
+            const goal = goalList.find((goal) => goal.id === goalId);
+            return goal ? previous + goal.reward : previous;
+        });
     };
 
     return (
-        <div className="flex flex-col gap-4 p-4">
-            {goals.map((goal) => (
+        <div className={`flex flex-col gap-4 p-4 ${className}`}>
+            {goalList.map((goal) => (
                 <GoalCard
                     key={goal.id}
-                    variant={goal.variant}
+                    id={goal.id}
+                    trackedTaskId={goal.trackedTaskId}
                     goalName={goal.goalName}
                     reward={goal.reward}
                     progress={goal.progress}
+                    goal={goal.goal}
                     onClick={() => handleGoalCheck(goal.id)}
                 />
             ))}
