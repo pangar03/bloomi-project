@@ -7,7 +7,7 @@ type ButtonProps = React.HTMLAttributes<HTMLButtonElement> & {
     onClick?: () => void;
 };
 
-const IconButton = ({ variant, onClick, ...props }: ButtonProps) => {
+const IconButton = ({ variant, onClick, className, ...props }: ButtonProps) => {
     return (
         <button
             className={`bg-none border-none w-fit h-fit`}
@@ -15,10 +15,14 @@ const IconButton = ({ variant, onClick, ...props }: ButtonProps) => {
             {...props}
         >
             <CircleContainer
-                variant={variant === "LogoutIcon" ? "red" : "blue"}
+                variant={
+                    variant === "LogoutIcon" || variant === "TrashcanIcon"
+                        ? "red"
+                        : "blue"
+                }
             >
                 {/* Adjust for responsiveness */}
-                <Icon variant={variant} className="w-4 h-4" />
+                <Icon variant={variant} className={` ${className}`} />
             </CircleContainer>
         </button>
     );
