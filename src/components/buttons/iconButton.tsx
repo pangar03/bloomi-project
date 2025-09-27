@@ -16,7 +16,9 @@ const IconButton = ({ variant, onClick, className, ...props }: ButtonProps) => {
         >
             <CircleContainer
                 variant={
-                    variant === "LogoutIcon" || variant === "TrashcanIcon"
+                    variant === "LogoutIcon" ||
+                    variant === "TrashcanIcon" ||
+                    variant === "BackwardsIcon"
                         ? "red"
                         : "blue"
                 }
