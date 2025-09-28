@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import { useState } from "react";
 import Button from "../buttons/button";
 import Input from "../Input/input";
@@ -48,9 +49,9 @@ const RegisterForm = () => {
 
       <p className="text-sm text-blue-900">
         already have an account?{" "}
-        <a href="/login" className="font-semibold underline">
-          Login Here 
-        </a> 
+        <Link to="/login" className="font-semibold underline">
+          Login Here
+        </Link>
       </p>
 
       <Button type="submit" variant="primary">
