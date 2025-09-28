@@ -1,30 +1,35 @@
 import GoalCard from "../cards/goalCard/goalCard";
-import type { Goal } from "../../types/Goal";
+import { UserContext } from "../../context/UserContext/UserContext";
+import { useContext } from "react";
 
-type GoalListProps = React.HTMLAttributes<HTMLDivElement> & {
-    goalList: Goal[];
-    setGoalList: React.Dispatch<React.SetStateAction<Goal[]>>;
-    setCoins?: React.Dispatch<React.SetStateAction<number>>;
-};
-const GoalList: React.FC<GoalListProps> = ({
-    goalList,
-    setGoalList,
-    setCoins,
-    className,
-}) => {
+type GoalListProps = React.HTMLAttributes<HTMLDivElement>;
+const GoalList: React.FC<GoalListProps> = ({ className }) => {
+    const { user, setUser } = useContext(UserContext);
+
     const handleGoalCheck = (goalId: string) => {
-        setGoalList((previous) =>
-            previous.filter((goal) => goal.id !== goalId)
+        setUser((previous) =>
+            previous
+                ? {
+                      ...previous,
+                      goals: previous.goals.filter(
+                          (goal) => goal.id !== goalId
+                      ),
+                  }
+                : previous
         );
-        setCoins?.((previous) => {
-            const goal = goalList.find((goal) => goal.id === goalId);
-            return goal ? previous + goal.reward : previous;
+
+        setUser((previous) => {
+            const goal = user?.goals.find((goal) => goal.id === goalId);
+            if (!previous) return previous;
+            return goal
+                ? { ...previous, currency: previous.currency + goal.reward }
+                : previous;
         });
     };
 
     return (
         <div className={`flex flex-col gap-4 p-4 ${className}`}>
-            {goalList.map((goal) => (
+            {user?.goals.map((goal) => (
                 <GoalCard
                     key={goal.id}
                     id={goal.id}
