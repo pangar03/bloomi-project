@@ -49,7 +49,7 @@ const SettingsPage = () => {
                 </div>
             </div>
             <div
-                className={`${isUnlocked ? "flex flex-col items-center justify-center    h-full gap-4 lg:w-[40%] w-[80%] mx-auto" : "hidden"} `}
+                className={`${isUnlocked ? "flex flex-col items-center justify-center h-full gap-4 lg:w-[40%] w-full bg-white px-8 mx-auto" : "hidden"} `}
             >
                 <div>
                     <div></div>
