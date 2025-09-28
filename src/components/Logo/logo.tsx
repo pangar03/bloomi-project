@@ -14,7 +14,7 @@ const Logo = ({ variant = "primary", className = "" }: LogoProps) => {
 
   return (
     <div className={`${baseClasses} ${className}`}>
-      <LogoSvg className={`w-50 h-auto ${svgVariants[variant]}`} aria-label="Bloomi Logo" />
+      <LogoSvg className={`w-32 h-auto ${svgVariants[variant]}`} aria-label="Bloomi Logo" />
     </div>
   );
 };
