@@ -9,6 +9,7 @@ const Input = ({
   className,
   {...rest},
 }: InputProps) => {
+  
   return (
     <>
       {label && (

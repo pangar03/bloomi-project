@@ -1,13 +1,15 @@
 // src/pages/Login.tsx
-import Background from "../assets/background/brackground.jpg"
-import LoginForm from "../components/LoginForm/loginForm";
-import Logo from "../components/Logo/logo";
+
+import LoginForm from "../../components/LoginForm/loginForm";
+import Logo from "../../components/Logo/logo";
 
 const Login = () => {
   return (
     <div
-      className="bg-primary min-h-screen w-full bg-cover bg-center flex flex-col"
-      style={{ backgroundImage: `url(${Background})` }}
+      className="bg-primary min-h-screen w-full bg-cover bg-center flex flex-col
+    bg-[url(/src/assets/background/background.png)]
+    
+    "
     >
       <div className="flex justify-center mt-20 mb-10">
         <Logo variant="white" />
