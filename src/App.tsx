@@ -8,6 +8,7 @@ import Dashboard from "./pages/Dashboard/dashboard";
 import { useContext, useEffect } from "react";
 import { UserContext } from "./context/UserContext/UserContext";
 import { PageContext } from "./context/PageContext/PageContext";
+import SettingsPage from "./pages/Settings/SettingsPage";
 
 function App() {
     const { user, setUser } = useContext(UserContext);
@@ -98,13 +99,14 @@ function App() {
             <div className="h-screen w-full flex bg-accent lg:bg-white">
                 <NavBar />
                 <div
-                    className={`${currentPage !== "login" && currentPage !== "register" && currentPage !== "pin" ? "lg:pl-8 lg:w-[80%]" : "w-full"} w-[100%] flex flex-col justify-center lg:flex-row-reverse lg:justify-between items-center ml-auto`}
+                    className={`${currentPage !== "login" && currentPage !== "register" && currentPage !== "pin" ? "lg:pl-8 lg:w-[80%]" : "w-full"} w-full bg-white flex flex-col justify-center lg:flex-row-reverse lg:justify-between items-center ml-auto`}
                 >
                     <LateralBar />
                     <Routes>
                         <Route path="/" element={<Login />} />
                         <Route path="/login" element={<Login />} />
                         <Route path="/dashboard" element={<Dashboard />} />
+                        <Route path="/settings" element={<SettingsPage />} />
                     </Routes>
                 </div>
             </div>
