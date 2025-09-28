@@ -3,8 +3,7 @@ import CaraAzul from "../../assets/emojis/cara azul.svg";
 import CaraVerde from "../../assets/emojis/cara verde.svg";
 import CaraVioleta from "../../assets/emojis/cara violeta.svg";
 import CaraNeutra from "../../assets/emojis/cara neutra.svg";
-
-type EmojiVariant = "Happier" | "Happy" | "Neutral" | "Sad" | "Sadder";
+import type { EmojiVariant } from "../../types/EmojiVariant";
 
 // Props that the Emojis component can receive. variant is the type of emoji to display, className is an optional CSS class to apply to the SVG element.
 interface EmojiProps {
