@@ -11,7 +11,12 @@ const RegisterForm = () => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    console.log("Email:", email, "Password:", password);
+    //logica provicional para cuando se ingresen contraseñas
+    if (password !== confirmPassword) {
+      alert("Las contraseñas no coinciden");
+      return;
+    }
+    navigate("/dashboard");
   };
 
   const handleBack = () => {

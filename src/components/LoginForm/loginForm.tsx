@@ -10,6 +10,7 @@ const LoginForm = () => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+    navigate("/dashboard");
   };
 
   const handleBack = () => {
