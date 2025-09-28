@@ -23,6 +23,9 @@ const LateralBar = () => {
         case "settings":
             lateralBarVisibilityClass = "lg:flex-col lg:flex hidden";
             break;
+        case "journal":
+            lateralBarVisibilityClass = "flex-col";
+            break;
         case null:
             lateralBarVisibilityClass = "hidden";
             break;

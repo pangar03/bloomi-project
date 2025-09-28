@@ -6,6 +6,7 @@ import NavBar from "./components/Nav/NavBar";
 import LateralBar from "./components/LateralBar/LateralBar";
 import Dashboard from "./pages/Dashboard/dashboard";
 import Store from "./pages/Store/store";
+import Journal from "./pages/Journal/journal";
 import { useContext, useEffect } from "react";
 import { UserContext } from "./context/UserContext/UserContext";
 import { PageContext } from "./context/PageContext/PageContext";
@@ -115,6 +116,7 @@ function App() {
                         <Route path="/" element={<Login />} />
                         <Route path="/login" element={<Login />} />
                         <Route path="/dashboard" element={<Dashboard />} />
+                        <Route path="/journal" element={<Journal />} />
                         <Route path="/settings" element={<SettingsPage />} />
                         <Route path="/store" element={<Store />} />
                     </Routes>
