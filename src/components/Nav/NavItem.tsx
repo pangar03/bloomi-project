@@ -1,3 +1,4 @@
+import { useNavigate } from "react-router-dom";
 import type { IconVariant } from "../../types/IconVariants";
 import IconButton from "../buttons/iconButton";
 import SquareContainer from "../RoundedContainer/squareContainer";
@@ -8,6 +9,7 @@ type NavAttributes = React.HTMLAttributes<HTMLDivElement> & {
 };
 
 const NavItem = ({ label = "Dashboard", navTo, ...props }: NavAttributes) => {
+    const navigate = useNavigate();
     let iconVariant;
     switch (navTo) {
         case "dashboard":
@@ -31,8 +33,13 @@ const NavItem = ({ label = "Dashboard", navTo, ...props }: NavAttributes) => {
     }
 
     const handleNavigate = () => {
-        console.log(`Navigating to ${navTo}`);
-        // Implement navigation logic here (USE NAVIGATE HOOK)
+        if (navTo === "logout") {
+            // Implement logout logic here
+            console.log("Logging out...");
+            navigate("/login");
+        } else if (navTo) {
+            navigate(`/${navTo}`);
+        }
     };
 
     return (
