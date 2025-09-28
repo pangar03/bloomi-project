@@ -21,7 +21,7 @@ const LateralBar = () => {
             lateralBarVisibilityClass = "flex-col";
             break;
         case "settings":
-            lateralBarVisibilityClass = "lg:flex-col hidden";
+            lateralBarVisibilityClass = "lg:flex-col lg:flex hidden";
             break;
         case null:
             lateralBarVisibilityClass = "hidden";

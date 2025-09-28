@@ -18,10 +18,11 @@ type NumberInputKeys =
 
 type NumPadProps = {
     setInput: React.Dispatch<React.SetStateAction<string>>;
+    setPin: React.Dispatch<React.SetStateAction<string>>;
     input: string;
 };
 
-const NumPad = ({ setInput, input }: NumPadProps) => {
+const NumPad = ({ setInput, setPin, input }: NumPadProps) => {
     const handleClick = (key: NumberInputKeys) => {
         if (key === "Backspace") {
             setInput(input.slice(0, -1));
@@ -32,7 +33,7 @@ const NumPad = ({ setInput, input }: NumPadProps) => {
 
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
-        if (input.length === 4) console.log("Submitted:", input);
+        if (input.length === 4) setPin(input);
         else alert("Please enter a 4-digit pin");
     };
 
@@ -46,7 +47,7 @@ const NumPad = ({ setInput, input }: NumPadProps) => {
                 value={input}
                 onChange={(e) => setInput(e.target.value)}
             />
-            <div className="grid grid-cols-3 gap-4 w-fit mx-auto border-2 border-accent shadow-accent rounded-rounded grid-template-rows-[repeat(4,1fr)] p-8">
+            <div className="lg:hidden grid grid-cols-3 gap-4 w-fit mx-auto border-2 border-accent shadow-accent rounded-rounded grid-template-rows-[repeat(4,1fr)] p-8">
                 {(
                     [
                         "1",

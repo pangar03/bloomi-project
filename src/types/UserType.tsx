@@ -1,4 +1,5 @@
 import type { Goal } from "./Goal";
+import type { MoodDataType } from "./MoodData";
 import type { Task } from "./Task";
 
 export type User = {
@@ -13,6 +14,8 @@ export type User = {
     tasks: Task[];
     dailyTasks: Task[];
     goals: Goal[];
+    journalEntries: MoodDataType[];
+    dailyMood: MoodDataType | null;
 };
 
 // TODO:

@@ -1,7 +1,7 @@
 import type { EmojiVariant } from "./EmojiVariant";
 
 export type MoodDataType = {
-    date: string;
-    mood: EmojiVariant;
+    date: Date;
+    mood: EmojiVariant | null;
     entry: string;
 };
