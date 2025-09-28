@@ -1,13 +1,12 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import type { MoodDataType } from "../../types/MoodData";
 import Emojis from "../MoodEmojis/emojis";
 import Button from "../buttons/button";
+import Input from "../Input/input";
+import { UserContext } from "../../context/UserContext/UserContext";
 
-const JournalForm = ({
-    onSubmit,
-}: {
-    onSubmit: (data: MoodDataType) => void;
-}) => {
+const JournalForm = () => {
+    const { user, setUser } = useContext(UserContext);
     const [formData, setFormData] = useState({
         date: new Date(),
         mood: null,
@@ -17,7 +16,15 @@ const JournalForm = ({
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
         setFormData({ ...formData, date: new Date() });
-        onSubmit(formData);
+        setUser((previous) => {
+            if (!previous) return previous;
+            return {
+                ...previous,
+                journalEntries: [...previous.journalEntries, formData],
+                dailyMood: formData,
+            };
+        });
+        console.log(user);
     };
 
     const handleChange = (
@@ -42,11 +49,11 @@ const JournalForm = ({
                 </h2>
             </div>
             <div className="w-full mb-4 p-4 border-t-1 border-white">
-                <input
+                <Input
                     placeholder="Write your thoughts here..."
                     type="text"
                     className="w-full min-h-32 bg-white p-2 rounded-default resize-none focus:outline-none focus:ring-2 focus:ring-accent overflow-y-auto text-wrap"
-                    value={formData.entry}
+                    inputValue={formData.entry}
                     onChange={handleChange}
                 />
             </div>
