@@ -1,7 +1,8 @@
 import "./App.css";
 import "./index.css";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import Login from "./pages/login";
+import Login from "./pages/loginPage/login";
+import Register from "./pages/RegisterPage/registerPage";
 import NavBar from "./components/Nav/NavBar";
 import LateralBar from "./components/LateralBar/LateralBar";
 import Dashboard from "./pages/Dashboard/dashboard";
@@ -103,22 +104,23 @@ function App() {
     }, []);
 
     return (
-        <Router>
-            <div className="h-screen w-full flex bg-accent lg:bg-white">
-                <NavBar />
-                <div
-                    className={`${currentPage !== "login" && currentPage !== "register" && currentPage !== "pin" ? "lg:pl-8 lg:w-[80%]" : "w-full"} w-full flex flex-col justify-center lg:flex-row-reverse lg:justify-between items-center ml-auto`}
-                >
-                    <LateralBar />
-                    <Routes>
-                        <Route path="/" element={<Login />} />
-                        <Route path="/login" element={<Login />} />
-                        <Route path="/dashboard" element={<Dashboard />} />
-                        <Route path="/settings" element={<SettingsPage />} />
-                    </Routes>
-                </div>
-            </div>
-        </Router>
+      <Router>
+        <div className="h-screen w-full flex bg-accent lg:bg-white">
+          <NavBar />
+          <div
+            className={`${currentPage !== "login" && currentPage !== "register" && currentPage !== "pin" ? "lg:pl-8 lg:w-[80%]" : "w-full"} w-full flex flex-col justify-center lg:flex-row-reverse lg:justify-between items-center ml-auto`}
+          >
+            <LateralBar />
+            <Routes>
+              <Route path="/" element={<Login />} />
+              <Route path="/login" element={<Login />} />
+              <Route path="/login" element={<Register />} />
+              <Route path="/dashboard" element={<Dashboard />} />
+              <Route path="/settings" element={<SettingsPage />} />
+            </Routes>
+          </div>
+        </div>
+      </Router>
     );
 }
 
