@@ -1,7 +1,7 @@
 import { useContext } from "react";
 import IconButton from "../buttons/iconButton";
 import Icon from "../Icon/Icon";
-import SquareContainer from "../RoundedContainer/squareContainer";
+import SquareContainer from "../RoundedContainer/squareContainer";       
 import { UserContext } from "../../context/UserContext/UserContext";
 import { PageContext } from "../../context/PageContext/PageContext";
 
@@ -46,6 +46,7 @@ const LateralBar = () => {
                     </h2>
                     <Icon variant="CoinIcon" className="w-8  h-8" />
                 </SquareContainer>
+            
                 <div className="h-[40%] aspect-square bg-white rounded-full mx-auto my-auto">
                     <IconButton
                         variant="HangerIcon"

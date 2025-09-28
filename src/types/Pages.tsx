@@ -1,3 +1,3 @@
 export type Page = {
-    page: "login" | "register" | "dashboard" | "store" | "settings" | "pin";
+    page: "login" | "register" | "dashboard" | "store" | "settings" | "pin" | "start";
 };

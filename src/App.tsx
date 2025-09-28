@@ -1,7 +1,9 @@
 import "./App.css";
 import "./index.css";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import Login from "./pages/login";
+import Login from "./pages/loginPage/login";
+import Register from "./pages/RegisterPage/registerPage";
+import StartPage from "./pages/StartPage/startPage";
 import NavBar from "./components/Nav/NavBar";
 import LateralBar from "./components/LateralBar/LateralBar";
 import Dashboard from "./pages/Dashboard/dashboard";
@@ -10,9 +12,17 @@ import { UserContext } from "./context/UserContext/UserContext";
 import { PageContext } from "./context/PageContext/PageContext";
 import SettingsPage from "./pages/Settings/SettingsPage";
 
+
+// pa que se muestre la pagina de start 
+const ResponsiveHomePage = () => {
+  const { getHomePage } = useContext(PageContext)!;
+  const homePage = getHomePage();
+  
+  return homePage === "start" ? <StartPage /> : <Login />;
+};
+
 function App() {
-    const { user, setUser } = useContext(UserContext);
-    const { currentPage } = useContext(PageContext)!;
+    const { user, setUser } = useContext(UserContext)!;
     useEffect(() => {
         if (!user) {
             setUser({
@@ -100,25 +110,29 @@ function App() {
                 ],
             });
         }
-    }, []);
+    }, [user, setUser]);
+
+    const { currentPage } = useContext(PageContext)!;
 
     return (
-        <Router>
-            <div className="h-screen w-full flex bg-accent lg:bg-white">
-                <NavBar />
-                <div
-                    className={`${currentPage !== "login" && currentPage !== "register" && currentPage !== "pin" ? "lg:pl-8 lg:w-[80%]" : "w-full"} w-full flex flex-col justify-center lg:flex-row-reverse lg:justify-between items-center ml-auto`}
-                >
-                    <LateralBar />
-                    <Routes>
-                        <Route path="/" element={<Login />} />
-                        <Route path="/login" element={<Login />} />
-                        <Route path="/dashboard" element={<Dashboard />} />
-                        <Route path="/settings" element={<SettingsPage />} />
-                    </Routes>
-                </div>
-            </div>
-        </Router>
+      <Router>
+        <div className="h-screen w-full flex bg-accent lg:bg-white">
+          <NavBar />
+          <div 
+            className={`${currentPage !== "login" && currentPage !== "register" && currentPage !== "pin" ? "lg:pl-8 lg:w-[80%]" : "w-full"} w-full flex flex-col justify-center lg:flex-row-reverse lg:justify-between items-center ml-auto`}
+          >
+            <LateralBar />
+            <Routes>
+              <Route path="/" element={<ResponsiveHomePage />} />
+              <Route path="/start" element={<StartPage />} />
+              <Route path="/login" element={<Login />} />
+              <Route path="/register" element={<Register />} />
+              <Route path="/dashboard" element={<Dashboard />} />
+              <Route path="/settings" element={<SettingsPage />} />
+            </Routes>
+          </div>
+        </div>
+      </Router>
     );
 }
 
