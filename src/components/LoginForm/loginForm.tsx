@@ -54,7 +54,7 @@ const LoginForm = () => {
 
       <Button 
         type="button" 
-        variant="secondary" 
+        variant="white" 
         onClick={handleBack}
         className="md:hidden"
       >

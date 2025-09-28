@@ -1,17 +1,11 @@
-import { useContext, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { PageContext } from "../../context/PageContext/PageContext";
 import Logo from "../../components/Logo/logo";
 import Button from "../../components/buttons/button";
 import PetMiniature from "../../components/PetMiniature/petMiniature";
+import CircleContainer from "../../components/RoundedContainer/circleContainer";
 
 const StartPage = () => {
-  const { currentPage, setCurrentPage } = useContext(PageContext)!;
   const navigate = useNavigate();
-
-  useEffect(() => {
-    if (currentPage !== "start") setCurrentPage("start");
-  }, [currentPage, setCurrentPage]);
 
   const handleStart = () => {
     navigate("/login");
@@ -31,6 +25,13 @@ const StartPage = () => {
         <Logo variant="primary" />
       </div>
 
+      <div className="mb-12">
+        <CircleContainer variant="red" className="w-48 h-48 p-8">
+          <PetMiniature variant="BunnyBerry" className="w-32 h-32" />
+        </CircleContainer>
+      </div>
+
+
       <div className="w-full max-w-xs space-y-4">
         <Button 
           variant="white" 
@@ -39,7 +40,7 @@ const StartPage = () => {
         >
           Start
         </Button>
-        
+
         <Button 
           variant="primary" 
           onClick={handleRegister}

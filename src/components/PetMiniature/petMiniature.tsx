@@ -31,14 +31,10 @@ const PetMiniature: React.FC<PetMiniatureProps> = ({
     variant = "BunnyBerry",
     className,
 }) => {
-    const PetMiniature = PETS[variant];
+    const PetComponent = PETS[variant];
 
     return (
-        <div
-            className={`${petsBackground[variant]} ${className} flex items-center justify-center rounded-lg shadow-md p-4 border-2 border-accent-darker`}
-        >
-            <PetMiniature className={className} />
-        </div>
+        <PetComponent className={className} />
     );
 };
 

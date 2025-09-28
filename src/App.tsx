@@ -13,7 +13,7 @@ import { PageContext } from "./context/PageContext/PageContext";
 import SettingsPage from "./pages/Settings/SettingsPage";
 
 function App() {
-    const { user, setUser } = useContext(UserContext);
+    const { user, setUser } = useContext(UserContext)!;
     const { currentPage } = useContext(PageContext)!;
     useEffect(() => {
         if (!user) {
@@ -102,18 +102,16 @@ function App() {
                 ],
             });
         }
-    }, []);
+    }, [user, setUser]);
 
     return (
       <Router>
         <div className="h-screen w-full flex bg-accent lg:bg-white">
           <NavBar />
-          <div
-            className={`${currentPage !== "login" && currentPage !== "register" && currentPage !== "start" && currentPage !== "pin" ? "lg:pl-8 lg:w-[80%]" : "w-full"} w-full flex flex-col justify-center lg:flex-row-reverse lg:justify-between items-center ml-auto`}
-          >
+          <div className="w-full flex flex-col justify-center lg:flex-row-reverse lg:justify-between items-center ml-auto">
             <LateralBar />
             <Routes>
-              <Route path="/" element={<StartPage />} />
+              <Route path="/" element={<Login />} />
               <Route path="/start" element={<StartPage />} />
               <Route path="/login" element={<Login />} />
               <Route path="/register" element={<Register />} />
