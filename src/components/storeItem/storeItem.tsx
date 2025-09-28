@@ -1,6 +1,6 @@
 import PetMiniature from "../PetMiniature/petMiniature";
 import Button from "../buttons/button";
-import CoinIcon from '../../assets/icons/coin.svg'; 
+import Icon from "../Icon/Icon"; 
 
 interface StoreItemProps {
     petVariant?: "BunnyBerry" | "FloraBunny" | "CatMora" | "Fallxie";
@@ -34,12 +34,7 @@ const StoreItem: React.FC<StoreItemProps> = ({
             <div className="w-full flex items-center justify-between px-2">
                 <div className="flex items-center gap-1">
                     <span className="text-black text-lg font-bold">{price}</span>
-                    <span
-                        className="rounded-full bg-yellow-200 flex items-center justify-center"
-                        style={{ width: 28, height: 28 }}
-                    >
-                        <CoinIcon width={18} height={18} />
-                    </span>
+                    <Icon variant="CoinIcon" className="w-6 h-6" />
                 </div>
                 <Button
                     variant="accent"

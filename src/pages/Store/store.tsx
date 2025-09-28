@@ -53,24 +53,29 @@ function Store() {
             </div>
       
             {/* Título centrado */}
-            <h1 className="text-l font-bold text-black absolute left-1/2 transform -translate-x-1/2">
+            <h1 className="text-xl font-bold text-black absolute left-1/2 transform -translate-x-1/2">
               Shop
             </h1>
           </div>
       
-          {/* Grid de items */}
-          <div className="grid grid-cols-2 gap-6 w-full">
+          {/* Grid de items más grandes */}
+          <div className="grid grid-cols-2 gap-8 w-full">
             {storeItems.map((item) => (
-              <StoreItem
+              <div
                 key={item.id}
-                petVariant={item.petVariant}
-                price={item.price}
-                onBuy={() => handleBuy(item.id)}
-              />
+                className="transform scale-110 hover:scale-115 transition-transform duration-300"
+              >
+                <StoreItem
+                  petVariant={item.petVariant}
+                  price={item.price}
+                  onBuy={() => handleBuy(item.id)}
+                />
+              </div>
             ))}
           </div>
         </div>
       );
+      
        
 }
 
