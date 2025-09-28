@@ -47,7 +47,7 @@ const LateralBar = () => {
                     <Icon variant="CoinIcon" className="w-8  h-8" />
                 </SquareContainer>
                 <div className="h-[40%] aspect-square bg-white rounded-full mx-auto my-auto flex items-center justify-center">
-                    <PetDisplay size="large" />
+                    <PetDisplay size="large" usePetSVG={true} petVariant="BunnyBerry" />
                 </div>
             </div>
             <div className="w-full bg-accent lg:hidden flex flex-col items-end justify-start pt-8 p-8">
@@ -58,7 +58,7 @@ const LateralBar = () => {
                     <Icon variant="CoinIcon" className="w-8  h-8" />
                 </SquareContainer>
                 <div className="w-[60%] md:w-[20%] aspect-square bg-white rounded-full mx-auto my-auto flex items-center justify-center">
-                    <PetDisplay size="large" />
+                    <PetDisplay size="large" usePetSVG={true} petVariant="BunnyBerry" />
                 </div>
             </div>
         </div>
