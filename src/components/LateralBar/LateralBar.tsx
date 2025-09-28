@@ -8,6 +8,7 @@ import { PageContext } from "../../context/PageContext/PageContext";
 const LateralBar = () => {
     const { user } = useContext(UserContext);
     const { currentPage } = useContext(PageContext)!;
+
     let lateralBarVisibilityClass = "";
     switch (currentPage) {
         case "login":
@@ -29,36 +30,54 @@ const LateralBar = () => {
             lateralBarVisibilityClass = "hidden";
             break;
     }
+
     return (
         <div
             className={`${lateralBarVisibilityClass} lg:w-[40%] w-full h-[40%] lg:h-screen`}
         >
+            {/* Versión escritorio */}
             <div
-                className="w-full h-full bg-accent hidden lg:flex lg:flex-col items-end justify-start pt-8 p-32 md:p-8"
+                className="w-full h-full bg-accent hidden lg:flex lg:flex-col items-end justify-start pt-8 px-8"
                 style={{
                     clipPath:
                         "polygon(20% 0, 100% 0%, 100% 100%, 20% 100%, 0 50%)",
                 }}
             >
+                {/* Monedas */}
                 <SquareContainer variant="coins" className="flex items-center">
-                    <h2 className="text-s text-black font-bold mr-4">
+                    <h2 className="text-sm text-black font-bold mr-4">
                         {user?.currency}
                     </h2>
-                    <Icon variant="CoinIcon" className="w-8  h-8" />
+                    <Icon variant="CoinIcon" className="w-6 h-6" />
                 </SquareContainer>
-                <div className="h-[40%] aspect-square bg-white rounded-full mx-auto my-auto flex items-center justify-center">
-                    <PetDisplay size="large" usePetSVG={true} petVariant="BunnyBerry" />
+
+                {/* Mascota */}
+                <div className="h-[40%] aspect-square bg-white rounded-full mx-auto my-auto flex items-center justify-center shadow-md">
+                    <PetDisplay
+                        size="large"
+                        usePetSVG={true}
+                        petVariant="BunnyBerry"
+                    />
                 </div>
             </div>
-            <div className="w-full bg-accent lg:hidden flex flex-col items-end justify-start pt-8 p-8">
+
+            {/* Versión móvil */}
+            <div className="w-full bg-accent lg:hidden flex flex-col items-end justify-start pt-8 px-8">
+                {/* Monedas */}
                 <SquareContainer variant="coins" className="flex items-center">
-                    <h2 className="text-s text-black font-bold mr-4">
+                    <h2 className="text-sm text-black font-bold mr-4">
                         {user?.currency}
                     </h2>
-                    <Icon variant="CoinIcon" className="w-8  h-8" />
+                    <Icon variant="CoinIcon" className="w-6 h-6" />
                 </SquareContainer>
-                <div className="w-[60%] md:w-[20%] aspect-square bg-white rounded-full mx-auto my-auto flex items-center justify-center">
-                    <PetDisplay size="large" usePetSVG={true} petVariant="BunnyBerry" />
+
+                {/* Mascota */}
+                <div className="w-[60%] md:w-[40%] aspect-square bg-white rounded-full mx-auto my-6 flex items-center justify-center shadow-md">
+                    <PetDisplay
+                        size="large"
+                        usePetSVG={true}
+                        petVariant="BunnyBerry"
+                    />
                 </div>
             </div>
         </div>
@@ -66,5 +85,3 @@ const LateralBar = () => {
 };
 
 export default LateralBar;
-
-// Pet display added with PetDisplay component
