@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import Button from "../buttons/button";
 import Input from "../Input/input";
@@ -6,9 +6,14 @@ import Input from "../Input/input";
 const LoginForm = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const navigate = useNavigate();
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+  };
+
+  const handleBack = () => {
+    navigate("/start");
   };
 
   return (
@@ -45,6 +50,15 @@ const LoginForm = () => {
 
       <Button type="submit" variant="primary">
         Login
+      </Button>
+
+      <Button 
+        type="button" 
+        variant="secondary" 
+        onClick={handleBack}
+        className="md:hidden"
+      >
+        Back
       </Button>
     </form>
   );

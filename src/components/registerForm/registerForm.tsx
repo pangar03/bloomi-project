@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import Button from "../buttons/button";
 import Input from "../Input/input";
@@ -7,10 +7,15 @@ const RegisterForm = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
+  const navigate = useNavigate();
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     console.log("Email:", email, "Password:", password);
+  };
+
+  const handleBack = () => {
+    navigate("/start");
   };
 
   return (
@@ -56,6 +61,15 @@ const RegisterForm = () => {
 
       <Button type="submit" variant="primary">
         Register
+      </Button>
+
+      <Button 
+        type="button" 
+        variant="secondary" 
+        onClick={handleBack}
+        className="md:hidden"
+      >
+        Back
       </Button>
     </form>
   );
