@@ -17,7 +17,7 @@ const Register = () => {
       <div className="flex justify-center mt-20 mb-10">
         <Logo variant="white" />
       </div>
-      <div className="mt-auto bg-white rounded-t-4xl shadow-lg p-10 w-full">
+      <div className="mt-auto bg-white rounded-t-4xl shadow-lg p-10 w-full min-h-[70vh]">
         <div className="w-full max-w-md mx-auto">
           <RegisterForm />
         </div>
