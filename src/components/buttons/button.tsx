@@ -11,7 +11,7 @@ const Button = ({
     className,
     ...props
 }: ButtonProps) => {
-    //estilo base del boton.
+
     const baseClasses = `font-bold px-6 py-2 rounded-full transition-all duration-150`;
 
     const variants = {
