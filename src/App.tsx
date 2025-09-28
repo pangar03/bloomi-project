@@ -116,6 +116,7 @@ function App() {
                         <Route path="/login" element={<Login />} />
                         <Route path="/dashboard" element={<Dashboard />} />
                         <Route path="/settings" element={<SettingsPage />} />
+                        <Route path="/store" element={<Store />} />
                     </Routes>
                 </div>
             </div>
