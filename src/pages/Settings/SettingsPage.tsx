@@ -31,7 +31,7 @@ const SettingsPage = () => {
     return (
         <>
             <div
-                className={`${isUnlocked ? "hidden" : ""} pin-unlock-display flex flex-col gap-16 items-center mx-auto lg:justify-center justify-start h-full bg-white`}
+                className={`${isUnlocked ? "hidden" : ""} pin-unlock-display w-full flex flex-col gap-16 items-center mx-auto lg:justify-center justify-start h-full bg-white`}
             >
                 <div></div>
                 <div className="flex flex-col gap-4 items-center">

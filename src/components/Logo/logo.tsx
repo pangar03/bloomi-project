@@ -10,7 +10,7 @@ const Logo = ({ variant = "primary", className = "" }: LogoProps) => {
         "flex justify-center items-center transition-all duration-150";
     const svgVariants = {
         primary: "fill-primary",
-        white: "fill-current",
+        white: "fill-white",
     };
 
     return (

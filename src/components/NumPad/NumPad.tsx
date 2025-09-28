@@ -38,7 +38,7 @@ const NumPad = ({ setInput, setPin, input }: NumPadProps) => {
     };
 
     return (
-        <form onSubmit={handleSubmit} className="flex flex-col gap-4">
+        <form onSubmit={handleSubmit} className="flex flex-col">
             <Input
                 type="password"
                 pattern="\d{4}"
