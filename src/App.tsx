@@ -20,6 +20,14 @@ function App() {
                 name: "John Doe",
                 email: "john.doe@example.com",
                 currency: 100,
+                journalEntries: [
+                    {
+                        date: new Date("2023-10-01"),
+                        mood: "Happy",
+                        entry: "Had a great day at the park!",
+                    },
+                ],
+                dailyMood: null,
                 dailyTasks: [
                     {
                         id: "task-1",
