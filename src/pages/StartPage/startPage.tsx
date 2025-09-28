@@ -21,7 +21,7 @@ const StartPage = () => {
       bg-[url(/src/assets/background/fondo.jpg)]"
     >
 
-      <div className="mb-8">
+      <div className="mb-30">
         <Logo variant="primary" />
       </div>
 
