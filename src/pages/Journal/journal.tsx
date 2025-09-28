@@ -13,16 +13,18 @@ function Journal() {
   }, [currentPage, setCurrentPage]);
 
   return (
-    <>
-      <div className="flex flex-row items-center justify-between w-full mt-8">
-        <h1 className="lg:text-l text-m font-bold text-black">Mood Journal</h1>
-      </div>
-      <div className="w-full mt-10 flex justify-center">
+    <div className="w-full flex flex-col items-center">
+      <h1 className="lg:text-xl text-lg font-bold text-black mb-6">
+        Mood Journal
+      </h1>
+  
+      <div className="w-full flex justify-center">
         {!user?.dailyMood && <JournalForm />}
         {user?.dailyMood && <MoodEntry {...user.dailyMood} />}
       </div>
-    </>
+    </div>
   );
+  
 }
 
 export default Journal;
