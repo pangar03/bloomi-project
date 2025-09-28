@@ -26,7 +26,7 @@ const TaskCard = ({
 
     return (
         <div
-            className={`${getCardStyle()} rounded-default p-4 flex items-center max-w-sm justify-between shadow-task`}
+            className={`${getCardStyle()} rounded-default p-4 flex items-center w-full justify-between shadow-task`}
             {...props}
         >
             <div className="flex items-center gap-4">

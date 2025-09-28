@@ -1,4 +1,4 @@
-export type InputProps = {
+export type InputProps = React.InputHTMLAttributes<HTMLInputElement> & {
   placeholder?: string;
   type?: string;
   label?: string;

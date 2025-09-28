@@ -6,6 +6,8 @@ const Input = ({
   inputValue,
   setInputValue,
   label,
+  className,
+  {...rest},
 }: InputProps) => {
   return (
     <>
@@ -14,10 +16,11 @@ const Input = ({
       )}
       <input
         type={type}
-         value={inputValue}
+        value={inputValue}
         onChange={(e) => setInputValue?.(e.target.value)}
         placeholder={placeholder}
-        className="border-2 border-blue-800 rounded-2xl px-4 py-3 text-blue-900 w-full"
+        className=`border-2 border-blue-800 rounded-2xl px-4 py-3 text-blue-900 w-full ${className}`
+        {...rest}
       />
     </>
   );
