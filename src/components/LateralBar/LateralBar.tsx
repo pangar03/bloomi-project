@@ -1,7 +1,7 @@
 import { useContext } from "react";
-import IconButton from "../buttons/iconButton";
 import Icon from "../Icon/Icon";
 import SquareContainer from "../RoundedContainer/squareContainer";
+import PetDisplay from "../petDisplay/petDisplay";
 import { UserContext } from "../../context/UserContext/UserContext";
 import { PageContext } from "../../context/PageContext/PageContext";
 
@@ -46,11 +46,8 @@ const LateralBar = () => {
                     </h2>
                     <Icon variant="CoinIcon" className="w-8  h-8" />
                 </SquareContainer>
-                <div className="h-[40%] aspect-square bg-white rounded-full mx-auto my-auto">
-                    <IconButton
-                        variant="HangerIcon"
-                        className="w-[15%] aspect-square"
-                    />
+                <div className="h-[40%] aspect-square bg-white rounded-full mx-auto my-auto flex items-center justify-center">
+                    <PetDisplay size="large" />
                 </div>
             </div>
             <div className="w-full bg-accent lg:hidden flex flex-col items-end justify-start pt-8 p-8">
@@ -60,11 +57,8 @@ const LateralBar = () => {
                     </h2>
                     <Icon variant="CoinIcon" className="w-8  h-8" />
                 </SquareContainer>
-                <div className="w-[60%] md:w-[20%] aspect-square bg-white rounded-full mx-auto my-auto">
-                    <IconButton
-                        variant="HangerIcon"
-                        className="w-[15%] aspect-square"
-                    />
+                <div className="w-[60%] md:w-[20%] aspect-square bg-white rounded-full mx-auto my-auto flex items-center justify-center">
+                    <PetDisplay size="large" />
                 </div>
             </div>
         </div>
@@ -73,4 +67,4 @@ const LateralBar = () => {
 
 export default LateralBar;
 
-// TODO: Add pet display with displayed pet
+// Pet display added with PetDisplay component
