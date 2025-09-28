@@ -35,9 +35,9 @@ const PetMiniature: React.FC<PetMiniatureProps> = ({
 
     return (
         <div
-            className={`${petsBackground[variant]} ${className} flex items-center justify-center rounded-lg shadow-md p-4 border-2 border-accent-darker`}
+            className={`${petsBackground[variant]} ${className} flex items-center justify-center rounded-lg shadow-md p-4 border-2 border-accent-darker w-full h-full`}
         >
-            <PetMiniature className={className} />
+            <PetMiniature className="w-full h-full" />
         </div>
     );
 };

@@ -17,38 +17,39 @@ const StoreItem: React.FC<StoreItemProps> = ({
 }) => {
     return (
         <div
-            className={`rounded-2xl border-2 border-accent-darker bg-purple-lighter p-4 flex flex-col items-center ${className}`}
-            style={{ width: 320 }} 
+        className={`rounded-2xl  bg-transparent p-3 flex flex-col items-center ${className}`}
+
+            style={{ width: 200, height: 280 }} 
         >
             <div
-                className="w-full flex justify-center items-center rounded-xl mb-4"
+                className="w-full flex justify-center items-center rounded-xl mb-3"
                 style={{
                     background: "#F7F2FF", 
                     border: "2px solid #7A59F4", 
-                    minHeight: "220px",
+                    height: "160px",
                 }}
             >
-                <PetMiniature variant={petVariant} className="w-48 h-48" />
+                <PetMiniature variant={petVariant} className="w-32 h-32" />
             </div>
-            <div className="w-full flex items-center justify-between mt-2 px-2">
+            <div className="w-full flex items-center justify-between px-2">
                 <div className="flex items-center gap-1">
-                    <span className="text-black text-xl font-bold">{price}</span>
+                    <span className="text-black text-lg font-bold">{price}</span>
                     <span
                         className="rounded-full bg-yellow-200 flex items-center justify-center"
-                        style={{ width: 35, height: 35 }}
+                        style={{ width: 28, height: 28 }}
                     >
-                      
-                        <CoinIcon width={22} height={22} />
+                        <CoinIcon width={18} height={18} />
                     </span>
                 </div>
                 <Button
                     variant="accent"
                     onClick={onBuy}
                     style={{
-                        minWidth: 120,
-                        fontSize: "1.35rem",
-                        boxShadow: "0px 4px 0px #7A59F4",
-                        borderRadius: "1.5rem",
+                        minWidth: 80,
+                        fontSize: "1rem",
+                        boxShadow: "0px 3px 0px #7A59F4",
+                        borderRadius: "1rem",
+                        padding: "8px 16px",
                     }}
                 >
                     Buy
