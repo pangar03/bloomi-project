@@ -50,7 +50,7 @@ const NumPad = ({ setInput, setPin, input }: NumPadProps) => {
                 value={input}
                 onChange={(e) => setInput(e.target.value)}
             />
-            <div className="lg:hidden grid grid-cols-3 gap-4 w-fit mx-auto border-2 border-accent shadow-accent rounded-rounded grid-template-rows-[repeat(4,1fr)] p-8">
+            <div className="grid grid-cols-3 gap-4 w-fit mx-auto border-2 border-accent shadow-accent rounded-rounded grid-template-rows-[repeat(4,1fr)] p-8">
                 {(
                     [
                         "1",

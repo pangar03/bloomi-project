@@ -2,6 +2,8 @@ import "./App.css";
 import "./index.css";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Login from "./pages/loginPage/login";
+import Journal from "./pages/Journal/journal";
+import Store from "./pages/Store/store";
 import Register from "./pages/RegisterPage/registerPage";
 import StartPage from "./pages/StartPage/startPage";
 import NavBar from "./components/Nav/NavBar";
@@ -169,6 +171,8 @@ function App() {
                         <Route path="/settings/manage-habits" element={<ManageHabitsPage />} />
                         <Route path="/settings/edit-profile" element= {<EditProfilePage/>}/>
                         <Route path="/settings/edit-parent-pin" element={<EditParentPin />} />
+                        <Route path="/journal" element={<Journal />} />
+                        <Route path="/store" element={<Store />} />
                     </Routes>
                 </div>
             </div>

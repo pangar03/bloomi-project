@@ -18,6 +18,10 @@ const NavBar = () => {
             navBarVisibilityClass =
                 "flex-col lg:w-[20%] w-full lg:h-screen h-fit shadow-md justify-start absolute bottom-0 border-gray-light lg:border-t-0 lg:border-r-1 bg-white z-10";
             break;
+        case "journal":
+            navBarVisibilityClass =
+                "flex-col lg:w-[20%] w-full lg:h-screen h-fit shadow-md justify-start absolute bottom-0 border-gray-light lg:border-t-0 lg:border-r-1 bg-white z-10";
+            break;
         case null:
             navBarVisibilityClass = "hidden";
             break;
