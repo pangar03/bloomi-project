@@ -13,6 +13,7 @@ import { PageContext } from "./context/PageContext/PageContext";
 import SettingsPage from "./pages/Settings/SettingsPage";
 import TaskReportPage from "./pages/Settings/TaskReportPage";
 import MoodJournalReportPage from "./pages/Settings/MoodJournalPage";
+import ManageHabitsPage from "./pages/Settings/ManageHabitsPage";
 
 // pa que se muestre la pagina de start
 const ResponsiveHomePage = () => {
@@ -167,6 +168,10 @@ function App() {
                         <Route
                             path="/settings/reports/journal"
                             element={<MoodJournalReportPage />}
+                        />
+                        <Route
+                            path="/settings/manage-habits"
+                            element={<ManageHabitsPage />}
                         />
                     </Routes>
                 </div>
