@@ -81,11 +81,11 @@ const LateralBar = () => {
                 </SquareContainer>
 
                 
-                <div className="relative w-[80%] sm:w-[70%] md:w-[60%] aspect-square bg-[#F47B7B] rounded-full mx-auto mt-6 flex items-center justify-center shadow-md border-4 border-[#F7A6A6]">
+                <div className="relative w-[120px] sm:w-[140px] md:w-[60%] aspect-square bg-[#F47B7B] rounded-full mx-auto mt-6 flex items-center justify-center shadow-md border-4 border-[#F7A6A6]">
                     <PetMiniature
                         variant="BunnyBerry"
                         context="lateral"
-                        className="w-[75%] h-[75%]"
+                        className="w-[90px] h-[90px] sm:w-[110px] sm:h-[110px] md:w-[75%] md:h-[75%]"
                     />
                     <div className="absolute top-3 left-3 w-10 h-10 bg-white border-2 border-[#7A59F4] rounded-full shadow-md flex items-center justify-center">
                         <IconButton

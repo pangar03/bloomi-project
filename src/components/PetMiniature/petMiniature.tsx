@@ -53,9 +53,29 @@ const PetMiniature: React.FC<PetMiniatureProps> = ({
 
     
     if (context === "lateral") {
+        console.log("Lateral context - variant:", variant, "PetComponent exists:", !!PetComponent);
+        console.log("Background class:", petsBackground[variant]);
+        console.log("Final className:", `${petsBackground[variant]} ${className}`);
         return (
-            <div className={`${petsBackground[variant]} ${className} flex items-center justify-center rounded-full shadow-md p-2`}>
-                <PetComponent className="w-full h-full" />
+            <div 
+                className={`${petsBackground[variant]} ${className} flex items-center justify-center rounded-full shadow-md overflow-hidden`}
+                style={{ minWidth: '80px', minHeight: '80px' }}
+            >
+                {PetComponent ? (
+                    <PetComponent 
+                        className="w-full h-full" 
+                        style={{ 
+                            maxWidth: '100%', 
+                            maxHeight: '100%',
+                            width: '100%',
+                            height: '100%'
+                        }} 
+                    />
+                ) : (
+                    <div className="w-full h-full bg-gray-300 rounded-full flex items-center justify-center">
+                        <span className="text-xs text-black font-bold">PET</span>
+                    </div>
+                )}
             </div>
         );
     }
