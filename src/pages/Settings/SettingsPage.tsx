@@ -59,9 +59,10 @@ const SettingsPage = () => {
                         Settings
                     </h1>
                 </div>
-                <div className="flex flex-col gap-1 w-full">
+                <div className="flex flex-col gap-4 w-full">
                     <Button
                         variant="white"
+                        className="w-full"
                         onClick={() => {
                             navigate("/settings/edit-profile");
                         }}
