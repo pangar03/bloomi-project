@@ -5,6 +5,7 @@ import type { Task } from "../../types/Task";
 import { PageContext } from "../../context/PageContext/PageContext";
 import Button from "../../components/buttons/button";
 import { useNavigate } from "react-router-dom";
+import AddHabitButton from "../../components/buttons/addHabitButton";
 
 const TaskReportPage = () => {
     const { user } = useContext(UserContext);
@@ -21,24 +22,16 @@ const TaskReportPage = () => {
                 Edit Habits
             </h1>
             <div className="w-full h-full flex flex-col items-center rounded-t-rounded bg-white mt-8 px-4 py-8 custom-scrollbar overflow-y-scroll">
-                {Object.keys(user?.taskRegistry || {}).map((date) => {
-                    return (
-                        <div key={date} className="mb-4 w-full ">
-                            <h2 className="text-m font-bold mb-2">
-                                {new Date(date).toDateString()}
-                            </h2>
-                            <TaskList
-                                taskList={
-                                    user?.taskRegistry[date].map((task) => ({
-                                        ...task,
-                                        variant: "deletable",
-                                    })) || ([] as Task[])
-                                }
-                                className="w-fullflex flex-col h-full gap-4"
-                            />
-                        </div>
-                    );
-                })}
+                <AddHabitButton className="mb-4" />
+                <TaskList
+                    taskList={
+                        user?.tasks.map((task) => ({
+                            ...task,
+                            variant: "deletable",
+                        })) || ([] as Task[])
+                    }
+                    className="w-full flex flex-col h-full gap-4"
+                />
                 <Button variant="white" onClick={() => navigate(-1)}>
                     Back
                 </Button>
