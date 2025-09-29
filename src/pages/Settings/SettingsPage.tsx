@@ -70,7 +70,9 @@ const SettingsPage = () => {
                     <Button
                         variant="white"
                         className="w-full"
-                        onClick={() => {}}
+                        onClick={() => {
+                            navigate("/settings/manage-habits");
+                        }}
                     >
                         Edit Habits
                     </Button>
