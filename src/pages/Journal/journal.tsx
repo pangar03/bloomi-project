@@ -13,7 +13,7 @@ function Journal() {
   }, [currentPage, setCurrentPage]);
 
   return (
-    <div className="w-full flex flex-col items-center">
+    <div className="lg:w-[60%] lg:rounded-none w-full lg:h-screen overflow-y-scroll mx-auto custom-scrollbar flex flex-col items-center lg:px-16 px-4 py-8 mt-8 rounded-t-rounded bg-white">
       <h1 className="lg:text-xl text-lg font-bold text-black mb-6">
         Mood Journal
       </h1>
