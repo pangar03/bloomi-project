@@ -2,6 +2,7 @@ import Button from "../buttons/button";
 import IconButton from "../buttons/iconButton";
 import Input from "../Input/input";
 import CircleContainer from "../RoundedContainer/circleContainer";
+import { useNavigate } from "react-router-dom";
 
 type NumberInputKeys =
     | "0"
@@ -18,11 +19,13 @@ type NumberInputKeys =
 
 type NumPadProps = {
     setInput: React.Dispatch<React.SetStateAction<string>>;
-    setPin: React.Dispatch<React.SetStateAction<string>>;
+    setPin: (pin: string) => void;
     input: string;
 };
 
 const NumPad = ({ setInput, setPin, input }: NumPadProps) => {
+    const navigate = useNavigate();
+    
     const handleClick = (key: NumberInputKeys) => {
         if (key === "Backspace") {
             setInput(input.slice(0, -1));
@@ -38,7 +41,7 @@ const NumPad = ({ setInput, setPin, input }: NumPadProps) => {
     };
 
     return (
-        <form onSubmit={handleSubmit} className="flex flex-col">
+        <form onSubmit={handleSubmit} className="flex flex-col gap-4">
             <Input
                 type="password"
                 pattern="\d{4}"
@@ -47,7 +50,7 @@ const NumPad = ({ setInput, setPin, input }: NumPadProps) => {
                 value={input}
                 onChange={(e) => setInput(e.target.value)}
             />
-            <div className="lg:hidden grid grid-cols-3 gap-4 w-fit mx-auto border-2 border-accent shadow-accent rounded-rounded grid-template-rows-[repeat(4,1fr)] p-8">
+            <div className="grid grid-cols-3 gap-4 w-fit mx-auto border-2 border-accent shadow-accent rounded-rounded grid-template-rows-[repeat(4,1fr)] p-8">
                 {(
                     [
                         "1",
@@ -87,7 +90,7 @@ const NumPad = ({ setInput, setPin, input }: NumPadProps) => {
             <Button variant="accent" type="submit">
                 Confirm
             </Button>
-            <Button variant="white">Back</Button>
+            <Button variant="white" onClick={() => navigate(-1)}>Back</Button>
         </form>
     );
 };

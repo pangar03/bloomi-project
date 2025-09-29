@@ -16,6 +16,7 @@ export type User = {
     goals: Goal[];
     journalEntries: MoodDataType[];
     dailyMood: MoodDataType | null;
+    taskRegistry: { [key: string]: Task[] };
 };
 
 // TODO:
