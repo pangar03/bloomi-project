@@ -132,8 +132,7 @@ function App() {
               <Route path="/dashboard" element={<Dashboard />} />
               <Route path="/settings" element={<SettingsPage />} />
               <Route path="/journal" element={<Journal />} />
-                <Route path="/store" element={<Store />} />
-
+              <Route path="/store" element={<Store />} />
             </Routes>
           </div>
         </div>

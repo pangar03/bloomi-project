@@ -81,7 +81,7 @@ const LateralBar = () => {
                 </SquareContainer>
 
                 
-                <div className="relative w-[60%] md:w-[50%] aspect-square bg-[#F47B7B] rounded-full mx-auto mt-10 flex items-center justify-center shadow-md border-4 border-[#F7A6A6]">
+                <div className="relative w-[80%] sm:w-[70%] md:w-[60%] aspect-square bg-[#F47B7B] rounded-full mx-auto mt-6 flex items-center justify-center shadow-md border-4 border-[#F7A6A6]">
                     <PetMiniature
                         variant="BunnyBerry"
                         context="lateral"
