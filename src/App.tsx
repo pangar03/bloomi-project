@@ -165,12 +165,30 @@ function App() {
                         <Route path="/register" element={<Register />} />
                         <Route path="/dashboard" element={<Dashboard />} />
                         <Route path="/settings" element={<SettingsPage />} />
-                        <Route path="/settings/reports/tasks" element={<TaskReportPage />}/>
-                        <Route path="/settings/reports/journal" element={<MoodJournalReportPage />}/>
-                        <Route path="/settings/manage-habits" element={<ManageHabitsPage />} />
-                        <Route path="/settings/manage-habits" element={<ManageHabitsPage />} />
-                        <Route path="/settings/edit-profile" element= {<EditProfilePage/>}/>
-                        <Route path="/settings/edit-parent-pin" element={<EditParentPin />} />
+                        <Route
+                            path="/settings/reports/tasks"
+                            element={<TaskReportPage />}
+                        />
+                        <Route
+                            path="/settings/reports/journal"
+                            element={<MoodJournalReportPage />}
+                        />
+                        <Route
+                            path="/settings/manage-habits"
+                            element={<ManageHabitsPage />}
+                        />
+                        <Route
+                            path="/settings/manage-habits"
+                            element={<ManageHabitsPage />}
+                        />
+                        <Route
+                            path="/settings/edit-profile"
+                            element={<EditProfilePage />}
+                        />
+                        <Route
+                            path="/settings/edit-parent-pin"
+                            element={<EditParentPin />}
+                        />
                         <Route path="/journal" element={<Journal />} />
                         <Route path="/store" element={<Store />} />
                     </Routes>
