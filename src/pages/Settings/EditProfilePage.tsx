@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import Button from "../../components/buttons/button";
 import Input from "../../components/Input/input";
 
+
 const EditProfilePage = () => {
 
   const { currentPage, setCurrentPage } = useContext(PageContext)!;
@@ -18,73 +19,86 @@ const EditProfilePage = () => {
     if (currentPage !== "settings") setCurrentPage("settings");
   }, [currentPage, setCurrentPage]);
 
+  const handleConfirmChanges = () => {
+    // Aquí puedes agregar la lógica para confirmar los cambios
+    console.log("Confirming changes...");
+    navigate(-1);
+  };
+
   return (
-    <div className="w-full h-full flex flex-col items-center bg-white mt-35">
-      <h1 className="text-l font-bold text-black mb-8">Edit Account</h1>
-      <div className="w-full max-w-md px-6 space-y-6">
-        <div>
-          <Input
-            type="email"
-            label="Cambiar email"
-            placeholder="nuevo email"
-            inputValue={email}
-            setInputValue={setEmail}
-            className="w-full"
-          />
-        </div>
+    <div className="w-full h-full lg:mx-auto flex flex-col items-center lg:bg-white bg-accent">
+      <div className="w-full h-full flex flex-col items-center bg-white mt-0 px-8 py-8 custom-scrollbar overflow-y-scroll">
+        <div className="flex flex-col gap-6 items-center lg:w-[35%] w-full max-w-sm">
+          
+          <h1 className="text-xl text-black font-bold mb-4 mt-8">
+            Edit Account
+          </h1>
 
-        <div>
-          <Input
-            type="password"
-            label="Cambiar contraseña"
-            placeholder="nueva contraseña"
-            inputValue={password}
-            setInputValue={setPassword}
-            className="w-full"
-          />
-        </div>
+          <div className="w-full">
+            <Input
+              type="email"
+              label="E-mail"
+              placeholder="new email"
+              inputValue={email}
+              setInputValue={setEmail}
+              className="w-full"
+            />
+          </div>
 
-        <div>
-          <Input
-            type="password"
-            label="Repetir nueva contraseña"
-            placeholder="confirmar contraseña"
-            inputValue={confirmPassword}
-            setInputValue={setConfirmPassword}
-            className="w-full"
-          />
-        </div>
+          <div className="w-full">
+            <Input
+              type="password"
+              label="Password"
+              placeholder="new password"
+              inputValue={password}
+              setInputValue={setPassword}
+              className="w-full"
+            />
+          </div>
 
-        <div className="pt-4">
-          <Button
-            variant="white"
-            className="w-full "
-            onClick={() => navigate("/settings/edit-parent-pin")}
-          >
-            Edit Parent Pin
-          </Button>
-        </div>
+          <div className="w-full">
+            <Input
+              type="password"
+              label="Confirm Password"
+              placeholder="new password"
+              inputValue={confirmPassword}
+              setInputValue={setConfirmPassword}
+              className="w-full"
+            />
+          </div>
 
-        <div className="flex space-x-4 pt-6">
-          <Button
-            variant="red"
-            onClick={() => navigate(-1)}
-            className="flex-1 py-3 "
-          >
-            Cancel
-          </Button>
+          <div className="pt-4 w-full">
+            <Button
+              variant="white"
+              className="w-full"
+              onClick={() => navigate("/settings/edit-parent-pin")}
+            >
+              Edit Parent Pin
+            </Button>
+          </div>
 
-          <Button
-            variant="accent"
-            onClick={() => navigate(-1)}
-            className="flex-1"
-          >
-            Confirm Changes
-          </Button>
+          <div className="flex space-x-3 pt-4 w-full">
+            <Button
+              variant="red"
+              onClick={() => navigate(-1)}
+              className="flex-1 py-2 text-sm h-10"
+            >
+              Cancel
+            </Button>
+
+            <Button
+              variant="accent"
+              onClick={handleConfirmChanges}
+              className="flex-1 py-2 text-sm h-10"
+            >
+              Confirm 
+            </Button>
+          </div>
         </div>
       </div>
     </div>
   );
 };
+
 
 export default EditProfilePage;

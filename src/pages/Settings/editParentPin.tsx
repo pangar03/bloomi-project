@@ -38,15 +38,15 @@ const EditParentPin = () => {
     }
   }, [confirmPin, newPin, step]);
 
-  // Función para manejar cuando NumPad establece el PIN
+
   const handlePinSet = (pin: string) => {
     if (step === 1) {
-      // Guardar el primer PIN y pasar al paso 2
+  
       setNewPin(pin);
       setStep(2);
       setPinInputValue("");
     } else {
-      // Guardar el PIN de confirmación (la comparación se hace en useEffect)
+     
       setConfirmPin(pin);
     }
   };
