@@ -31,7 +31,7 @@ const SettingsPage = () => {
     return (
         <>
             <div
-                className={`${isUnlocked ? "hidden" : ""} pin-unlock-display w-full flex flex-col gap-16 items-center mx-auto lg:justify-center justify-start h-full bg-white`}
+                className={`${isUnlocked ? "hidden" : ""} lg:w-[60%] lg:rounded-none w-full lg:h-screen overflow-y-scroll mx-auto custom-scrollbar flex flex-col gap-16 items-center lg:px-16 px-4 py-8 rounded-t-rounded bg-white lg:justify-center justify-start`}
             >
                 <div></div>
                 <div className="flex flex-col gap-4 items-center">
@@ -49,7 +49,7 @@ const SettingsPage = () => {
                 </div>
             </div>
             <div
-                className={`${isUnlocked ? "flex flex-col items-center justify-center h-full gap-4 lg:w-[40%] w-full bg-white px-8 mx-auto" : "hidden"} `}
+                className={`${isUnlocked ? "lg:w-[60%] lg:rounded-none w-full lg:h-screen overflow-y-scroll mx-auto custom-scrollbar flex flex-col items-center justify-center gap-4 lg:px-16 px-8 py-8 rounded-t-rounded bg-white" : "hidden"} `}
             >
                 <div>
                     <div></div>
@@ -57,7 +57,7 @@ const SettingsPage = () => {
                         Settings
                     </h1>
                 </div>
-                <div className="flex flex-col gap-4 w-full">
+                <div className="flex flex-col gap-4 w-full max-w-md">
                     <Button
                         variant="white"
                         className="w-full"
@@ -89,7 +89,7 @@ const SettingsPage = () => {
                 </div>
                 <Button
                     variant="red"
-                    className="w-full mt-16"
+                    className="w-full max-w-md mt-16"
                     onClick={() => {}}
                 >
                     Log Out
