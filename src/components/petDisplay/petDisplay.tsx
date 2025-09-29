@@ -15,7 +15,7 @@ interface PetDisplayProps {
     petVariant?: PetVariant;
 }
 
-// Mapeo de mascotas a sus SVGs
+
 const PETS: Record<PetVariant, React.FC<React.SVGProps<SVGSVGElement>>> = {
     BunnyBerry: BunnyBerry,
     FloraBunny: FloraBunny,
@@ -29,22 +29,22 @@ const PetDisplay: React.FC<PetDisplayProps> = ({
     usePetSVG = false,
     petVariant = "BunnyBerry"
 }) => {
-    // Escalas con Tailwind (más grandes que antes)
+    
     const sizes = {
         small: 60,
-        medium: 120, // lo agrandé un poco para que se note más
+        medium: 120, 
         large: 180
     };
 
     const currentSize = sizes[size];
 
 
-    // Si usePetSVG es true, usar el SVG de la mascota
+    
     if (usePetSVG) {
         const PetComponent = PETS[petVariant];
         return (
             <div className={`relative ${className}`}>
-                {/* Círculo principal */}
+                
                 <CircleContainer 
                     variant="blue" 
                     className="flex items-center justify-center"
@@ -55,7 +55,7 @@ const PetDisplay: React.FC<PetDisplayProps> = ({
                         height={currentSize * 0.7}
                     />
                     
-                    {/* Icono de gancho superpuesto */}
+                   
                     <div className="absolute top-2 right-2">
                         <Icon variant="HangerIcon" className="w-6 h-6" />
                     </div>

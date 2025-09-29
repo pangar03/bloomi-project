@@ -44,21 +44,21 @@ function Store() {
 
     return (
         <div className="lg:w-[60%] lg:rounded-none w-full lg:h-screen overflow-y-scroll mx-auto custom-scrollbar flex flex-col items-center lg:px-16 px-4 py-8 mt-8 rounded-t-rounded bg-white">
-          {/* Header con monedas a la izquierda y título centrado */}
+          
           <div className="flex items-center justify-between w-full mb-10 relative">
-            {/* Monedas a la izquierda */}
+           
             <div className="flex items-center gap-2">
               <Icon variant="CoinIcon" className="w-6 h-6 text-yellow-500" />
               <span className="text-lg font-semibold text-gray-800">$120</span>
             </div>
       
-            {/* Título centrado */}
+            
             <h1 className="text-xl font-bold text-black absolute left-1/2 transform -translate-x-1/2">
               Shop
             </h1>
           </div>
       
-          {/* Grid de items más grandes */}
+          
           <div className="grid grid-cols-2 gap-8 w-full">
             {storeItems.map((item) => (
               <div
