@@ -40,10 +40,10 @@ function Dashboard() {
                 {taskShown && (
                     <TaskList
                         taskList={user?.dailyTasks || []}
-                        className="w-full mx-auto mt-10 items-center"
+                        className="w-full mx-auto mt-10 items-center mb-20 lg:mb-0"
                     />
                 )}
-                {!taskShown && <GoalList className="w-full mt-10" />}
+                {!taskShown && <GoalList className="w-full mt-10 mb-20 lg:mb-0" />}
             </div>
         </>
     );
