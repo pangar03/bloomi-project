@@ -2,6 +2,7 @@ import Fallxie from "../../assets/pets/naranja.svg";
 import FloraBunny from "../../assets/pets/frambuesa.svg";
 import CatMora from "../../assets/pets/mora.svg";
 import BunnyBerry from "../../assets/pets/fresa.svg";
+import CircleContainer from "../RoundedContainer/circleContainer";
 
 // Edit: Added a dictionary to map pet variants to background colors using the idea from the pets object in the original code.
 const petsBackground = {
@@ -13,11 +14,12 @@ const petsBackground = {
 
 type PetVariant = "BunnyBerry" | "FloraBunny" | "CatMora" | "Fallxie";
 
-// Props that the PetMiniature component can receive. variant is the type of pet to display, className is an optional CSS class to apply to the SVG element.
 interface PetMiniatureProps {
     variant?: PetVariant;
     className?: string;
-    context?: "store" | "lateral" | "default"; // New prop to handle different display contexts
+    context?: "lateral" | "default" | "store";
+    usePetSVG?: boolean;        // Nueva: activa el modo SVG de mascota
+    petVariant?: PetVariant;    // Nueva: especifica qué mascota mostrar
 }
 
 // What does this do: Record: Maps (as a dictionary, search what a dictionary is in programming for more info) the variant names to the imported SVG Components. Basically allows to use a string to select which SVG to render. React.FC means React Functional Component, and React.SVGProps<SVGSVGElement> means the props that an SVG element can take. All this comes from the vite-env.d.ts file and the vite-plugin-svgr plugin. All this to use SVGs as React components instead of images as before.
@@ -28,18 +30,31 @@ const PETS: Record<PetVariant, React.FC<React.SVGProps<SVGSVGElement>>> = {
     Fallxie: Fallxie,
 };
 
-const PetMiniature: React.FC<PetMiniatureProps> = ({
-    variant = "BunnyBerry",
-    className,
+const PetMiniature: React.FC<PetMiniatureProps> = ({ 
+    variant = "BunnyBerry", 
+    className, 
     context = "default",
-}) => {
-    const PetComponent = PETS[variant];
+    usePetSVG = false,
+    petVariant = "BunnyBerry"
+}) => { 
+    const PetComponent = PETS[variant]; 
 
-    // Different styling based on context
+    console.log("PetMiniature rendering:", { variant, petVariant, usePetSVG, PetComponent: !!PetComponent });
+
+    // If usePetSVG is true, render with CircleContainer
+    if (usePetSVG) { 
+        const PetSVGComponent = PETS[petVariant]; 
+        return ( 
+            <CircleContainer variant="blue" className={className}>
+                <PetSVGComponent width={80} height={80} /> 
+            </CircleContainer> 
+        ); 
+    }
+
+    // Default rendering for store and other contexts
     if (context === "lateral") {
-        // Simplified styling for lateral bar - just the SVG without background container
         return (
-            <div className={`flex items-center justify-center ${className}`}>
+            <div className={`${petsBackground[variant]} ${className} flex items-center justify-center rounded-full shadow-md p-2`}>
                 <PetComponent className="w-full h-full" />
             </div>
         );

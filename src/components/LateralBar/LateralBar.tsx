@@ -54,12 +54,19 @@ const LateralBar = () => {
                     </h2>
                     <Icon variant="CoinIcon" className="w-6 h-6" />
                 </SquareContainer>
-            
-                <div className="h-[40%] aspect-square bg-white rounded-full mx-auto my-auto">
-                    <IconButton
-                        variant="HangerIcon"
-                        className="w-[15%] aspect-square"
+
+                {/* Mascota con hanger */}
+                <div className="relative w-[70%] aspect-square bg-[#F47B7B] rounded-full mx-auto mt-30 flex items-center justify-center shadow-md border-4 border-[#F7A6A6]">
+                    {/* Mascota */}
+                    <PetMiniature
+                        variant="BunnyBerry"
+                        context="lateral"
+                        className="w-[75%] h-[75%]"
                     />
+                    {/* Hanger arriba a la izquierda */}
+                    <div className="absolute top-4 left-4 w-12 h-12 bg-white border-2 border-[#7A59F4] rounded-full shadow-md flex items-center justify-center">
+                        <Icon variant="HangerIcon" className="w-6 h-6 text-[#7A59F4]" />
+                    </div>
                 </div>
             </div>
 
@@ -73,13 +80,19 @@ const LateralBar = () => {
                     <Icon variant="CoinIcon" className="w-6 h-6" />
                 </SquareContainer>
 
-                {/* Mascota */}
-                <div className="w-[60%] md:w-[40%] aspect-square bg-white rounded-full mx-auto my-6 flex items-center justify-center shadow-md">
+                {/* Mascota con hanger */}
+                <div className="relative w-[60%] md:w-[50%] aspect-square bg-[#F47B7B] rounded-full mx-auto mt-10 flex items-center justify-center shadow-md border-4 border-[#F7A6A6]">
                     <PetMiniature
                         variant="BunnyBerry"
                         context="lateral"
-                        className="w-[70%] h-[70%]"
+                        className="w-[75%] h-[75%]"
                     />
+                    <div className="absolute top-3 left-3 w-10 h-10 bg-white border-2 border-[#7A59F4] rounded-full shadow-md flex items-center justify-center">
+                        <IconButton
+                            variant="HangerIcon"
+                            className="w-5 h-5 text-[#7A59F4]"
+                        />
+                    </div>
                 </div>
             </div>
         </div>

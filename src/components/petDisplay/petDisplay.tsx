@@ -54,14 +54,12 @@ const PetDisplay: React.FC<PetDisplayProps> = ({
                         width={currentSize * 0.7} 
                         height={currentSize * 0.7}
                     />
+                    
+                    {/* Icono de gancho superpuesto */}
+                    <div className="absolute top-2 right-2">
+                        <Icon variant="HangerIcon" className="w-6 h-6" />
+                    </div>
                 </CircleContainer>
-                
-                {/* Icono de gancho */}
-                <div className="absolute -top-3 -left-3">
-                    <CircleContainer variant="blue" className="w-8 h-8 flex items-center justify-center">
-                        <Icon variant="HangerIcon" className="w-4 h-4" />
-                    </CircleContainer>
-                </div>
             </div>
         );
     }
