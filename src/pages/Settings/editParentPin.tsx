@@ -21,9 +21,9 @@ const EditParentPin = () => {
     if (currentPage !== "settings") setCurrentPage("settings");
   }, [currentPage, setCurrentPage]);
 
- //se comparan los pins
+ // Efecto para comparar PINs cuando confirmPin se actualiza
   useEffect(() => {
-    if (step === 2 && confirmPin.length === 4) {
+    if (step === 2 && confirmPin.length === 4 && newPin.length === 4) {
       if (newPin === confirmPin) {
         // Update user PIN
         if (user && setUser) {
@@ -39,7 +39,7 @@ const EditParentPin = () => {
         setPinInputValue("");
       }
     }
-  }, [confirmPin, newPin, step, user, setUser, navigate]);
+  }, [confirmPin, newPin, step]); // Removidas las dependencias que causan el bucle
 
   const handleClick = (key: string) => {
     if (key === "Backspace") {
@@ -117,7 +117,7 @@ const EditParentPin = () => {
                   {key}
                 </CircleContainer>
               ))}
-              <div></div>
+
               <CircleContainer
                 onClick={() => handleClick("0")}
                 variant="blue"
@@ -141,6 +141,9 @@ const EditParentPin = () => {
         </div>
       </div>
     </div>
+
+
+    
   );
 };
 
