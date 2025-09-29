@@ -18,7 +18,7 @@ function Journal() {
         Mood Journal
       </h1>
   
-      <div className="w-full flex justify-center">
+      <div className="w-full flex justify-center mb-20 lg:mb-0">
         {!user?.dailyMood && <JournalForm />}
         {user?.dailyMood && <MoodEntry {...user.dailyMood} />}
       </div>
