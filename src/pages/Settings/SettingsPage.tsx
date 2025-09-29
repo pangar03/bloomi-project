@@ -3,13 +3,15 @@ import { UserContext } from "../../context/UserContext/UserContext";
 import NumPad from "../../components/NumPad/NumPad";
 import Button from "../../components/buttons/button";
 import { PageContext } from "../../context/PageContext/PageContext";
+import { useNavigate } from "react-router-dom";
 
 const SettingsPage = () => {
-    const { user } = useContext(UserContext); //For now we will be using context
+    const { user, setUser } = useContext(UserContext); //For now we will be using context
     const [pinInputValue, setPinInputValue] = useState<string>("");
     const [pinValue, setPinValue] = useState<string>("");
     const [isUnlocked, setIsUnlocked] = useState<boolean>(false);
     const { currentPage, setCurrentPage } = useContext(PageContext)!;
+    const navigate = useNavigate();
 
     useEffect(() => {
         if (currentPage !== "settings") setCurrentPage("settings");
@@ -20,6 +22,14 @@ const SettingsPage = () => {
             setIsUnlocked(true);
             alert("Access granted to settings");
         }
+    };
+
+    const handleLogout = () => {
+        setUser(null);
+        setIsUnlocked(false);
+        setPinValue("");
+        setPinInputValue("");
+        navigate("/login");
     };
 
     useEffect(() => {
@@ -63,36 +73,44 @@ const SettingsPage = () => {
                     <Button
                         variant="white"
                         className="w-full"
-                        onClick={() => {}}
+                        onClick={() => {
+                            navigate("/settings/edit-profile");
+                        }}
                     >
                         Edit Account
                     </Button>
                     <Button
                         variant="white"
                         className="w-full"
-                        onClick={() => {}}
+                        onClick={() => {
+                            navigate("/settings/manage-habits");
+                        }}
                     >
                         Edit Habits
                     </Button>
                     <Button
                         variant="accent"
                         className="w-full"
-                        onClick={() => {}}
+                        onClick={() => {
+                            navigate("/settings/reports/tasks");
+                        }}
                     >
                         Weekly Habits Report
                     </Button>
                     <Button
                         variant="accent"
                         className="w-full"
-                        onClick={() => {}}
+                        onClick={() => {
+                            navigate("/settings/reports/journal");
+                        }}
                     >
                         Mood Journal
                     </Button>
                 </div>
                 <Button
                     variant="red"
-                    className="w-full max-w-md mt-16"
-                    onClick={() => {}}
+                    className="w-full mt-16"
+                    onClick={handleLogout}
                 >
                     Log Out
                 </Button>
