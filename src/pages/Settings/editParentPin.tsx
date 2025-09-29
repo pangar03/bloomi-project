@@ -51,15 +51,6 @@ const EditParentPin = () => {
     }
   };
 
-  const handleBack = (): void => {
-    if (step === 2) {
-      setStep(1);
-      setConfirmPin("");
-      setPinInputValue("");
-    } else {
-      navigate("/settings/edit-profile");
-    }
-  };
 
   return (
     <div className="w-full flex flex-col gap-16 items-center mx-auto lg:justify-center justify-start h-full bg-white">

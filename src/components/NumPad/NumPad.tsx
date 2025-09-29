@@ -2,6 +2,7 @@ import Button from "../buttons/button";
 import IconButton from "../buttons/iconButton";
 import Input from "../Input/input";
 import CircleContainer from "../RoundedContainer/circleContainer";
+import { useNavigate } from "react-router-dom";
 
 type NumberInputKeys =
     | "0"
@@ -18,11 +19,13 @@ type NumberInputKeys =
 
 type NumPadProps = {
     setInput: React.Dispatch<React.SetStateAction<string>>;
-    setPin: React.Dispatch<React.SetStateAction<string>>;
+    setPin: (pin: string) => void;
     input: string;
 };
 
 const NumPad = ({ setInput, setPin, input }: NumPadProps) => {
+    const navigate = useNavigate();
+    
     const handleClick = (key: NumberInputKeys) => {
         if (key === "Backspace") {
             setInput(input.slice(0, -1));
@@ -87,7 +90,7 @@ const NumPad = ({ setInput, setPin, input }: NumPadProps) => {
             <Button variant="accent" type="submit">
                 Confirm
             </Button>
-            <Button variant="white">Back</Button>
+            <Button variant="white" onClick={() => navigate(-1)}>Back</Button>
         </form>
     );
 };
