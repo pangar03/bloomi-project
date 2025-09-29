@@ -1,7 +1,6 @@
 import { useContext } from "react";
 import Icon from "../Icon/Icon";
-import SquareContainer from "../RoundedContainer/squareContainer";
-import PetDisplay from "../petDisplay/petDisplay";
+import SquareContainer from "../RoundedContainer/squareContainer";       
 import { UserContext } from "../../context/UserContext/UserContext";
 import { PageContext } from "../../context/PageContext/PageContext";
 
@@ -53,13 +52,11 @@ const LateralBar = () => {
                     </h2>
                     <Icon variant="CoinIcon" className="w-6 h-6" />
                 </SquareContainer>
-
-                {/* Mascota */}
-                <div className="h-[40%] aspect-square bg-white rounded-full mx-auto my-auto flex items-center justify-center shadow-md">
-                    <PetDisplay
-                        size="large"
-                        usePetSVG={true}
-                        petVariant="BunnyBerry"
+            
+                <div className="h-[40%] aspect-square bg-white rounded-full mx-auto my-auto">
+                    <IconButton
+                        variant="HangerIcon"
+                        className="w-[15%] aspect-square"
                     />
                 </div>
             </div>

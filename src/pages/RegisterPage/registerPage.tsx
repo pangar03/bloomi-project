@@ -1,9 +1,9 @@
 import { useContext, useEffect } from "react";
-import LoginForm from "../../components/LoginForm/loginForm";
+import RegisterForm from "../../components/registerForm/registerForm";
 import { PageContext } from "../../context/PageContext/PageContext";
 import Logo from "../../components/Logo/logo";
 
-const Login = () => {
+const Register = () => {
     const { currentPage, setCurrentPage } = useContext(PageContext)!;
     useEffect(() => {
         if (currentPage !== "login") setCurrentPage("login");
@@ -19,11 +19,11 @@ const Login = () => {
             </div>
             <div className="mt-auto bg-white rounded-t-4xl shadow-lg p-6 md:p-10 w-full min-h-[60vh] md:min-h-[70vh]">
                 <div className="w-full max-w-md mx-auto">
-                    <LoginForm />
+                    <RegisterForm />
                 </div>
             </div>
         </div>
     );
 };
 
-export default Login;
+export default Register;

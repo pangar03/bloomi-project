@@ -1,5 +1,6 @@
 import { useContext } from "react";
 import NavItem from "./NavItem";
+import Logo from "../Logo/logo";
 import { PageContext } from "../../context/PageContext/PageContext";
 
 const NavBar = () => {
@@ -30,8 +31,8 @@ const NavBar = () => {
     }
     return (
         <nav className={`${navBarVisibilityClass} `}>
-            <div className="w-full p-4 h-[15%] hidden lg:block bg-accent-lighter border-b-1 border-gray-light m-0">
-                {/* LOGO */}
+            <div className="w-full p-4 h-[15%] hidden lg:flex border-b-1 border-gray-light m-0 items-center justify-center">
+                <Logo variant="primary" />
             </div>
             <div className="lg:flex-col flex justify-between p-4 lg:justify-start w-screen border-t-1  lg:w-[20vw] lg:h-fit">
                 <NavItem navTo="dashboard" label="Dashboard" />
