@@ -3,10 +3,13 @@ import { UserContext } from "../../context/UserContext/UserContext";
 import TaskList from "../../components/taskList/taskList";
 import type { Task } from "../../types/Task";
 import { PageContext } from "../../context/PageContext/PageContext";
+import Button from "../../components/buttons/button";
+import { useNavigate } from "react-router-dom";
 
 const TaskReportPage = () => {
     const { user } = useContext(UserContext);
     const { currentPage, setCurrentPage } = useContext(PageContext)!;
+    const navigate = useNavigate();
 
     useEffect(() => {
         if (currentPage !== "settings") setCurrentPage("settings");
@@ -17,7 +20,7 @@ const TaskReportPage = () => {
             <h1 className="text-xl lg:text-black text-white font-bold">
                 Weekly Report
             </h1>
-            <div className="w-full h-full rounded-t-rounded bg-white mt-8 px-4 py-8 custom-scrollbar overflow-y-scroll">
+            <div className="w-full h-full flex flex-col items-center rounded-t-rounded bg-white mt-8 px-4 py-8 custom-scrollbar overflow-y-scroll">
                 {Object.keys(user?.taskRegistry || {}).map((date) => {
                     return (
                         <div key={date} className="mb-4 w-full ">
@@ -36,6 +39,9 @@ const TaskReportPage = () => {
                         </div>
                     );
                 })}
+                <Button variant="white" onClick={() => navigate(-1)}>
+                    Back
+                </Button>
             </div>
         </div>
     );
