@@ -1,0 +1,26 @@
+import LogoSvg from "../../assets/logo/logo.svg";
+
+type LogoProps = {
+    variant?: "primary" | "white";
+    className?: string;
+};
+
+const Logo = ({ variant = "primary", className = "" }: LogoProps) => {
+    const baseClasses =
+        "flex justify-center items-center transition-all duration-150";
+    const svgVariants = {
+        primary: "fill-primary",
+        white: "fill-white",
+    };
+
+    return (
+        <div className={`${baseClasses} ${className}`}>
+            <LogoSvg
+                className={`w-32 h-auto ${svgVariants[variant]}`}
+                aria-label="Bloomi Logo"
+            />
+        </div>
+    );
+};
+
+export default Logo;
