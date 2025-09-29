@@ -12,14 +12,34 @@ const EditParentPin = () => {
   const { currentPage, setCurrentPage } = useContext(PageContext)!;
   const navigate = useNavigate();
   
-  const [newPin, setNewPin] = useState<string>(""); // PIN que se está creando
-  const [pinInputValue, setPinInputValue] = useState<string>(""); // Valor actual del input
-  const [confirmPin, setConfirmPin] = useState<string>(""); // PIN de confirmación
-  const [step, setStep] = useState<number>(1); // 1: enter new pin, 2: confirm pin
+  const [newPin, setNewPin] = useState<string>(""); 
+  const [pinInputValue, setPinInputValue] = useState<string>("");
+  const [confirmPin, setConfirmPin] = useState<string>(""); 
+  const [step, setStep] = useState<number>(1); 
 
   useEffect(() => {
     if (currentPage !== "settings") setCurrentPage("settings");
   }, [currentPage, setCurrentPage]);
+
+ //se comparan los pins
+  useEffect(() => {
+    if (step === 2 && confirmPin.length === 4) {
+      if (newPin === confirmPin) {
+        // Update user PIN
+        if (user && setUser) {
+          setUser({ ...user, pin: newPin });
+        }
+        alert("PIN actualizado exitosamente");
+        navigate("/settings/edit-profile");
+      } else {
+        alert("Los PINs no coinciden. Inténtalo de nuevo.");
+        setStep(1);
+        setNewPin("");
+        setConfirmPin("");
+        setPinInputValue("");
+      }
+    }
+  }, [confirmPin, newPin, step, user, setUser, navigate]);
 
   const handleClick = (key: string) => {
     if (key === "Backspace") {
@@ -32,27 +52,13 @@ const EditParentPin = () => {
   const handleConfirm = (): void => {
     if (pinInputValue.length === 4) {
       if (step === 1) {
-  
+        // Guardar el primer PIN y pasar al paso 2
         setNewPin(pinInputValue);
         setStep(2);
         setPinInputValue("");
       } else {
-
+        // Guardar el PIN de confirmación (la comparación se hace en useEffect)
         setConfirmPin(pinInputValue);
-        if (newPin === pinInputValue) {
-          // Update user PIN
-          if (user && setUser) {
-            setUser({ ...user, pin: newPin });
-          }
-          alert("PIN actualizado exitosamente");
-          navigate("/settings/edit-profile");
-        } else {
-          alert("Los PINs no coinciden. Inténtalo de nuevo.");
-          setStep(1);
-          setNewPin("");
-          setConfirmPin("");
-          setPinInputValue("");
-        }
       }
     } else {
       alert("Please enter a 4-digit pin");
