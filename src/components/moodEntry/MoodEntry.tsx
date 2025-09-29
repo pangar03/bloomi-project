@@ -4,11 +4,11 @@ import Emojis from "../MoodEmojis/emojis";
 const MoodEntry = ({ date, mood = "Neutral", entry }: MoodDataType) => {
     return (
         <>
-            <div className="min-w-[30%] flex flex-col items-center lg:ml-16">
-                <div className="w-[60%] align-text-left">
+            <div className="min-w-[50%] w-[90%] flex flex-col items-center lg:ml-16">
+                <div className="w-[90%] align-text-left">
                     <h2 className="text-m font-bold">{date.toDateString()}</h2>
                 </div>
-                <div className="w-[60%] flex-col items-center border-t-2 border-solid border-gray p-4">
+                <div className="w-[90%] flex-col items-center border-t-2 border-solid border-gray p-4">
                     <Emojis
                         variant={mood ?? undefined}
                         className="flex justify-center"
