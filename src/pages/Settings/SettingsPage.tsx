@@ -86,7 +86,9 @@ const SettingsPage = () => {
                     <Button
                         variant="accent"
                         className="w-full"
-                        onClick={() => {}}
+                        onClick={() => {
+                            navigate("/settings/reports/journal");
+                        }}
                     >
                         Mood Journal
                     </Button>
