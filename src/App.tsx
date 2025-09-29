@@ -2,6 +2,8 @@ import "./App.css";
 import "./index.css";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Login from "./pages/loginPage/login";
+import Journal from "./pages/Journal/journal";
+import Store from "./pages/Store/store";
 import Register from "./pages/RegisterPage/registerPage";
 import StartPage from "./pages/StartPage/startPage";
 import NavBar from "./components/Nav/NavBar";
@@ -129,6 +131,9 @@ function App() {
               <Route path="/register" element={<Register />} />
               <Route path="/dashboard" element={<Dashboard />} />
               <Route path="/settings" element={<SettingsPage />} />
+              <Route path="/journal" element={<Journal />} />
+                <Route path="/store" element={<Store />} />
+
             </Routes>
           </div>
         </div>

@@ -3,7 +3,7 @@ import Icon from "../Icon/Icon";
 import SquareContainer from "../RoundedContainer/squareContainer";       
 import { UserContext } from "../../context/UserContext/UserContext";
 import { PageContext } from "../../context/PageContext/PageContext";
-import PetDisplay from "../petDisplay/petDisplay";
+import PetMiniature from "../PetMiniature/petMiniature";
 import IconButton from "../buttons/iconButton";
 
 const LateralBar = () => {
@@ -75,10 +75,10 @@ const LateralBar = () => {
 
                 {/* Mascota */}
                 <div className="w-[60%] md:w-[40%] aspect-square bg-white rounded-full mx-auto my-6 flex items-center justify-center shadow-md">
-                    <PetDisplay
-                        size="large"
-                        usePetSVG={true}
-                        petVariant="BunnyBerry"
+                    <PetMiniature
+                        variant="BunnyBerry"
+                        context="lateral"
+                        className="w-[70%] h-[70%]"
                     />
                 </div>
             </div>
