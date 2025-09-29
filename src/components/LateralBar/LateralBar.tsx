@@ -3,6 +3,8 @@ import Icon from "../Icon/Icon";
 import SquareContainer from "../RoundedContainer/squareContainer";       
 import { UserContext } from "../../context/UserContext/UserContext";
 import { PageContext } from "../../context/PageContext/PageContext";
+import PetDisplay from "../petDisplay/petDisplay";
+import IconButton from "../buttons/iconButton";
 
 const LateralBar = () => {
     const { user } = useContext(UserContext);
