@@ -20,9 +20,9 @@ const EditProfilePage = () => {
   }, [currentPage, setCurrentPage]);
 
   const handleConfirmChanges = () => {
-    // Aquí puedes agregar la lógica para confirmar los cambios
+
     console.log("Confirming changes...");
-    navigate(-1);
+    navigate("/settings");
   };
 
   return (
@@ -80,7 +80,7 @@ const EditProfilePage = () => {
           <div className="flex space-x-3 pt-4 w-full">
             <Button
               variant="red"
-              onClick={() => navigate(-1)}
+              onClick={() => navigate("/settings")}
               className="flex-1 py-2 text-sm h-10"
             >
               Cancel
