@@ -3,6 +3,7 @@
 // import { PageContext } from "../../context/PageContext/PageContext";
 import { useNavigate } from "react-router-dom";
 import Button from "../../components/buttons/button";
+import Input from "../../components/Input/input";
 
 
 
@@ -17,8 +18,40 @@ const TaskReportPage = () => {
 
   return (
     <div className="w-full h-full lg:mx-auto  flex flex-col items-center py-8 lg:bg-white bg-accent">
+      <Input
+        type="email"
+        label="Change your email"
+        placeholder="new e-mail"
+        value={ChangeEmail}
+        onChange={(e) => setEmail(e.target.value)}
+      />
+
+      <Input
+        type="password"
+        label="Put your new password"
+        placeholder="new password"
+        value={ChangeEmail}
+        onChange={(e) => setEmail(e.target.value)}
+      />
+
+      <Input
+        type="password"
+        label="Repeat your new password"
+        placeholder="new password"
+        value={ChangeEmail}
+        onChange={(e) => setEmail(e.target.value)}
+      />
+
       <Button variant="white" onClick={() => navigate(-1)}>
-        Back
+        Edit Parent Pin
+      </Button>
+
+      <Button variant="red" onClick={() => navigate(-1)}>
+        Cancel
+      </Button>
+
+      <Button variant="accent" onClick={() => navigate(-1)}>
+        Confirm Changes
       </Button>
     </div>
   );
