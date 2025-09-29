@@ -25,10 +25,10 @@ const StartPage = () => {
         <Logo variant="white" className="scale-160" />
       </div>
 
-      {/* Spacer to push buttons down */}
+
       <div className="flex-1"></div>
 
-      {/* Buttons section - positioned at bottom */}
+
       <div className="w-full max-w-xs space-y-4 mb-16">
         <Button 
           variant="white" 
