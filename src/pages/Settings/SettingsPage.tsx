@@ -3,6 +3,7 @@ import { UserContext } from "../../context/UserContext/UserContext";
 import NumPad from "../../components/NumPad/NumPad";
 import Button from "../../components/buttons/button";
 import { PageContext } from "../../context/PageContext/PageContext";
+import { useNavigate } from "react-router-dom";
 
 const SettingsPage = () => {
     const { user } = useContext(UserContext); //For now we will be using context
@@ -10,6 +11,7 @@ const SettingsPage = () => {
     const [pinValue, setPinValue] = useState<string>("");
     const [isUnlocked, setIsUnlocked] = useState<boolean>(false);
     const { currentPage, setCurrentPage } = useContext(PageContext)!;
+    const navigate = useNavigate();
 
     useEffect(() => {
         if (currentPage !== "settings") setCurrentPage("settings");
@@ -75,7 +77,9 @@ const SettingsPage = () => {
                     <Button
                         variant="accent"
                         className="w-full"
-                        onClick={() => {}}
+                        onClick={() => {
+                            navigate("/settings/reports/tasks");
+                        }}
                     >
                         Weekly Habits Report
                     </Button>
