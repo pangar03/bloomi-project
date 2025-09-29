@@ -14,6 +14,7 @@ import SettingsPage from "./pages/Settings/SettingsPage";
 import TaskReportPage from "./pages/Settings/TaskReportPage";
 import MoodJournalReportPage from "./pages/Settings/MoodJournalPage";
 import ManageHabitsPage from "./pages/Settings/ManageHabitsPage";
+import EditProfilePage from "./pages/Settings/EditProfilePage";
 
 // pa que se muestre la pagina de start
 const ResponsiveHomePage = () => {
@@ -161,18 +162,11 @@ function App() {
                         <Route path="/register" element={<Register />} />
                         <Route path="/dashboard" element={<Dashboard />} />
                         <Route path="/settings" element={<SettingsPage />} />
-                        <Route
-                            path="/settings/reports/tasks"
-                            element={<TaskReportPage />}
-                        />
-                        <Route
-                            path="/settings/reports/journal"
-                            element={<MoodJournalReportPage />}
-                        />
-                        <Route
-                            path="/settings/manage-habits"
-                            element={<ManageHabitsPage />}
-                        />
+                        <Route path="/settings/reports/tasks" element={<TaskReportPage />}/>
+                        <Route path="/settings/reports/journal" element={<MoodJournalReportPage />}/>
+                        <Route path="/settings/manage-habits" element={<ManageHabitsPage />} />
+                        <Route path="/settings/manage-habits" element={<ManageHabitsPage />} />
+                        <Route path="/settings/edit-profile" element= {<EditProfilePage/>}/>
                     </Routes>
                 </div>
             </div>

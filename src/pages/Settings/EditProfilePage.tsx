@@ -7,7 +7,7 @@ import Input from "../../components/Input/input";
 
 
 
-const TaskReportPage = () => {
+const EditProfilePage = () => {
 //   const { user } = useContext(UserContext);
 //   const { currentPage, setCurrentPage } = useContext(PageContext)!;
   const navigate = useNavigate();
@@ -57,4 +57,4 @@ const TaskReportPage = () => {
   );
 };
 
-export default TaskReportPage;
+export default EditProfilePage;

@@ -63,7 +63,9 @@ const SettingsPage = () => {
                     <Button
                         variant="white"
                         className="w-full"
-                        onClick={() => {}}
+                        onClick={() => {
+                            navigate("/settings/edit-profile");
+                        }}
                     >
                         Edit Account
                     </Button>
