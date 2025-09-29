@@ -28,7 +28,7 @@ const EditProfilePage = () => {
   return (
     <div className="w-full h-full lg:mx-auto flex flex-col items-center lg:bg-white bg-accent">
       <div className="w-full h-full flex flex-col items-center bg-white mt-0 px-8 py-8 custom-scrollbar overflow-y-scroll">
-        <div className="flex flex-col gap-6 items-center lg:w-[35%] w-full max-w-sm">
+        <div className="flex flex-col gap-6 items-center lg:w-[50%] lg:max-w-lg w-full max-w-sm">
           
           <h1 className="text-xl text-black font-bold mb-4 mt-8">
             Edit Account
@@ -70,7 +70,7 @@ const EditProfilePage = () => {
           <div className="pt-4 w-full">
             <Button
               variant="white"
-              className="w-full"
+              className="w-full lg:py-3 lg:text-base"
               onClick={() => navigate("/settings/edit-parent-pin")}
             >
               Edit Parent Pin
@@ -81,7 +81,7 @@ const EditProfilePage = () => {
             <Button
               variant="red"
               onClick={() => navigate("/settings")}
-              className="flex-1 py-2 text-sm h-10"
+              className="flex-1 py-2 text-sm h-10 lg:py-3 lg:text-base lg:h-12"
             >
               Cancel
             </Button>
@@ -89,7 +89,7 @@ const EditProfilePage = () => {
             <Button
               variant="accent"
               onClick={handleConfirmChanges}
-              className="flex-1 py-2 text-sm h-10"
+              className="flex-1 py-2 text-sm h-10 lg:py-3 lg:text-base lg:h-12"
             >
               Confirm 
             </Button>
