@@ -59,6 +59,7 @@ const EditProfilePage = () => {
           <Button
             variant="white"
             className="w-full "
+            onClick={() => navigate("/settings/edit-parent-pin")}
           >
             Edit Parent Pin
           </Button>

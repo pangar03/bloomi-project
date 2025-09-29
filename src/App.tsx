@@ -15,6 +15,7 @@ import TaskReportPage from "./pages/Settings/TaskReportPage";
 import MoodJournalReportPage from "./pages/Settings/MoodJournalPage";
 import ManageHabitsPage from "./pages/Settings/ManageHabitsPage";
 import EditProfilePage from "./pages/Settings/EditProfilePage";
+import EditParentPin from "./pages/Settings/editParentPin";
 
 // pa que se muestre la pagina de start
 const ResponsiveHomePage = () => {
@@ -167,6 +168,7 @@ function App() {
                         <Route path="/settings/manage-habits" element={<ManageHabitsPage />} />
                         <Route path="/settings/manage-habits" element={<ManageHabitsPage />} />
                         <Route path="/settings/edit-profile" element= {<EditProfilePage/>}/>
+                        <Route path="/settings/edit-parent-pin" element={<EditParentPin />} />
                     </Routes>
                 </div>
             </div>
