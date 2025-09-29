@@ -60,6 +60,9 @@ const TaskList: React.FC<TaskListProps> = ({ taskList, className }) => {
             previous
                 ? {
                       ...previous,
+                      tasks: previous.tasks.filter(
+                          (task) => task.id !== taskId
+                      ),
                       dailyTasks: previous.dailyTasks.filter(
                           (task) => task.id !== taskId
                       ),
