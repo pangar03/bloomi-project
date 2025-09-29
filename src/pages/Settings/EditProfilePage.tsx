@@ -1,12 +1,11 @@
 import { useContext, useEffect, useState } from "react";
-import { UserContext } from "../../context/UserContext/UserContext";
 import { PageContext } from "../../context/PageContext/PageContext";
 import { useNavigate } from "react-router-dom";
 import Button from "../../components/buttons/button";
 import Input from "../../components/Input/input";
 
 const EditProfilePage = () => {
-  const { user } = useContext(UserContext);
+
   const { currentPage, setCurrentPage } = useContext(PageContext)!;
   const navigate = useNavigate();
   
@@ -20,16 +19,16 @@ const EditProfilePage = () => {
   }, [currentPage, setCurrentPage]);
 
   return (
-    <div className="w-full h-full flex flex-col items-center bg-white">
+    <div className="w-full h-full flex flex-col items-center bg-white mt-35">
       <h1 className="text-l font-bold text-black mb-8">Edit Account</h1>
       <div className="w-full max-w-md px-6 space-y-6">
         <div>
           <Input
             type="email"
-            label="Put your email here "
-            placeholder="new e-mail"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
+            label="Cambiar email"
+            placeholder="nuevo email"
+            inputValue={email}
+            setInputValue={setEmail}
             className="w-full"
           />
         </div>
@@ -37,10 +36,10 @@ const EditProfilePage = () => {
         <div>
           <Input
             type="password"
-            label="Put your email here "
-            placeholder="new password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
+            label="Cambiar contraseña"
+            placeholder="nueva contraseña"
+            inputValue={password}
+            setInputValue={setPassword}
             className="w-full"
           />
         </div>
@@ -48,10 +47,10 @@ const EditProfilePage = () => {
         <div>
           <Input
             type="password"
-            label="Put your email here "
-            placeholder="confirm password"
-            value={confirmPassword}
-            onChange={(e) => setConfirmPassword(e.target.value)}
+            label="Repetir nueva contraseña"
+            placeholder="confirmar contraseña"
+            inputValue={confirmPassword}
+            setInputValue={setConfirmPassword}
             className="w-full"
           />
         </div>
@@ -59,7 +58,6 @@ const EditProfilePage = () => {
         <div className="pt-4">
           <Button
             variant="white"
-            onClick={() => navigate(-1)}
             className="w-full "
           >
             Edit Parent Pin
