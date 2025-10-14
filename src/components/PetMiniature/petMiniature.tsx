@@ -58,18 +58,12 @@ const PetMiniature: React.FC<PetMiniatureProps> = ({
         console.log("Final className:", `${petsBackground[variant]} ${className}`);
         return (
             <div 
-                className={`${petsBackground[variant]} ${className} flex items-center justify-center rounded-full shadow-md overflow-hidden`}
-                style={{ minWidth: '80px', minHeight: '80px' }}
+                className={`${petsBackground[variant]} ${className} flex items-center justify-center rounded-full shadow-md min-w-[80px] min-h-[80px] p-2`}
             >
                 {PetComponent ? (
                     <PetComponent 
-                        className="w-full h-full" 
-                        style={{ 
-                            maxWidth: '100%', 
-                            maxHeight: '100%',
-                            width: '100%',
-                            height: '100%'
-                        }} 
+                        className="block w-full h-full max-w-full max-h-full" 
+                        preserveAspectRatio="xMidYMid meet"
                     />
                 ) : (
                     <div className="w-full h-full bg-gray-300 rounded-full flex items-center justify-center">
@@ -79,6 +73,8 @@ const PetMiniature: React.FC<PetMiniatureProps> = ({
             </div>
         );
     }
+
+    
 
     
     return (

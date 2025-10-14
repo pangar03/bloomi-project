@@ -1,6 +1,13 @@
 @import "tailwindcss";
 @import "tailwindcss/preflight.css" layer(base);
 
+@layer base {
+    /* Replica el comportamiento de App.css usando Tailwind base layer */
+    * {
+        font-family: var(--font-family-primary);
+    }
+}
+
 @theme {
     /* ============ COLORS ============= */
     --color-primary-lighter: #fce6d0;

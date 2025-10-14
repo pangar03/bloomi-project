@@ -17,17 +17,10 @@ const StoreItem: React.FC<StoreItemProps> = ({
 }) => {
     return (
         <div
-        className={`rounded-2xl  bg-transparent p-3 flex flex-col items-center ${className}`}
-
-            style={{ width: 200, height: 280 }} 
+            className={`rounded-2xl bg-transparent p-3 flex flex-col items-center w-[200px] h-[280px] ${className}`}
         >
             <div
-                className="w-full flex justify-center items-center rounded-xl mb-3"
-                style={{
-                    background: "#F7F2FF", 
-                    border: "2px solid #7A59F4", 
-                    height: "160px",
-                }}
+                className="w-full flex justify-center items-center rounded-xl mb-3 bg-[#F7F2FF] border-2 border-[#7A59F4] h-[160px]"
             >
                 <PetMiniature variant={petVariant} className="w-32 h-32" />
             </div>
@@ -39,13 +32,7 @@ const StoreItem: React.FC<StoreItemProps> = ({
                 <Button
                     variant="accent"
                     onClick={onBuy}
-                    style={{
-                        minWidth: 80,
-                        fontSize: "1rem",
-                        boxShadow: "0px 3px 0px #7A59F4",
-                        borderRadius: "1rem",
-                        padding: "8px 16px",
-                    }}
+                    className="min-w-[80px] text-base shadow-[0_3px_0_#7A59F4] !rounded-2xl !px-4 !py-2"
                 >
                     Buy
                 </Button>

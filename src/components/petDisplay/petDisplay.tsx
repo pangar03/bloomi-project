@@ -29,14 +29,17 @@ const PetDisplay: React.FC<PetDisplayProps> = ({
     usePetSVG = false,
     petVariant = "BunnyBerry"
 }) => {
-    
-    const sizes = {
-        small: 60,
-        medium: 120, 
-        large: 180
+    const containerSizeClasses: Record<typeof size, string> = {
+        small: "w-[60px] h-[60px]",
+        medium: "w-[120px] h-[120px]",
+        large: "w-[180px] h-[180px]",
     };
 
-    const currentSize = sizes[size];
+    const petSizeClasses: Record<typeof size, string> = {
+        small: "w-[42px] h-[42px]",
+        medium: "w-[84px] h-[84px]",
+        large: "w-[126px] h-[126px]",
+    };
 
 
     
@@ -47,15 +50,11 @@ const PetDisplay: React.FC<PetDisplayProps> = ({
                 
                 <CircleContainer 
                     variant="blue" 
-                    className="flex items-center justify-center"
-                    style={{ width: currentSize, height: currentSize }}
+                    className={`flex items-center justify-center ${containerSizeClasses[size]}`}
                 >
-                    <PetComponent 
-                        width={currentSize * 0.7} 
-                        height={currentSize * 0.7}
-                    />
+                    <PetComponent className={`${petSizeClasses[size]}`} />
                     
-                   
+                    
                     <div className="absolute top-2 right-2">
                         <Icon variant="HangerIcon" className="w-6 h-6" />
                     </div>
