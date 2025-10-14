@@ -134,6 +134,7 @@ function App() {
                     {
                         id: "task-2",
                         taskName: "Brush teeth",
+
                         reward: 20,
                         variant: "basic",
                     },
