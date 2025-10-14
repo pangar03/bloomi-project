@@ -2,6 +2,11 @@ import Fallxie from "../../assets/pets/naranja.svg";
 import FloraBunny from "../../assets/pets/frambuesa.svg";
 import CatMora from "../../assets/pets/mora.svg";
 import BunnyBerry from "../../assets/pets/fresa.svg";
+// URL imports for robust rendering via <img> on mobile
+import FallxieUrl from "../../assets/pets/naranja.svg?url";
+import FloraBunnyUrl from "../../assets/pets/frambuesa.svg?url";
+import CatMoraUrl from "../../assets/pets/mora.svg?url";
+import BunnyBerryUrl from "../../assets/pets/fresa.svg?url";
 import CircleContainer from "../RoundedContainer/circleContainer";
 
 
@@ -30,6 +35,13 @@ const PETS: Record<PetVariant, React.FC<React.SVGProps<SVGSVGElement>>> = {
     Fallxie: Fallxie,
 };
 
+const PET_URLS: Record<PetVariant, string> = {
+    BunnyBerry: BunnyBerryUrl,
+    FloraBunny: FloraBunnyUrl,
+    CatMora: CatMoraUrl,
+    Fallxie: FallxieUrl,
+};
+
 const PetMiniature: React.FC<PetMiniatureProps> = ({ 
     variant = "BunnyBerry", 
     className, 
@@ -56,13 +68,21 @@ const PetMiniature: React.FC<PetMiniatureProps> = ({
         console.log("Lateral context - variant:", variant, "PetComponent exists:", !!PetComponent);
         console.log("Background class:", petsBackground[variant]);
         console.log("Final className:", `${petsBackground[variant]} ${className}`);
+        const petUrl = PET_URLS[variant];
         return (
-            <div 
+            <div
                 className={`${petsBackground[variant]} ${className} flex items-center justify-center rounded-full shadow-md min-w-[80px] min-h-[80px] p-2`}
             >
-                {PetComponent ? (
-                    <PetComponent 
-                        className="block w-full h-full max-w-full max-h-full" 
+                {petUrl ? (
+                    <img
+                        src={petUrl}
+                        alt={variant}
+                        className="block w-full h-full object-contain"
+                        draggable={false}
+                    />
+                ) : PetComponent ? (
+                    <PetComponent
+                        className="block w-full h-full max-w-full max-h-full"
                         preserveAspectRatio="xMidYMid meet"
                     />
                 ) : (

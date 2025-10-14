@@ -17,43 +17,42 @@ const LateralBar = () => {
     currentPage === null;
 
   return (
-    <div className={`${hidden ? "hidden" : "flex"} w-full lg:w-[40%] lg:h-screen`}>
+    <div
+      className={`${hidden ? "hidden" : "flex"} 
+      flex-col lg:flex-row-reverse 
+      w-full lg:w-[40%] 
+      lg:h-screen`}
+    >
       {/* Desktop */}
       <div className="hidden lg:flex flex-col w-full h-full bg-accent items-end justify-start pt-8 px-8">
-        <SquareContainer variant="coins" className="flex items-center">
-          <h2 className="text-sm text-black font-bold mr-4">{user?.currency}</h2>
-          <Icon variant="CoinIcon" className="w-6 h-6" />
-        </SquareContainer>
-
-        <CircleContainer
-          variant="blue"
-          className="relative w-[70%] aspect-square mx-auto mt-8 flex items-center justify-center"
-        >
-          <PetMiniature variant="BunnyBerry" context="lateral" className="w-[80%] h-[80%]" />
-
-          <div className="absolute top-4 left-4 w-12 h-12 bg-white border-2 border-[#7A59F4] rounded-full shadow-md flex items-center justify-center">
-            <Icon variant="HangerIcon" className="w-6 h-6 text-[#7A59F4]" />
-          </div>
-        </CircleContainer>
-      </div>
-
-      {/* Mobile */}
-      <div className="lg:hidden flex flex-col w-full bg-accent items-center justify-start pt-8 px-8">
         <SquareContainer variant="coins" className="flex items-center self-end">
           <h2 className="text-sm text-black font-bold mr-4">{user?.currency}</h2>
           <Icon variant="CoinIcon" className="w-6 h-6" />
         </SquareContainer>
 
-        <CircleContainer
-          variant="blue"
-          className="relative w-[150px] h-[150px] mt-6 flex items-center justify-center"
-        >
+        <div className="relative w-[70%] aspect-square mx-auto mt-8 flex items-center justify-center">
           <PetMiniature variant="BunnyBerry" context="lateral" className="w-[85%] h-[85%]" />
+          <CircleContainer variant="blue" className="absolute -left-6 top-6 w-12 h-12">
+            <Icon variant="HangerIcon" className="w-6 h-6" />
+          </CircleContainer>
+        </div>
+      </div>
 
-          <div className="absolute top-2 left-2 w-10 h-10 bg-white border-2 border-[#7A59F4] rounded-full shadow-md flex items-center justify-center">
-            <Icon variant="HangerIcon" className="w-5 h-5 text-[#7A59F4]" />
-          </div>
-        </CircleContainer>
+      {/* Mobile */}
+      <div className="lg:hidden flex flex-col w-full bg-accent items-center justify-start pt-8 pb-6 px-8 rounded-b-[40px]">
+        <div className="w-full flex justify-end mb-2">
+          <SquareContainer variant="coins" className="flex items-center">
+            <h2 className="text-sm text-black font-bold mr-3">{user?.currency}</h2>
+            <Icon variant="CoinIcon" className="w-5 h-5" />
+          </SquareContainer>
+        </div>
+
+        <div className="relative w-[180px] h-[180px] flex items-center justify-center">
+          <PetMiniature variant="BunnyBerry" context="lateral" className="w-[85%] h-[85%]" />
+          <CircleContainer variant="blue" className="absolute -left-4 top-2 w-10 h-10">
+            <Icon variant="HangerIcon" className="w-5 h-5" />
+          </CircleContainer>
+        </div>
       </div>
     </div>
   );

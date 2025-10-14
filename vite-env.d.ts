@@ -9,3 +9,9 @@ declare module "*.svg" {
     const ReactComponent: React.FC<React.SVGProps<SVGSVGElement>>;
     export default ReactComponent;
 }
+
+// Allow importing SVG as plain URL (e.g., `import iconUrl from 'icon.svg?url'`)
+declare module "*.svg?url" {
+    const src: string;
+    export default src;
+}
