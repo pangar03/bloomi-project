@@ -32,8 +32,8 @@ const LateralBar = () => {
 
         <div className="relative w-[70%] aspect-square mx-auto mt-8 flex items-center justify-center">
           <PetMiniature variant="BunnyBerry" context="lateral" className="w-[95%] h-[95%]" />
-          <CircleContainer variant="blue" className="absolute left-0 top-0 translate-x-[-20%] translate-y-[-20%] z-20 w-12 h-12">
-            <Icon variant="HangerIcon" className="w-6 h-6" />
+          <CircleContainer variant="blue" className="absolute left-0 top-0 translate-x-[14%] translate-y-[14%] z-20 w-14 h-14">
+            <Icon variant="HangerIcon" className="w-8 h-8" />
           </CircleContainer>
         </div>
       </div>
@@ -49,8 +49,8 @@ const LateralBar = () => {
 
         <div className="relative w-[180px] h-[180px] flex items-center justify-center">
           <PetMiniature variant="BunnyBerry" context="lateral" className="w-[95%] h-[95%]" />
-          <CircleContainer variant="blue" className="absolute left-0 top-0 translate-x-[-20%] translate-y-[-20%] z-20 w-10 h-10">
-            <Icon variant="HangerIcon" className="w-5 h-5" />
+          <CircleContainer variant="blue" className="absolute left-0 top-0 translate-x-[14%] translate-y-[14%] z-20 w-12 h-12">
+            <Icon variant="HangerIcon" className="w-7 h-7" />
           </CircleContainer>
         </div>
       </div>
