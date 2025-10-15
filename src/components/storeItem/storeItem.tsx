@@ -20,7 +20,7 @@ const StoreItem: React.FC<StoreItemProps> = ({
             className={`rounded-2xl bg-transparent p-3 flex flex-col items-center w-[200px] h-[280px] ${className}`}
         >
             <div
-                className="w-full flex justify-center items-center rounded-xl mb-3 bg-[#F7F2FF] border-2 border-[#7A59F4] h-[160px]"
+                className="w-full flex justify-center items-center rounded-xl mb-3 bg-[#F7F2FF] border-2 border-[#004D81] h-[160px]"
             >
                 <PetMiniature variant={petVariant} className="w-32 h-32" />
             </div>
