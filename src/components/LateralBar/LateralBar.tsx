@@ -33,7 +33,7 @@ const LateralBar = () => {
         >
           <path
             d="M0 0 L140 0 C180 80 100 180 150 280 C180 340 100 460 150 560 C180 620 100 740 140 800 L0 800 Z"
-            fill="white"
+            className="fill-white"
           />
         </svg>
 
