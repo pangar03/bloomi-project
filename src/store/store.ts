@@ -7,10 +7,10 @@ import moodSlice from "./slices/moodSlice";
 //El store es el estado global, es decir, donde guardamos los datos con disponibilidad transversal
 export const store = configureStore({
     reducer: {
-        user: userSlice,
-        taskList: taskListSlice,
-        goalList: goalListSlice,
-        mood: moodSlice,
+        userSlice: userSlice,
+        taskListSlice: taskListSlice,
+        goalListSlice: goalListSlice,
+        moodSlice: moodSlice,
     },
 });
 

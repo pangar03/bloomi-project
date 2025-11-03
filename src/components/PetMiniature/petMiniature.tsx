@@ -8,7 +8,7 @@ import FloraBunnyUrl from "../../assets/pets/frambuesa.svg?url";
 import CatMoraUrl from "../../assets/pets/mora.svg?url";
 import BunnyBerryUrl from "../../assets/pets/fresa.svg?url";
 import CircleContainer from "../RoundedContainer/circleContainer";
-
+import type { PetVariant } from "../../types/PetVariant";
 
 const petsBackground = {
     Fallxie: "bg-primary-light",
@@ -18,16 +18,13 @@ const petsBackground = {
     BunnyBerry: "bg-red-light",
 };
 
-type PetVariant = "BunnyBerry" | "FloraBunny" | "CatMora" | "Fallxie";
-
 interface PetMiniatureProps {
     variant?: PetVariant;
     className?: string;
     context?: "lateral" | "default" | "store";
-    usePetSVG?: boolean;       
-    petVariant?: PetVariant;    
+    usePetSVG?: boolean;
+    petVariant?: PetVariant;
 }
-
 
 const PETS: Record<PetVariant, React.FC<React.SVGProps<SVGSVGElement>>> = {
     BunnyBerry: BunnyBerry,
@@ -43,32 +40,43 @@ const PET_URLS: Record<PetVariant, string> = {
     Fallxie: FallxieUrl,
 };
 
-const PetMiniature: React.FC<PetMiniatureProps> = ({ 
-    variant = "BunnyBerry", 
-    className, 
+const PetMiniature: React.FC<PetMiniatureProps> = ({
+    variant = "BunnyBerry",
+    className,
     context = "default",
     usePetSVG = false,
-    petVariant = "BunnyBerry"
-}) => { 
-    const PetComponent = PETS[variant]; 
+    petVariant = "BunnyBerry",
+}) => {
+    const PetComponent = PETS[variant];
 
-    console.log("PetMiniature rendering:", { variant, petVariant, usePetSVG, PetComponent: !!PetComponent });
+    console.log("PetMiniature rendering:", {
+        variant,
+        petVariant,
+        usePetSVG,
+        PetComponent: !!PetComponent,
+    });
 
-    
-    if (usePetSVG) { 
-        const PetSVGComponent = PETS[petVariant]; 
-        return ( 
+    if (usePetSVG) {
+        const PetSVGComponent = PETS[petVariant];
+        return (
             <CircleContainer variant="blue" className={className}>
-                <PetSVGComponent width={80} height={80} /> 
-            </CircleContainer> 
-        ); 
+                <PetSVGComponent width={80} height={80} />
+            </CircleContainer>
+        );
     }
 
-    
     if (context === "lateral") {
-        console.log("Lateral context - variant:", variant, "PetComponent exists:", !!PetComponent);
+        console.log(
+            "Lateral context - variant:",
+            variant,
+            "PetComponent exists:",
+            !!PetComponent
+        );
         console.log("Background class:", petsBackground[variant]);
-        console.log("Final className:", `${petsBackground[variant]} ${className}`);
+        console.log(
+            "Final className:",
+            `${petsBackground[variant]} ${className}`
+        );
         const petUrl = PET_URLS[variant];
         return (
             <div
@@ -93,16 +101,15 @@ const PetMiniature: React.FC<PetMiniatureProps> = ({
                     />
                 ) : (
                     <div className="relative z-10 w-full h-full bg-gray-300 rounded-full flex items-center justify-center">
-                        <span className="text-xs text-black font-bold">PET</span>
+                        <span className="text-xs text-black font-bold">
+                            PET
+                        </span>
                     </div>
                 )}
             </div>
         );
     }
 
-    
-
-    
     return (
         <div
             className={`${petsBackground[variant]} ${className} flex items-center justify-center rounded-lg shadow-md p-4 border-2 border-accent-darker w-full h-full`}

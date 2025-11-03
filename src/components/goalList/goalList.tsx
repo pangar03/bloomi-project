@@ -1,35 +1,30 @@
 import GoalCard from "../cards/goalCard/goalCard";
-import { UserContext } from "../../context/UserContext/UserContext";
-import { useContext } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import type { RootState } from "../../store/store";
+import { setCurrency } from "../../store/slices/userSlice";
+import { removeGoal } from "../../store/slices/goalListSlice";
 
 type GoalListProps = React.HTMLAttributes<HTMLDivElement>;
 const GoalList: React.FC<GoalListProps> = ({ className }) => {
-    const { user, setUser } = useContext(UserContext);
+    const user = useSelector((state: RootState) => state.userSlice.user);
+    const goals = useSelector((state: RootState) => state.goalListSlice.goals);
+
+    const dispatch = useDispatch();
 
     const handleGoalCheck = (goalId: string) => {
-        setUser((previous) =>
-            previous
-                ? {
-                      ...previous,
-                      goals: previous.goals.filter(
-                          (goal) => goal.id !== goalId
-                      ),
-                  }
-                : previous
+        dispatch(
+            setCurrency(
+                user!.currency +
+                    goals.find((goal) => goal.id === goalId)?.reward! || 0
+            )
         );
 
-        setUser((previous) => {
-            const goal = user?.goals.find((goal) => goal.id === goalId);
-            if (!previous) return previous;
-            return goal
-                ? { ...previous, currency: previous.currency + goal.reward }
-                : previous;
-        });
+        dispatch(removeGoal(goalId));
     };
 
     return (
         <div className={`flex flex-col gap-4 p-4 ${className}`}>
-            {user?.goals.map((goal) => (
+            {goals.map((goal) => (
                 <GoalCard
                     key={goal.id}
                     id={goal.id}
@@ -46,3 +41,5 @@ const GoalList: React.FC<GoalListProps> = ({ className }) => {
 };
 
 export default GoalList;
+
+// TODO: Integrar con DB

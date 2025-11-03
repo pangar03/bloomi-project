@@ -6,9 +6,13 @@ import { PageContext } from "../../context/PageContext/PageContext";
 import Button from "../../components/buttons/button";
 import { useNavigate } from "react-router-dom";
 import AddHabitButton from "../../components/buttons/addHabitButton";
+import { useSelector } from "react-redux";
+import type { RootState } from "../../store/store";
 
 const TaskReportPage = () => {
-    const { user } = useContext(UserContext);
+    const taskList = useSelector(
+        (state: RootState) => state.taskListSlice.tasks
+    ).map((task) => ({ ...task, variant: "deletable" }) as Task);
     const { currentPage, setCurrentPage } = useContext(PageContext)!;
     const navigate = useNavigate();
 
@@ -24,12 +28,7 @@ const TaskReportPage = () => {
             <div className="w-full h-full flex flex-col items-center rounded-t-rounded bg-white mt-8 px-4 py-8 custom-scrollbar overflow-y-scroll">
                 <AddHabitButton className="mb-4" />
                 <TaskList
-                    taskList={
-                        user?.tasks.map((task) => ({
-                            ...task,
-                            variant: "deletable",
-                        })) || ([] as Task[])
-                    }
+                    taskList={taskList}
                     className="w-full flex flex-col h-full gap-4"
                 />
                 <Button variant="white" onClick={() => navigate(-1)}>

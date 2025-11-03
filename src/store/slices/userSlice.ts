@@ -2,26 +2,25 @@
 import { createSlice, type PayloadAction } from "@reduxjs/toolkit";
 import type { Task } from "../../types/Task";
 import type { MoodDataType } from "../../types/MoodData";
+import type { PetVariant } from "../../types/PetVariant";
 
-type InitialState = {
+type User = {
     name: string;
-    currentPet: string;
-    ownedPets: string[];
+    currentPet: PetVariant;
+    ownedPets: PetVariant[];
     currency: number;
     pin: string;
     taskRegistry: { [key: string]: Task[] };
     journalEntries: MoodDataType[];
 };
 
+type InitialState = {
+    user: User | null;
+};
+
 //Estado inicial
 const initialState: InitialState = {
-    name: "",
-    currentPet: "",
-    ownedPets: [],
-    currency: 0,
-    pin: "",
-    taskRegistry: {},
-    journalEntries: [],
+    user: null,
 };
 
 // 1. Darle un nombre al slice
@@ -33,41 +32,52 @@ export const userSlice = createSlice({
     //Reducer contiene las actiones para determinar que es lo que cambia del estado inicial
     reducers: {
         //Actions
+        setUser: (state, action: PayloadAction<User | null>) => {
+            state.user = action.payload;
+        },
         setName: (state, action: PayloadAction<string>) => {
-            state.name = action.payload;
+            state.user!.name = action.payload;
         },
-        setCurrentPet: (state, action: PayloadAction<string>) => {
-            state.currentPet = action.payload;
+        setCurrentPet: (state, action: PayloadAction<PetVariant>) => {
+            state.user!.currentPet = action.payload;
         },
-        setOwnedPets: (state, action: PayloadAction<string[]>) => {
-            state.ownedPets = [...state.ownedPets, ...action.payload];
+        setOwnedPets: (state, action: PayloadAction<PetVariant[]>) => {
+            state.user!.ownedPets = [
+                ...state.user!.ownedPets,
+                ...action.payload,
+            ];
         },
         setCurrency: (state, action: PayloadAction<number>) => {
-            state.currency = action.payload;
+            state.user!.currency = action.payload;
         },
         setPin: (state, action: PayloadAction<string>) => {
-            state.pin = action.payload;
+            state.user!.pin = action.payload;
         },
         setTaskRegistry: (
             state,
             action: PayloadAction<{ [key: string]: Task[] }>
         ) => {
-            state.taskRegistry = action.payload;
+            state.user!.taskRegistry = action.payload;
         },
         setJournalEntries: (state, action: PayloadAction<MoodDataType[]>) => {
-            state.journalEntries = [...action.payload, ...state.journalEntries];
+            state.user!.journalEntries = [
+                ...action.payload,
+                ...state.user!.journalEntries,
+            ];
         },
     },
 });
 
 //Destructurar las actions para exportarlas de manera individual
 export const {
+    setUser,
     setName,
     setCurrentPet,
     setOwnedPets,
     setCurrency,
     setPin,
     setTaskRegistry,
+    setJournalEntries,
 } = userSlice.actions;
 
 //Exportar el reducer del slice

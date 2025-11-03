@@ -21,13 +21,28 @@ export const goalListSlice = createSlice({
     reducers: {
         //Actions
         setGoals: (state, action: PayloadAction<Goal[]>) => {
-            state.goals = [...action.payload, ...state.goals];
+            state.goals = action.payload;
+        },
+        removeGoal: (state, action: PayloadAction<string>) => {
+            state.goals = state.goals.filter(
+                (goal) => goal.id !== action.payload
+            );
+        },
+        progressGoal: (state, action: PayloadAction<string>) => {
+            state.goals = state.goals.map((goal) => {
+                return goal.trackedTaskId === action.payload
+                    ? {
+                          ...goal,
+                          progress: goal.progress ? goal.progress + 1 : 1,
+                      }
+                    : goal;
+            });
         },
     },
 });
 
 //Destructurar las actions para exportarlas de manera individual
-export const { setGoals } = goalListSlice.actions;
+export const { setGoals, removeGoal, progressGoal } = goalListSlice.actions;
 
 //Exportar el reducer del slice
 export default goalListSlice.reducer;

@@ -2,12 +2,14 @@ import { useContext, useEffect, useState } from "react";
 import TaskList from "../../components/taskList/taskList";
 import GoalList from "../../components/goalList/goalList";
 import Button from "../../components/buttons/button";
-import { UserContext } from "../../context/UserContext/UserContext";
 import { PageContext } from "../../context/PageContext/PageContext";
+import { useSelector } from "react-redux";
+import type { RootState } from "../../store/store";
 
 function Dashboard() {
-    const { user } = useContext(UserContext);
-
+    const taskList = useSelector(
+        (state: RootState) => state.taskListSlice.dailyTasks
+    );
     const { currentPage, setCurrentPage } = useContext(PageContext)!;
     const [taskShown, setTaskShown] = useState<boolean>(true);
 
@@ -39,11 +41,13 @@ function Dashboard() {
                 </div>
                 {taskShown && (
                     <TaskList
-                        taskList={user?.dailyTasks || []}
+                        taskList={taskList}
                         className="w-full mx-auto mt-10 items-center mb-20 lg:mb-0"
                     />
                 )}
-                {!taskShown && <GoalList className="w-full mt-10 mb-20 lg:mb-0" />}
+                {!taskShown && (
+                    <GoalList className="w-full mt-10 mb-20 lg:mb-0" />
+                )}
             </div>
         </>
     );
