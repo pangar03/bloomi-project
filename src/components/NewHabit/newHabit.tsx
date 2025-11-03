@@ -36,29 +36,14 @@ const NewHabit: React.FC = () => {
 
   return (
     <div
-      style={{
-        backgroundColor: modalOpen ? '#b0a090' : '#f5e6d3',
-        borderRadius: '15px',
-        padding: '20px',
-        width: '300px',
-        fontFamily: 'Arial, sans-serif',
-      }}
+      className={`${modalOpen ? 'bg-[#b0a090]' : 'bg-[#f5e6d3]'} rounded-[15px] p-5 w-[300px] [font-family:Arial,sans-serif]`}
     >
-      <h3 style={{ marginBottom: '10px' }}>Create a new habit</h3>
-      <hr style={{ marginBottom: '15px' }} />
-      <div style={{ position: 'relative', marginBottom: '20px' }}>
+      <h3 className="mb-[10px]">Create a new habit</h3>
+      <hr className="mb-[15px]" />
+      <div className="relative mb-5">
         <button
           onClick={toggleModal}
-          style={{
-            position: 'absolute',
-            left: '5px',
-            top: '50%',
-            transform: 'translateY(-50%)',
-            border: 'none',
-            background: 'none',
-            fontSize: '24px',
-            cursor: 'pointer',
-          }}
+          className="absolute left-[5px] top-1/2 -translate-y-1/2 border-none bg-transparent text-2xl cursor-pointer"
           aria-label="Toggle icon modal"
           type="button"
         >
@@ -69,47 +54,17 @@ const NewHabit: React.FC = () => {
           placeholder="Text Input"
           value={habitName}
           onChange={(e) => setHabitName(e.target.value)}
-          style={{
-            padding: '10px 10px 10px 40px',
-            borderRadius: '10px',
-            border: '2px solid #2a4d7c',
-            width: '100%',
-            boxSizing: 'border-box',
-            fontSize: '16px',
-          }}
+          className="pl-[40px] pr-[10px] py-[10px] rounded-[10px] border-2 border-[#2a4d7c] w-full text-[16px]"
         />
         {modalOpen && (
           <div
-            style={{
-              position: 'absolute',
-              top: '50%',
-              left: '40px',
-              transform: 'translateY(-50%)',
-              backgroundColor: '#cce4ff',
-              borderRadius: '15px',
-              padding: '10px 20px',
-              display: 'flex',
-              gap: '15px',
-              boxShadow: '0 2px 5px rgba(0,0,0,0.2)',
-              zIndex: 10,
-            }}
+            className="absolute top-1/2 left-[40px] -translate-y-1/2 bg-[#cce4ff] rounded-[15px] px-[20px] py-[10px] flex gap-[15px] shadow-[0_2px_5px_rgba(0,0,0,0.2)] z-10"
           >
             {habitIcons.map((icon) => (
               <button
                 key={icon}
                 onClick={() => handleIconClick(icon)}
-                style={{
-                  fontSize: '24px',
-                  border: '2px solid #2a4d7c',
-                  borderRadius: '50%',
-                  backgroundColor: 'white',
-                  cursor: 'pointer',
-                  width: '40px',
-                  height: '40px',
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                }}
+                className="text-2xl border-2 border-[#2a4d7c] rounded-full bg-white cursor-pointer w-10 h-10 flex items-center justify-center"
                 type="button"
                 aria-label={`Select icon ${icon}`}
               >
@@ -119,35 +74,17 @@ const NewHabit: React.FC = () => {
           </div>
         )}
       </div>
-      <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+      <div className="flex justify-between">
         <button
           onClick={handleCancel}
-          style={{
-            backgroundColor: '#b94a48',
-            color: 'white',
-            border: 'none',
-            borderRadius: '10px',
-            padding: '10px 20px',
-            cursor: 'pointer',
-            boxShadow: '2px 2px 3px #7a2e2d',
-            fontWeight: 'bold',
-          }}
+          className="bg-[#b94a48] text-white border-none rounded-[10px] px-[20px] py-[10px] cursor-pointer shadow-[2px_2px_3px_#7a2e2d] font-bold"
           type="button"
         >
           Cancel
         </button>
         <button
           onClick={handleSave}
-          style={{
-            backgroundColor: '#d87e1f',
-            color: 'white',
-            border: 'none',
-            borderRadius: '10px',
-            padding: '10px 20px',
-            cursor: 'pointer',
-            boxShadow: '2px 2px 3px #7a5a1a',
-            fontWeight: 'bold',
-          }}
+          className="bg-[#d87e1f] text-white border-none rounded-[10px] px-[20px] py-[10px] cursor-pointer shadow-[2px_2px_3px_#7a5a1a] font-bold disabled:opacity-50"
           type="button"
           disabled={habitName.trim() === ''}
         >

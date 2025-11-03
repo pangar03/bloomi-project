@@ -4,14 +4,18 @@ import NumPad from "../../components/NumPad/NumPad";
 import Button from "../../components/buttons/button";
 import { PageContext } from "../../context/PageContext/PageContext";
 import { useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import type { RootState } from "../../store/store";
+import { setUser } from "../../store/slices/userSlice";
 
 const SettingsPage = () => {
-    const { user, setUser } = useContext(UserContext); //For now we will be using context
+    const user = useSelector((state: RootState) => state.userSlice.user);
     const [pinInputValue, setPinInputValue] = useState<string>("");
     const [pinValue, setPinValue] = useState<string>("");
     const [isUnlocked, setIsUnlocked] = useState<boolean>(false);
     const { currentPage, setCurrentPage } = useContext(PageContext)!;
     const navigate = useNavigate();
+    const dispatch = useDispatch();
 
     useEffect(() => {
         if (currentPage !== "settings") setCurrentPage("settings");
@@ -25,7 +29,7 @@ const SettingsPage = () => {
     };
 
     const handleLogout = () => {
-        setUser(null);
+        dispatch(setUser(null));
         setIsUnlocked(false);
         setPinValue("");
         setPinInputValue("");

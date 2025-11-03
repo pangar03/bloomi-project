@@ -1,12 +1,14 @@
-import { useContext, useState } from "react";
+import { useState } from "react";
 import type { MoodDataType } from "../../types/MoodData";
 import Emojis from "../MoodEmojis/emojis";
 import Button from "../buttons/button";
 import Input from "../Input/input";
-import { UserContext } from "../../context/UserContext/UserContext";
+import { useDispatch } from "react-redux";
+import { setDailyMood } from "../../store/slices/moodSlice";
+import { setJournalEntries } from "../../store/slices/userSlice";
 
 const JournalForm = () => {
-    const { user, setUser } = useContext(UserContext);
+    const dispatch = useDispatch();
     const [formData, setFormData] = useState({
         date: new Date(),
         mood: null,
@@ -16,15 +18,8 @@ const JournalForm = () => {
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
         setFormData({ ...formData, date: new Date() });
-        setUser((previous) => {
-            if (!previous) return previous;
-            return {
-                ...previous,
-                journalEntries: [...previous.journalEntries, formData],
-                dailyMood: formData,
-            };
-        });
-        console.log(user);
+        dispatch(setDailyMood(formData));
+        dispatch(setJournalEntries([formData]));
     };
 
     const handleChange = (

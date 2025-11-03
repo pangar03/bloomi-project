@@ -4,9 +4,11 @@ import { PageContext } from "../../context/PageContext/PageContext";
 import MoodEntry from "../../components/moodEntry/MoodEntry";
 import Button from "../../components/buttons/button";
 import { useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
+import type { RootState } from "../../store/store";
 
 const MoodJournalReportPage = () => {
-    const { user } = useContext(UserContext);
+    const user = useSelector((state: RootState) => state.userSlice.user);
     const { currentPage, setCurrentPage } = useContext(PageContext)!;
     const navigate = useNavigate();
 

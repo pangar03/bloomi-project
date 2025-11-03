@@ -1,88 +1,96 @@
 import { useContext } from "react";
 import Icon from "../Icon/Icon";
 import SquareContainer from "../RoundedContainer/squareContainer";
-import { UserContext } from "../../context/UserContext/UserContext";
-import { PageContext } from "../../context/PageContext/PageContext";
+import CircleContainer from "../RoundedContainer/circleContainer";
 import PetMiniature from "../PetMiniature/petMiniature";
-import IconButton from "../buttons/iconButton";
+import { PageContext } from "../../context/PageContext/PageContext";
+import type { RootState } from "../../store/store";
+import { useSelector } from "react-redux";
 
 const LateralBar = () => {
-    const { user } = useContext(UserContext);
+    const user = useSelector((state: RootState) => state.userSlice.user);
     const { currentPage } = useContext(PageContext)!;
 
-    let lateralBarVisibilityClass = "";
-    switch (currentPage) {
-        case "login":
-        case "register":
-        case "pin":
-            lateralBarVisibilityClass = "hidden";
-            break;
-        case "dashboard":
-        case "store":
-            lateralBarVisibilityClass = "flex-col";
-            break;
-        case "settings":
-            lateralBarVisibilityClass = "lg:flex-col lg:flex hidden";
-            break;
-        case "journal":
-            lateralBarVisibilityClass = "flex-col";
-            break;
-        case null:
-            lateralBarVisibilityClass = "hidden";
-            break;
-        default:
-            lateralBarVisibilityClass = "hidden";
-            break;
-    }
+    const hidden =
+        currentPage === "login" ||
+        currentPage === "register" ||
+        currentPage === "pin" ||
+        currentPage === null;
 
     return (
         <div
-            className={`${lateralBarVisibilityClass} lg:w-[40%] w-full h-[40%] lg:h-screen`}
+            className={`${hidden ? "hidden" : "flex"} 
+      flex-col lg:flex-row-reverse 
+      w-full lg:w-[40%] 
+      lg:h-screen`}
         >
-            <div
-                className="w-full h-full bg-accent hidden lg:flex lg:flex-col items-end justify-start pt-8 px-8"
-                style={{
-                    clipPath:
-                        "polygon(20% 0, 100% 0%, 100% 100%, 20% 100%, 0 50%)",
-                }}
-            >
-                <SquareContainer variant="coins" className="flex items-center">
+            {/* Desktop */}
+            <div className="hidden lg:flex flex-col w-full h-full bg-accent items-end justify-start pt-8 px-8 relative overflow-hidden">
+                {/* Curva divisoria */}
+                <svg
+                    className="absolute -left-[120px] top-0 h-full w-[200px] pointer-events-none z-0"
+                    viewBox="0 0 200 800"
+                    preserveAspectRatio="none"
+                >
+                    <path
+                        d="M0 0 L140 0 C180 80 100 180 150 280 C180 340 100 460 150 560 C180 620 100 740 140 800 L0 800 Z"
+                        className="fill-white"
+                    />
+                </svg>
+
+                {/* Monedas */}
+                <SquareContainer
+                    variant="coins"
+                    className="flex items-center self-end z-10"
+                >
                     <h2 className="text-sm text-black font-bold mr-4">
                         {user?.currency}
                     </h2>
                     <Icon variant="CoinIcon" className="w-6 h-6" />
                 </SquareContainer>
 
-                <div className="relative w-[70%] aspect-square bg-[#F47B7B] rounded-full mx-auto mt-30 flex items-center justify-center shadow-md border-4 border-[#F7A6A6]">
+                {/* Mascota */}
+                <div className="relative w-[70%] aspect-square mx-auto my-auto -translate-y-[calc(3%+40px)] flex items-center justify-center z-10">
                     <PetMiniature
-                        variant="BunnyBerry"
+                        variant={user?.currentPet}
                         context="lateral"
-                        className="w-[85%] aspect-square p-8"
+                        className="w-[95%] h-[95%]"
                     />
-
-                    <div className="absolute top-4 left-4 w-12 h-12 bg-white border-2 border-[#7A59F4] rounded-full shadow-md flex items-center justify-center">
-                        <IconButton variant="HangerIcon" />
-                    </div>
+                    <CircleContainer
+                        variant="blue"
+                        className="absolute left-0 top-0 translate-x-[14%] translate-y-[14%] z-20 w-14 h-14"
+                    >
+                        <Icon variant="HangerIcon" className="w-8 h-8" />
+                    </CircleContainer>
                 </div>
             </div>
 
-            <div className="w-full bg-accent lg:hidden flex flex-col items-end justify-start pt-8 px-8">
-                <SquareContainer variant="coins" className="flex items-center">
-                    <h2 className="text-sm text-black font-bold mr-4">
-                        {user?.currency}
-                    </h2>
-                    <Icon variant="CoinIcon" className="w-6 h-6" />
-                </SquareContainer>
+            {/* Mobile */}
+            <div className="lg:hidden flex flex-col w-full bg-accent items-center justify-start pt-8 pb-6 px-8 rounded-b-[40px]">
+                <div className="w-full flex justify-end mb-2">
+                    <SquareContainer
+                        variant="coins"
+                        className="flex items-center"
+                    >
+                        <h2 className="text-sm text-black font-bold mr-3">
+                            {user?.currency}
+                        </h2>
+                        <Icon variant="CoinIcon" className="w-5 h-5" />
+                    </SquareContainer>
+                </div>
 
-                <div className="relative aspect-square bg-red-lighter rounded-full mx-auto flex items-center justify-center shadow-md border-4 border-red   ">
+                <div className="relative w-[180px] h-[180px] flex items-center justify-center">
                     <PetMiniature
-                        variant="BunnyBerry"
+                        variant={user?.currentPet}
                         context="lateral"
-                        className="w-[70%] h-[70%]"
+                        className="w-[95%] h-[95%]"
                     />
-                    <div className="absolute top-3 left-3 w-10 h-10 bg-white border-2 border-[#7A59F4] rounded-full shadow-md flex items-center justify-center">
-                        <IconButton variant="HangerIcon" />
-                    </div>
+                    <CircleContainer
+                        variant="blue"
+                        className="absolute left-0 top-0 translate-x-[14%] translate-y-[14%] z-20 w-12 h-12"
+                    >
+                        <Icon variant="HangerIcon" className="w-7 h-7" />
+                    </CircleContainer>
                 </div>
             </div>
         </div>
@@ -90,3 +98,5 @@ const LateralBar = () => {
 };
 
 export default LateralBar;
+
+// TODO: El hanger no es circle container, es un IconButton, debe tener la funcionalidad de poder cambiar la mascota.

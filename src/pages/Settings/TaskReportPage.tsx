@@ -5,9 +5,11 @@ import type { Task } from "../../types/Task";
 import { PageContext } from "../../context/PageContext/PageContext";
 import Button from "../../components/buttons/button";
 import { useNavigate } from "react-router-dom";
+import type { RootState } from "../../store/store";
+import { useSelector } from "react-redux";
 
 const TaskReportPage = () => {
-    const { user } = useContext(UserContext);
+    const user = useSelector((state: RootState) => state.userSlice.user);
     const { currentPage, setCurrentPage } = useContext(PageContext)!;
     const navigate = useNavigate();
 
