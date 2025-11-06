@@ -1,5 +1,6 @@
 import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
+import { supabase } from "../../services/supabaseClient";
 import Button from "../buttons/button";
 import Input from "../Input/input";
 
@@ -8,9 +9,16 @@ const LoginForm = () => {
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     navigate("/dashboard");
+    const { error, data } = await supabase.auth.signInWithPassword({ email, password })
+      if (error) {
+        console.log("Error login:", error);
+        return;
+      } 
+        console.log("Login successful:", data);
+
   };
 
   const handleBack = () => {
