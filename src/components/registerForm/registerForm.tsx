@@ -1,22 +1,45 @@
 import { Link, useNavigate } from "react-router-dom";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { supabase } from "../../services/supabaseClient";
 import Button from "../buttons/button";
 import Input from "../Input/input";
 
 const RegisterForm = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [confirmPassword, setConfirmPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState<boolean>(false);
+  const [confirmPasswordText, setConfirmPasswordText] = useState<string>("");
+  
   const navigate = useNavigate();
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  useEffect(() => {
+    // actualiza el flag booleano según coincidan las contraseñas
+    setConfirmPassword(password === confirmPasswordText);
+  }, [password, confirmPasswordText]);
+
+  const handleRegister = async (e: React.FormEvent) => {
     e.preventDefault();
-    //logica provicional para cuando se ingresen contraseñas
-    if (password !== confirmPassword) {
+    if (isSubmitting) return;
+    // validación usando el flag booleano
+    if (!confirmPassword) {
       alert("Las contraseñas no coinciden");
       return;
     }
-    navigate("/dashboard");
+
+    setIsSubmitting(true);
+    try {
+      const { data, error } = await supabase.auth.signUp({ email, password });
+      if (error) {
+        console.error("Error register:", error);
+        alert(error.message);
+        return;
+      }
+      console.log("registration data", data);
+      navigate("/login");
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const handleBack = () => {
@@ -25,7 +48,7 @@ const RegisterForm = () => {
 
   return (
     <form
-      onSubmit={handleSubmit}
+      onSubmit={handleRegister}
       className="flex flex-col gap-2 w-full max-w-sm mx-auto"
     >
       <h1 className="text-xl font-bold text-center">Register</h1>
@@ -34,6 +57,7 @@ const RegisterForm = () => {
         type="email"
         label="Email"
         placeholder="e-mail"
+        autoComplete="email"
         value={email}
         onChange={(e) => setEmail(e.target.value)}
         required
@@ -43,6 +67,7 @@ const RegisterForm = () => {
         type="password"
         label="Password"
         placeholder="password"
+        autoComplete="new-password"
         value={password}
         onChange={(e) => setPassword(e.target.value)}
         required
@@ -52,8 +77,9 @@ const RegisterForm = () => {
         type="password"
         label="Confirm Password"
         placeholder="confirm password"
-        value={confirmPassword}
-        onChange={(e) => setConfirmPassword(e.target.value)}
+        autoComplete="new-password"
+        value={confirmPasswordText}
+        onChange={(e) => setConfirmPasswordText(e.target.value)}
         required
       />
 
@@ -64,7 +90,7 @@ const RegisterForm = () => {
         </Link>
       </p>
 
-      <Button type="submit" variant="primary">
+      <Button type="submit" variant="primary" disabled={isSubmitting}>
         Register
       </Button>
 
