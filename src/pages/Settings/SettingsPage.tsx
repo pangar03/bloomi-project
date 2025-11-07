@@ -1,5 +1,4 @@
 import { useContext, useEffect, useState } from "react";
-import { UserContext } from "../../context/UserContext/UserContext";
 import NumPad from "../../components/NumPad/NumPad";
 import Button from "../../components/buttons/button";
 import { PageContext } from "../../context/PageContext/PageContext";
