@@ -21,30 +21,96 @@ const PinPage= () => {
 
     const handleSetPin = async (pin: string) => {
         if (pin.length !== 4) return;
-        const { data: userData, error: authError } = await supabase.auth.getUser();
-        if (authError) {
-            alert(`Error autenticación: ${authError.message ?? authError}`);
-            return;
-        }
+        const pinNumber = Number(pin);
+        const { data: userData } = await supabase.auth.getUser();
         const user = userData?.user;
+
         if (!user) {
-            alert("No hay usuario autenticado");
+            // Sin sesión: guardamos en Redux y navegamos sin bloquear al usuario.
+            dispatch(setPinInStore(pin));
+            navigate("/dashboard");
             return;
         }
 
-        const { error } = await supabase
-            .from("pin")
-            .upsert({ user_id: user.id, pin }, { onConflict: "user_id" })
-            .select();
-        if (error) {
-            alert(`Error guardando el PIN: ${error.message ?? error}`);
-            // Detenemos el flujo si falla el upsert para evitar
-            // actualizar Redux o navegar con un estado inconsistente.
+        // La tabla public.pin está vinculada a public.user (id entero).
+        // Buscamos el id de public.user por el email del usuario autenticado.
+        // Preferimos vincular por id_uuid (auth.users.id)
+        const authId = user.id;
+        let dbUserId: number | null = null;
+
+        const { data: dbUserByUuid, error: userFetchByUuidError } = await supabase
+            .from("user")
+            .select("id, id_uuid")
+            .eq("id_uuid", authId)
+            .limit(1)
+            .maybeSingle();
+
+        if (userFetchByUuidError) {
+            console.warn("Error buscando usuario por id_uuid en public.user:", userFetchByUuidError.message);
+        }
+
+        if (dbUserByUuid?.id) {
+            dbUserId = dbUserByUuid.id as number;
+        } else {
+            const email = user.email;
+            if (!email) {
+                console.warn("Usuario autenticado sin email; no se puede vincular a public.user");
+                dispatch(setPinInStore(pin));
+                navigate("/dashboard");
+                return;
+            }
+            const { data: dbUserByEmail, error: userFetchByEmailError } = await supabase
+                .from("user")
+                .select("id")
+                .eq("email", email)
+                .limit(1)
+                .maybeSingle();
+            if (userFetchByEmailError) {
+                console.warn("Error buscando usuario por email en public.user:", userFetchByEmailError.message);
+            }
+            if (dbUserByEmail?.id) {
+                dbUserId = dbUserByEmail.id as number;
+            }
+        }
+
+        if (!dbUserId) {
+            console.warn("No se encontró fila en public.user para vincular el PIN");
+            dispatch(setPinInStore(pin));
+            navigate("/dashboard");
             return;
         }
+
+        // Intento de actualización/insert usando el id entero de public.user
+        const { data: existing, error: fetchError } = await supabase
+            .from("pin")
+            .select("id")
+            .eq("user_id", dbUserId)
+            .limit(1)
+            .maybeSingle();
+
+        if (fetchError) {
+            console.warn("Error buscando registro de PIN:", fetchError.message);
+        }
+
+        let persistError = null as unknown as Error | null;
+        if (existing?.id) {
+            const { error: updateError } = await supabase
+                .from("pin")
+                .update({ pin: pinNumber })
+                .eq("user_id", dbUserId);
+            persistError = updateError as Error | null;
+        } else {
+            const { error: insertError } = await supabase
+                .from("pin")
+                .insert({ user_id: dbUserId, pin: pinNumber });
+            persistError = insertError as Error | null;
+        }
+
+        if (persistError) {
+            console.error("Error guardando el PIN:", persistError);
+        }
         dispatch(setPinInStore(pin));
-        alert("PIN guardado correctamente");
-        navigate("/settings");
+        navigate("/dashboard");
     };
 
     return (

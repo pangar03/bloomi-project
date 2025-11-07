@@ -36,7 +36,47 @@ const RegisterForm = () => {
         return;
       }
       console.log("registration data", data);
-      navigate("/login");
+      // Si no hay sesión tras el registro (p.ej., confirmación por email activada),
+      // intentamos crear sesión con las mismas credenciales.
+      if (!data.session) {
+        const { error: loginError } = await supabase.auth.signInWithPassword({ email, password });
+        if (loginError) {
+          console.warn("No se pudo iniciar sesión automáticamente:", loginError.message);
+          // Continuamos igualmente hacia la creación del PIN para no bloquear el flujo.
+        }
+      }
+
+      // Aseguramos existencia de la fila en public.user vinculada por id_uuid y/o email
+      const { data: authUserData } = await supabase.auth.getUser();
+      const authUser = authUserData?.user;
+      const idUuid = authUser?.id ?? data.user?.id ?? null;
+
+      const { data: dbUser, error: userReadError } = await supabase
+        .from("user")
+        .select("id, id_uuid")
+        .or(idUuid ? `id_uuid.eq.${idUuid},email.eq.${email}` : `email.eq.${email}`)
+        .limit(1)
+        .maybeSingle();
+
+      if (userReadError) {
+        console.warn("Error leyendo public.user:", userReadError.message);
+      }
+
+      if (!dbUser?.id) {
+        const payload: { email: string; id_uuid?: string } = { email };
+        if (idUuid) payload.id_uuid = idUuid;
+        const { data: insertedUser, error: insertUserError } = await supabase
+          .from("user")
+          .insert(payload)
+          .select("id")
+          .single();
+        if (insertUserError) {
+          console.warn("Error creando fila en public.user:", insertUserError.message);
+        } else {
+          console.log("Fila creada en public.user con id:", insertedUser?.id);
+        }
+      }
+      navigate("/pin");
     } finally {
       setIsSubmitting(false);
     }
