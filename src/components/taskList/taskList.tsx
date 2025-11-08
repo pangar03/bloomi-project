@@ -1,7 +1,10 @@
-import React, { useContext } from "react";
 import TaskCard from "../cards/taskCard/taskCard";
+import { useDispatch, useSelector } from "react-redux";
+import { setDailyTasks, setTasks } from "../../store/slices/taskListSlice";
+import type { RootState } from "../../store/store";
+import { progressGoal } from "../../store/slices/goalListSlice";
+import { setCurrency } from "../../store/slices/userSlice";
 import type { Task } from "../../types/Task";
-import { UserContext } from "../../context/UserContext/UserContext";
 
 // React.Dispatch<React.SetStateAction<Task[]>> is the type for the setState function on React useState hook
 type TaskListProps = React.HTMLAttributes<HTMLDivElement> & {
@@ -9,14 +12,18 @@ type TaskListProps = React.HTMLAttributes<HTMLDivElement> & {
 };
 
 const TaskList: React.FC<TaskListProps> = ({ taskList, className }) => {
-    const { setUser } = useContext(UserContext);
+    const daily = useSelector(
+        (state: RootState) => state.taskListSlice.dailyTasks
+    );
+    const basic = useSelector((state: RootState) => state.taskListSlice.tasks);
+    const user = useSelector((state: RootState) => state.userSlice.user);
+
+    const dispatch = useDispatch();
 
     const handleTaskCheck = (taskId: string) => {
-        setUser((previous) => {
-            if (!previous) return previous;
-            return {
-                ...previous,
-                dailyTasks: previous.dailyTasks.map((task) =>
+        dispatch(
+            setDailyTasks(
+                daily.map((task) =>
                     task.id === taskId
                         ? {
                               ...task,
@@ -26,63 +33,41 @@ const TaskList: React.FC<TaskListProps> = ({ taskList, className }) => {
                                       : "completed",
                           }
                         : task
-                ),
-            };
-        });
-        setUser?.((previous) => {
-            if (!previous) return previous;
-            return {
-                ...previous,
-                goals: previous.goals.map((goal) =>
-                    goal.trackedTaskId === taskId
-                        ? {
-                              ...goal,
-                              progress: goal.progress ? goal.progress + 1 : 1,
-                          }
-                        : goal
-                ),
-            };
-        });
-        setUser?.((previous) => {
-            if (!previous) return previous;
-            const task = taskList.find((task) => task.id === taskId);
-            return task
-                ? {
-                      ...previous,
-                      currency: (previous.currency || 0) + task.reward,
-                  }
-                : previous;
-        });
+                )
+            )
+        );
+
+        dispatch(progressGoal(taskId));
+
+        dispatch(
+            setCurrency(
+                (user?.currency || 0) +
+                    basic.find((task) => task.id === taskId)?.reward! || 0
+            )
+        );
     };
 
     const handleTaskDelete = (taskId: string) => {
-        setUser?.((previous) =>
-            previous
-                ? {
-                      ...previous,
-                      tasks: previous.tasks.filter(
-                          (task) => task.id !== taskId
-                      ),
-                      dailyTasks: previous.dailyTasks.filter(
-                          (task) => task.id !== taskId
-                      ),
-                  }
-                : previous
-        );
+        const tempBasic = basic.filter((task) => task.id !== taskId);
+        const tempDaily = daily.filter((task) => task.id !== taskId);
+
+        dispatch(setDailyTasks(tempDaily));
+        dispatch(setTasks(tempBasic));
     };
 
     return (
         <div className={`flex flex-col gap-4 p-4 ${className}`}>
-            {taskList.map((task) => (
-                <TaskCard
-                    key={task.id}
-                    variant={task.variant}
-                    taskName={task.taskName}
-                    reward={task.reward}
-                    onCheck={() => handleTaskCheck(task.id)}
-                    onDelete={() => handleTaskDelete(task.id)}
-                />
-            ))}
+            {taskList &&
+                taskList.map((task) => (
+                    <TaskCard
+                        key={task.id}
+                        variant={task.variant}
+                        taskName={task.taskName}
+                        reward={task.reward}
+                        onCheck={() => handleTaskCheck(task.id)}
+                        onDelete={() => handleTaskDelete(task.id)}
+                    />
+                ))}
         </div>
     );
 };

@@ -1,6 +1,6 @@
 import PetMiniature from "../PetMiniature/petMiniature";
 import Button from "../buttons/button";
-import Icon from "../Icon/Icon"; 
+import Icon from "../Icon/Icon";
 
 interface StoreItemProps {
     petVariant?: "BunnyBerry" | "FloraBunny" | "CatMora" | "Fallxie";
@@ -22,11 +22,13 @@ const StoreItem: React.FC<StoreItemProps> = ({
             <div
                 className="w-full flex justify-center items-center rounded-xl mb-3 bg-[#F7F2FF] border-2 border-[#004D81] h-[160px]"
             >
-                <PetMiniature variant={petVariant} className="w-32 h-32" />
+                <PetMiniature variant={petVariant} className="w-full" />
             </div>
             <div className="w-full flex items-center justify-between px-2">
                 <div className="flex items-center gap-1">
-                    <span className="text-black text-lg font-bold">{price}</span>
+                    <span className="text-black text-lg font-bold">
+                        {price}
+                    </span>
                     <Icon variant="CoinIcon" className="w-6 h-6" />
                 </div>
                 <Button
