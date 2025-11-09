@@ -1,5 +1,5 @@
 import "./index.css";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
 import Login from "./pages/loginPage/login";
 import Journal from "./pages/Journal/journal";
 import Store from "./pages/Store/store";
@@ -16,7 +16,7 @@ import MoodJournalReportPage from "./pages/Settings/MoodJournalPage";
 import ManageHabitsPage from "./pages/Settings/ManageHabitsPage";
 import EditProfilePage from "./pages/Settings/EditProfilePage";
 import EditParentPin from "./pages/Settings/editParentPin";
-import PinPage from "./pages/PinPage/PinPage";
+import ProtectedRoute from "./components/protectedRoutes/protectedRoutes";
 import { useDispatch } from "react-redux";
 import { setUser } from "./store/slices/userSlice";
 import { setTasks, setDailyTasks } from "./store/slices/taskListSlice";
@@ -176,7 +176,6 @@ function App() {
                         <Route path="/start" element={<StartPage />} />
                         <Route path="/login" element={<Login />} />
                         <Route path="/register" element={<Register />} />
-                        <Route path="/pin" element={<PinPage />} />
                         <Route path="/dashboard" element={<Dashboard />} />
                         <Route path="/settings" element={<SettingsPage />} />
                         <Route
