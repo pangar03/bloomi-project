@@ -16,7 +16,7 @@ import MoodJournalReportPage from "./pages/Settings/MoodJournalPage";
 import ManageHabitsPage from "./pages/Settings/ManageHabitsPage";
 import EditProfilePage from "./pages/Settings/EditProfilePage";
 import EditParentPin from "./pages/Settings/editParentPin";
-import PinPage from "./pages/PinPage/PinPage";
+import PinPage from "./pages/PinPage/pinPage";
 import { useDispatch } from "react-redux";
 import { setUser } from "./store/slices/userSlice";
 import { setTasks, setDailyTasks } from "./store/slices/taskListSlice";
@@ -34,132 +34,132 @@ const ResponsiveHomePage = () => {
 };
 
 function App() {
-    const user = useSelector((state: RootState) => state.userSlice.user);
-    const dispatch = useDispatch();
-    useEffect(() => {
-        if (!user) {
-            dispatch(
-                setUser({
-                    name: "John Doe",
-                    currentPet: "BunnyBerry",
-                    ownedPets: ["BunnyBerry", "Fallxie"],
-                    currency: 100,
-                    pin: "1234",
-                    taskRegistry: {
-                        [new Date("2025-09-01").toDateString()]: [
-                            {
-                                id: "task-1",
-                                taskName: "Do homework",
-                                reward: 10,
-                                variant: "active",
-                            },
-                            {
-                                id: "task-2",
-                                taskName: "Brush teeth",
-                                reward: 20,
-                                variant: "active",
-                            },
-                        ],
-                        [new Date("2025-09-02").toDateString()]: [
-                            {
-                                id: "task-1",
-                                taskName: "Do homework",
-                                reward: 10,
-                                variant: "active",
-                            },
-                            {
-                                id: "task-2",
-                                taskName: "Brush teeth",
-                                reward: 20,
-                                variant: "active",
-                            },
-                        ],
-                    },
-                    journalEntries: [
-                        {
-                            date: new Date("2023-10-01"),
-                            mood: "Happy",
-                            entry: "Had a great day at the park!",
-                        },
-                    ],
-                })
-            );
-            dispatch(setDailyMood(null));
-            dispatch(
-                setDailyTasks([
-                    {
-                        id: "task-1",
-                        taskName: "Do homework",
-                        reward: 10,
-                        variant: "active",
-                    },
-                    {
-                        id: "task-2",
-                        taskName: "Brush teeth",
-                        reward: 20,
-                        variant: "active",
-                    },
-                    {
-                        id: "task-3",
-                        taskName: "Do the bed",
-                        reward: 15,
-                        variant: "active",
-                    },
-                ])
-            );
-            dispatch(
-                setGoals([
-                    {
-                        id: "goal-1",
-                        trackedTaskId: "task-1",
-                        goalName: "Do homework three times",
-                        reward: 50,
-                        progress: 0,
-                        goal: 3,
-                    },
-                    {
-                        id: "goal-2",
-                        trackedTaskId: "task-2",
-                        goalName: "Brush teeth five times",
-                        reward: 100,
-                        progress: 1,
-                        goal: 5,
-                    },
-                    {
-                        id: "goal-3",
-                        trackedTaskId: "task-3",
-                        goalName: "Do the bed two times",
-                        reward: 75,
-                        progress: 1,
-                        goal: 2,
-                    },
-                ])
-            );
-            dispatch(
-                setTasks([
-                    {
-                        id: "task-1",
-                        taskName: "Do homework",
-                        reward: 10,
-                        variant: "basic",
-                    },
-                    {
-                        id: "task-2",
-                        taskName: "Brush teeth",
+    // const user = useSelector((state: RootState) => state.userSlice.user);
+    // const dispatch = useDispatch();
+    // useEffect(() => {
+    //     if (!user) {
+    //         dispatch(
+    //             setUser({
+    //                 name: "John Doe",
+    //                 currentPet: "BunnyBerry",
+    //                 ownedPets: ["BunnyBerry", "Fallxie"],
+    //                 currency: 100,
+    //                 pin: "1234",
+    //                 taskRegistry: {
+    //                     [new Date("2025-09-01").toDateString()]: [
+    //                         {
+    //                             id: "task-1",
+    //                             taskName: "Do homework",
+    //                             reward: 10,
+    //                             variant: "active",
+    //                         },
+    //                         {
+    //                             id: "task-2",
+    //                             taskName: "Brush teeth",
+    //                             reward: 20,
+    //                             variant: "active",
+    //                         },
+    //                     ],
+    //                     [new Date("2025-09-02").toDateString()]: [
+    //                         {
+    //                             id: "task-1",
+    //                             taskName: "Do homework",
+    //                             reward: 10,
+    //                             variant: "active",
+    //                         },
+    //                         {
+    //                             id: "task-2",
+    //                             taskName: "Brush teeth",
+    //                             reward: 20,
+    //                             variant: "active",
+    //                         },
+    //                     ],
+    //                 },
+    //                 journalEntries: [
+    //                     {
+    //                         date: new Date("2023-10-01"),
+    //                         mood: "Happy",
+    //                         entry: "Had a great day at the park!",
+    //                     },
+    //                 ],
+    //             })
+    //         );
+    //         dispatch(setDailyMood(null));
+    //         dispatch(
+    //             setDailyTasks([
+    //                 {
+    //                     id: "task-1",
+    //                     taskName: "Do homework",
+    //                     reward: 10,
+    //                     variant: "active",
+    //                 },
+    //                 {
+    //                     id: "task-2",
+    //                     taskName: "Brush teeth",
+    //                     reward: 20,
+    //                     variant: "active",
+    //                 },
+    //                 {
+    //                     id: "task-3",
+    //                     taskName: "Do the bed",
+    //                     reward: 15,
+    //                     variant: "active",
+    //                 },
+    //             ])
+    //         );
+    //         dispatch(
+    //             setGoals([
+    //                 {
+    //                     id: "goal-1",
+    //                     trackedTaskId: "task-1",
+    //                     goalName: "Do homework three times",
+    //                     reward: 50,
+    //                     progress: 0,
+    //                     goal: 3,
+    //                 },
+    //                 {
+    //                     id: "goal-2",
+    //                     trackedTaskId: "task-2",
+    //                     goalName: "Brush teeth five times",
+    //                     reward: 100,
+    //                     progress: 1,
+    //                     goal: 5,
+    //                 },
+    //                 {
+    //                     id: "goal-3",
+    //                     trackedTaskId: "task-3",
+    //                     goalName: "Do the bed two times",
+    //                     reward: 75,
+    //                     progress: 1,
+    //                     goal: 2,
+    //                 },
+    //             ])
+    //         );
+    //         dispatch(
+    //             setTasks([
+    //                 {
+    //                     id: "task-1",
+    //                     taskName: "Do homework",
+    //                     reward: 10,
+    //                     variant: "basic",
+    //                 },
+    //                 {
+    //                     id: "task-2",
+    //                     taskName: "Brush teeth",
 
-                        reward: 20,
-                        variant: "basic",
-                    },
-                    {
-                        id: "task-3",
-                        taskName: "Do the bed",
-                        reward: 15,
-                        variant: "basic",
-                    },
-                ])
-            );
-        }
-    }, []);
+    //                     reward: 20,
+    //                     variant: "basic",
+    //                 },
+    //                 {
+    //                     id: "task-3",
+    //                     taskName: "Do the bed",
+    //                     reward: 15,
+    //                     variant: "basic",
+    //                 },
+    //             ])
+    //         );
+    //     }
+    // }, []);
 
     const { currentPage } = useContext(PageContext)!;
 
