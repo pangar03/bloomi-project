@@ -41,16 +41,19 @@ const NumPad = ({ setInput, setPin, input }: NumPadProps) => {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="flex flex-col gap-4">
-      <Input
-        type="password"
-        pattern="\d{4}"
-        maxLength={4}
-        required
-        value={input}
-        onChange={(e) => setInput(e.target.value)}
-      />
-      <div className="grid grid-cols-3 gap-4 w-fit lg:hidden mx-auto border-2 border-accent shadow-accent rounded-rounded grid-template-rows-[repeat(4,1fr)] p-8">
+    <form onSubmit={handleSubmit} className="flex flex-col gap-4 items-center">
+      <div className="w-64 sm:w-72 md:w-96">
+        <Input
+          type="password"
+          placeholder="Enter your parent pin"
+          pattern="\d{4}"
+          maxLength={4}
+          required
+          value={input}
+          onChange={(e) => setInput(e.target.value)}
+        />
+      </div>
+      <div className="grid grid-cols-3 gap-4 w-64 sm:w-72 lg:hidden mx-auto border-2 border-accent shadow-accent rounded-rounded grid-template-rows-[repeat(4,1fr)] p-5 sm:p-6">
         {(
           ["1", "2", "3", "4", "5", "6", "7", "8", "9"] as NumberInputKeys[]
         ).map((key) => (
@@ -77,10 +80,10 @@ const NumPad = ({ setInput, setPin, input }: NumPadProps) => {
           onClick={() => handleClick("Backspace")}
         />
       </div>
-      <Button variant="accent" type="submit">
+      <Button variant="accent" type="submit" className="w-64 sm:w-72 md:w-96 mx-auto">
         Confirm
       </Button>
-      <Button variant="white" onClick={() => navigate(-1)}>
+      <Button variant="white" onClick={() => navigate(-1)} className="w-64 sm:w-72 md:w-96 mx-auto">
         Back
       </Button>
     </form>

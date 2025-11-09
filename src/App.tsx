@@ -16,6 +16,7 @@ import MoodJournalReportPage from "./pages/Settings/MoodJournalPage";
 import ManageHabitsPage from "./pages/Settings/ManageHabitsPage";
 import EditProfilePage from "./pages/Settings/EditProfilePage";
 import EditParentPin from "./pages/Settings/editParentPin";
+import PinPage from "./pages/PinPage/PinPage";
 import { useDispatch } from "react-redux";
 import { setUser } from "./store/slices/userSlice";
 import { setTasks, setDailyTasks } from "./store/slices/taskListSlice";
@@ -175,6 +176,7 @@ function App() {
                         <Route path="/start" element={<StartPage />} />
                         <Route path="/login" element={<Login />} />
                         <Route path="/register" element={<Register />} />
+                        <Route path="/pin" element={<PinPage />} />
                         <Route path="/dashboard" element={<Dashboard />} />
                         <Route path="/settings" element={<SettingsPage />} />
                         <Route
