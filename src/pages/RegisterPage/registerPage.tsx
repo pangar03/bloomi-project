@@ -8,6 +8,7 @@ import { setPin as setPinInStore } from "../../store/slices/userSlice";
 import { CreateUser } from "../../services/authServices";
 import { setSession } from "../../store/slices/authSlice";
 import { useNavigate } from "react-router-dom";
+import { bundleData } from "../../utils/bundleData";
 
 const Register = () => {
     const { currentPage, setCurrentPage } = useContext(PageContext)!;
@@ -32,10 +33,16 @@ const Register = () => {
             );
             dispatch(setPinInStore(pin));
             dispatch(setSession(session ?? null));
+            if (session) await executeBundleData();
         } catch (err) {
             console.error("Error creando usuario:", err);
+            return;
         }
         navigate("/dashboard");
+    };
+
+    const executeBundleData = async () => {
+        await bundleData(dispatch);
     };
 
     return (
