@@ -4,7 +4,8 @@ import type { Task } from "../../types/Task";
 import type { MoodDataType } from "../../types/MoodData";
 import type { PetVariant } from "../../types/PetVariant";
 
-type User = {
+export type User = {
+    id: string;
     name: string;
     currentPet: PetVariant;
     ownedPets: PetVariant[];
