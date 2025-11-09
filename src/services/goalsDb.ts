@@ -1,6 +1,11 @@
 import { supabase } from "./supabaseClient";
+import { incrementUserCoins } from "./userDb";
 
-export const createGoal = async (description: string, taskId: string) => {
+export const createGoal = async (
+    description: string,
+    taskId: string,
+    userId: string
+) => {
     const goal = Math.floor(Math.random() * 25) + 10; // Random goal between 10 and 35
     const reward = Math.floor((goal / 2) * 10); // Reward is half the goal times 10
 
@@ -11,7 +16,7 @@ export const createGoal = async (description: string, taskId: string) => {
         goal,
         reward,
         task_id: taskId,
-        user_id: "21d6600b-8b9e-4f9e-894e-06ced9951871",
+        user_id: userId,
     });
 
     if (error) {
@@ -20,11 +25,11 @@ export const createGoal = async (description: string, taskId: string) => {
     }
 };
 
-export const getGoals = async () => {
+export const getGoals = async (userId: string) => {
     const { data, error } = await supabase
         .from("goals")
         .select("*")
-        .eq("user_id", "21d6600b-8b9e-4f9e-894e-06ced9951871");
+        .eq("user_id", userId);
 
     if (error) {
         console.error("Error fetching goals:", error);
@@ -34,21 +39,39 @@ export const getGoals = async () => {
     return data;
 };
 
-export const completeGoal = async (goalId: string) => {}; // Placeholder for future implementation when having user db
+export const completeGoal = async (goalId: string, userId: string) => {
+    const reward = await supabase
+        .from("goals")
+        .select("reward")
+        .eq("id", goalId)
+        .single();
+
+    if (reward.error) {
+        console.error("Error fetching reward:", reward.error);
+        return;
+    }
+
+    await incrementUserCoins(userId, reward.data.reward);
+
+    const { error } = await supabase.from("goals").delete().eq("id", goalId);
+
+    if (error) {
+        console.error("Error completing goal:", error);
+        return;
+    }
+};
 
 export const progressGoal = async (taskId: string) => {
     const previousProgress = await supabase
         .from("goals")
         .select("progress")
         .eq("task_id", taskId)
-        .eq("user_id", "21d6600b-8b9e-4f9e-894e-06ced9951871")
         .single();
 
     const goalData = await supabase
         .from("goals")
         .select("goal")
         .eq("task_id", taskId)
-        .eq("user_id", "21d6600b-8b9e-4f9e-894e-06ced9951871")
         .single();
 
     const { error } = await supabase
@@ -57,7 +80,6 @@ export const progressGoal = async (taskId: string) => {
             progress: previousProgress?.data?.progress + 1,
         })
         .eq("task_id", taskId)
-        .eq("user_id", "21d6600b-8b9e-4f9e-894e-06ced9951871")
         .lt("progress", goalData?.data?.goal);
 
     if (error) {

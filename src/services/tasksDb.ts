@@ -1,13 +1,17 @@
 import { createGoal, progressGoal } from "./goalsDb";
 import { supabase } from "./supabaseClient";
 
-export const createTask = async (description: string, icon: string) => {
+export const createTask = async (
+    description: string,
+    icon: string,
+    userId: string
+) => {
     const { data, error } = await supabase
         .from("tasks")
         .insert({
             description,
             icon,
-            user_id: "21d6600b-8b9e-4f9e-894e-06ced9951871",
+            user_id: userId,
         })
         .select()
         .single();
@@ -17,16 +21,16 @@ export const createTask = async (description: string, icon: string) => {
         return error;
     }
 
-    createGoal(description, data.id);
+    createGoal(description, data.id, userId);
 
     return data;
 };
 
-export const getTasks = async () => {
+export const getTasks = async (userId: string) => {
     const { data, error } = await supabase
         .from("tasks")
         .select("*")
-        .eq("user_id", "21d6600b-8b9e-4f9e-894e-06ced9951871");
+        .eq("user_id", userId);
 
     if (error) {
         console.error("Error fetching tasks:", error);
@@ -36,12 +40,12 @@ export const getTasks = async () => {
     return data;
 };
 
-export const deleteTask = async (taskId: string) => {
+export const deleteTask = async (taskId: string, userId: string) => {
     const { data, error } = await supabase
         .from("tasks")
         .delete()
         .eq("id", taskId)
-        .eq("user_id", "21d6600b-8b9e-4f9e-894e-06ced9951871");
+        .eq("user_id", userId);
 
     if (error) {
         console.error("Error deleting task:", error);
@@ -51,11 +55,11 @@ export const deleteTask = async (taskId: string) => {
     return data;
 };
 
-export const resetDailyTasks = async () => {
+export const resetDailyTasks = async (userId: string) => {
     const { data, error } = await supabase
         .from("tasks")
         .update({ is_completed: false, date_completed: null })
-        .eq("user_id", "21d6600b-8b9e-4f9e-894e-06ced9951871")
+        .eq("user_id", userId)
         .eq("is_completed", true)
         .neq(
             "date_completed",
@@ -75,7 +79,7 @@ export const resetDailyTasks = async () => {
     return data;
 };
 
-export const markTaskAsCompleted = async (taskId: string) => {
+export const markTaskAsCompleted = async (taskId: string, userId: string) => {
     const { data, error } = await supabase
         .from("tasks")
         .update({
@@ -89,7 +93,7 @@ export const markTaskAsCompleted = async (taskId: string) => {
                 new Date().getDate(),
         })
         .eq("id", taskId)
-        .eq("user_id", "21d6600b-8b9e-4f9e-894e-06ced9951871")
+        .eq("user_id", userId)
         .eq("is_completed", false);
 
     if (error) {
@@ -97,16 +101,16 @@ export const markTaskAsCompleted = async (taskId: string) => {
         return error;
     }
 
-    await registerInJournal(taskId);
+    await registerInJournal(taskId, userId);
     await progressGoal(taskId);
 
     return data;
 };
 
-const registerInJournal = async (taskId: string) => {
+const registerInJournal = async (taskId: string, userId: string) => {
     const { error } = await supabase.from("task_journal").insert({
         task_id: taskId,
-        user_id: "21d6600b-8b9e-4f9e-894e-06ced9951871",
+        user_id: userId,
         date:
             "" +
             new Date().getFullYear() +
@@ -121,5 +125,19 @@ const registerInJournal = async (taskId: string) => {
     }
 };
 
+export const getRegisteredTasks = async (userId: string) => {
+    const { data, error } = await supabase
+        .from("task_journal")
+        .select("*")
+        .eq("user_id", userId)
+        .order("date", { ascending: false });
+
+    if (error) {
+        console.error("Error fetching registered tasks:", error);
+        return [];
+    }
+
+    return data;
+};
+
 // TODO: Integrate with auth slice
-// USER_ID should be obtained from the authenticated slice, REPLACE 21d6600b-8b9e-4f9e-894e-06ced9951871 with actual user ID
