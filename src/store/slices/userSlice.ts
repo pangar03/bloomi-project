@@ -50,6 +50,13 @@ export const userSlice = createSlice({
         setCurrency: (state, action: PayloadAction<number>) => {
             state.user!.currency = action.payload;
         },
+        addCurrency: (state, action: PayloadAction<number>) => {
+            state.user!.currency = (state.user!.currency || 0) + action.payload;
+        },
+        spendCurrency: (state, action: PayloadAction<number>) => {
+            const next = (state.user!.currency || 0) - action.payload;
+            state.user!.currency = next < 0 ? 0 : next;
+        },
         setPin: (state, action: PayloadAction<string>) => {
             state.user!.pin = action.payload;
         },
@@ -75,6 +82,8 @@ export const {
     setCurrentPet,
     setOwnedPets,
     setCurrency,
+    addCurrency,
+    spendCurrency,
     setPin,
     setTaskRegistry,
     setJournalEntries,

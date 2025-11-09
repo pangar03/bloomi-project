@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { setDailyTasks, setTasks } from "../../store/slices/taskListSlice";
 import type { RootState } from "../../store/store";
 import { progressGoal } from "../../store/slices/goalListSlice";
-import { setCurrency } from "../../store/slices/userSlice";
+import { addCurrency } from "../../store/slices/userSlice";
 import type { Task } from "../../types/Task";
 
 // React.Dispatch<React.SetStateAction<Task[]>> is the type for the setState function on React useState hook
@@ -21,30 +21,28 @@ const TaskList: React.FC<TaskListProps> = ({ taskList, className }) => {
     const dispatch = useDispatch();
 
     const handleTaskCheck = (taskId: string) => {
-        dispatch(
-            setDailyTasks(
-                daily.map((task) =>
-                    task.id === taskId
-                        ? {
-                              ...task,
-                              variant:
-                                  task.variant === "completed"
-                                      ? "active"
-                                      : "completed",
-                          }
-                        : task
-                )
-            )
+        const current = daily.find((t) => t.id === taskId);
+        const togglingToCompleted = current?.variant !== "completed";
+
+        const nextDaily = daily.map((task) =>
+            task.id === taskId
+                ? {
+                      ...task,
+                      variant:
+                          task.variant === "completed"
+                              ? "active"
+                              : "completed",
+                  }
+                : task
         );
 
+        dispatch(setDailyTasks(nextDaily));
         dispatch(progressGoal(taskId));
 
-        dispatch(
-            setCurrency(
-                (user?.currency || 0) +
-                    basic.find((task) => task.id === taskId)?.reward! || 0
-            )
-        );
+        if (togglingToCompleted) {
+            const reward = basic.find((task) => task.id === taskId)?.reward || 0;
+            if (reward > 0) dispatch(addCurrency(reward));
+        }
     };
 
     const handleTaskDelete = (taskId: string) => {
