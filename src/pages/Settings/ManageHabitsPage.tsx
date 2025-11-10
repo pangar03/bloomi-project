@@ -28,13 +28,13 @@ const TaskReportPage = () => {
             </h1>
             <div className="w-full h-full flex flex-col items-center rounded-t-rounded bg-white mt-8 px-4 py-8 custom-scrollbar overflow-y-scroll">
                 <NewHabit />
-                <TaskList
-                    taskList={taskList}
-                    className="w-full flex flex-col h-full gap-4"
-                />
                 <Button variant="white" onClick={() => navigate(-1)}>
                     Back
                 </Button>
+                <TaskList
+                    taskList={taskList}
+                    className="w-full flex flex-col h-full gap-4 mb-20"
+                />
             </div>
         </div>
     );

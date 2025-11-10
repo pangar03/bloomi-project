@@ -24,6 +24,9 @@ const TaskReportPage = () => {
                 Weekly Report
             </h1>
             <div className="w-full h-full flex flex-col items-center rounded-t-rounded bg-white mt-8 px-4 py-8 custom-scrollbar overflow-y-scroll">
+                <Button variant="white" onClick={() => navigate(-1)}>
+                    Back
+                </Button>
                 {Object.keys(user?.taskRegistry || {}).map((date) => {
                     return (
                         <div key={date} className="mb-4 w-full ">
@@ -42,9 +45,6 @@ const TaskReportPage = () => {
                         </div>
                     );
                 })}
-                <Button variant="white" onClick={() => navigate(-1)}>
-                    Back
-                </Button>
             </div>
         </div>
     );

@@ -21,13 +21,13 @@ const MoodJournalReportPage = () => {
             <h1 className="text-xl lg:text-black text-white font-bold">
                 Mood Journal
             </h1>
-            <div className="w-full h-full flex flex-col items-center rounded-t-rounded bg-white mt-8 px-4 py-8 custom-scrollbar overflow-y-scroll">
-                {user?.journalEntries.map((entry) => {
-                    return <MoodEntry {...entry} />;
-                })}
+            <div className="w-full h-full flex flex-col items-center rounded-t-rounded bg-white mt-8 px-4 py-8 custom-scrollbar overflow-y-scroll mb-20">
                 <Button variant="white" onClick={() => navigate(-1)}>
                     Back
                 </Button>
+                {user?.journalEntries.map((entry) => {
+                    return <MoodEntry {...entry} />;
+                })}
             </div>
         </div>
     );

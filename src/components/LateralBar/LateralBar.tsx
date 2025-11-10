@@ -71,7 +71,7 @@ const LateralBar = () => {
                     <div className="w-full flex justify-end mb-2">
                         <SquareContainer
                             variant="coins"
-                            className="flex items-center -translate-y-12"
+                            className="flex items-center lg:-translate-y-12"
                         >
                             <h2 className="text-sm text-black font-bold mr-3">
                                 {user?.currency}
