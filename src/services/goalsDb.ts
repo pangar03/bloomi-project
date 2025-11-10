@@ -11,18 +11,24 @@ export const createGoal = async (
 
     const composedDescription = `Complete the task: ${description} ${goal} times to earn ${reward} coins.`;
 
-    const { error } = await supabase.from("goals").insert({
-        description: composedDescription,
-        goal,
-        reward,
-        task_id: taskId,
-        user_id: userId,
-    });
+    const { data, error } = await supabase
+        .from("goals")
+        .insert({
+            description: composedDescription,
+            goal,
+            reward,
+            task_id: taskId,
+            user_id: userId,
+        })
+        .select()
+        .single();
 
     if (error) {
         console.error("Error creating goal:", error);
-        return error;
+        return { error };
     }
+
+    return { goal: data };
 };
 
 export const getGoals = async (userId: string) => {
@@ -86,4 +92,17 @@ export const progressGoal = async (taskId: string) => {
         console.error("Error progressing goal:", error);
         return error;
     }
+};
+
+export const deleteGoalsByTaskId = async (taskId: string) => {
+    const { error } = await supabase
+        .from("goals")
+        .delete()
+        .eq("task_id", taskId);
+
+    if (error) {
+        console.error("Error deleting goals by task ID:", error);
+    }
+
+    return error;
 };

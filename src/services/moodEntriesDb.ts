@@ -1,3 +1,4 @@
+import { toSupabaseDate } from "../utils/dateUtil";
 import { supabase } from "./supabaseClient";
 
 export const createMoodEntry = async (
@@ -11,13 +12,7 @@ export const createMoodEntry = async (
             user_id: userId,
             mood: mood,
             entry: entry,
-            date:
-                "" +
-                new Date().getFullYear() +
-                "-" +
-                (new Date().getMonth() + 1) +
-                "-" +
-                new Date().getDate(),
+            date: toSupabaseDate(new Date()),
         })
         .select()
         .single();
