@@ -46,8 +46,8 @@ const SettingsPage = () => {
             <div
                 className={`${isUnlocked ? "hidden" : ""} lg:w-[60%] lg:rounded-none w-full h-screen overflow-y-scroll mx-auto custom-scrollbar flex flex-col items-center lg:px-16 px-4 py-8 bg-white lg:justify-center justify-start`}
             >
-                <div className="flex flex-col items-center space-y-12 max-w-md w-full">
-                    <div className="text-center space-y-6">
+                <div className="flex flex-col items-center space-y-14 max-w-md w-full mt-[50px] lg:mt-0">
+                    <div className="text-center space-y-3">
                         <h1 className="lg:text-l text-m font-bold text-black">
                             Enter your parent pin
                         </h1>
