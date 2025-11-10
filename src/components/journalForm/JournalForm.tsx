@@ -3,21 +3,29 @@ import type { MoodDataType } from "../../types/MoodData";
 import Emojis from "../MoodEmojis/emojis";
 import Button from "../buttons/button";
 import Input from "../Input/input";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { setDailyMood } from "../../store/slices/moodSlice";
 import { setJournalEntries } from "../../store/slices/userSlice";
+import { createMoodEntry } from "../../services/moodEntriesDb";
+import type { RootState } from "../../store/store";
 
 const JournalForm = () => {
     const dispatch = useDispatch();
+    const user = useSelector((state: RootState) => state.userSlice.user);
     const [formData, setFormData] = useState({
         date: new Date(),
         mood: null,
         entry: "",
     } as MoodDataType);
 
-    const handleSubmit = (e: React.FormEvent) => {
+    const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
         setFormData({ ...formData, date: new Date() });
+        await createMoodEntry(
+            user!.id,
+            formData.mood || "Neutral",
+            formData.entry
+        );
         dispatch(setDailyMood(formData));
         dispatch(setJournalEntries([formData]));
     };
