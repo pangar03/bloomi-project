@@ -1,9 +1,13 @@
-import { useDispatch } from "react-redux";
 import { getGoals } from "../services/goalsDb";
 import { getUserMoodEntries } from "../services/moodEntriesDb";
 import { getUserPets } from "../services/petsDb";
 import { supabase } from "../services/supabaseClient";
-import { getRegisteredTasks, getTasks } from "../services/tasksDb";
+import {
+    getRegisteredTasks,
+    getTaskById,
+    getTasks,
+    resetDailyTasks,
+} from "../services/tasksDb";
 import { getUserByAuthId } from "../services/userDb";
 import type { PetVariant } from "../types/PetVariant";
 import type { Task } from "../types/Task";
@@ -14,11 +18,13 @@ import { setDailyTasks, setTasks } from "../store/slices/taskListSlice";
 import { setDailyMood } from "../store/slices/moodSlice";
 import { setGoals } from "../store/slices/goalListSlice";
 import type { Dispatch } from "@reduxjs/toolkit";
+import { parseSupabaseDate, toSupabaseDate } from "./dateUtil";
 
 export const bundleData = async (dispatch: Dispatch) => {
     const authUser = (await supabase.auth.getUser()).data.user?.id;
 
     const userData = await getUserByAuthId(authUser!);
+    await resetDailyTasks(userData!.id);
     const dailyTasks = await getTasks(userData!.id);
     const taskRegistry = await getRegisteredTasks(userData!.id);
     const goals = await getGoals(userData!.id);
@@ -27,22 +33,24 @@ export const bundleData = async (dispatch: Dispatch) => {
 
     let formattedTaskRegistry = {} as { [key: string]: Task[] };
 
-    taskRegistry.forEach((task) => {
-        const date = task.date_completed;
+    for (const task of taskRegistry) {
+        const date = String(parseSupabaseDate(task.date));
+        const taskData = await getTaskById(task.task_id);
 
         formattedTaskRegistry[date] = [
             ...(formattedTaskRegistry[date] || []),
             {
-                id: task.id,
-                taskName: task.description,
-                reward: task.reward,
-                variant: task.is_completed ? "completed" : "active",
-                iconVariant: task.icon,
+                id: taskData.id,
+                taskName: taskData.description,
+                reward: taskData.reward,
+                variant: taskData.is_completed ? "completed" : "active",
+                iconVariant: taskData.icon,
             } as Task,
         ];
-    });
+    }
 
     const userBundle = {
+        id: userData!.id,
         name: "Default Name",
         currentPet: userData?.currentPet || ("BunnyBerry" as PetVariant),
         ownedPets: userPets?.map((pet) => pet.name) || [],
@@ -76,13 +84,9 @@ export const bundleData = async (dispatch: Dispatch) => {
 
     const moodBundle =
         (moodEntries?.find((entry) => {
-            const today =
-                "" +
-                new Date().getFullYear() +
-                "-" +
-                (new Date().getMonth() + 1) +
-                "-" +
-                new Date().getDate();
+            console.log("ENTRY DATE:", parseSupabaseDate(entry.date));
+            const today = toSupabaseDate(new Date());
+            console.log("TODAY DATE:", today);
             return entry.date === today;
         }) as MoodDataType) || null;
 
