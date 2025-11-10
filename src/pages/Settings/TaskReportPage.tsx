@@ -7,6 +7,7 @@ import Button from "../../components/buttons/button";
 import { useNavigate } from "react-router-dom";
 import type { RootState } from "../../store/store";
 import { useSelector } from "react-redux";
+import { parseSupabaseDate } from "../../utils/dateUtil";
 
 const TaskReportPage = () => {
     const user = useSelector((state: RootState) => state.userSlice.user);
@@ -27,7 +28,7 @@ const TaskReportPage = () => {
                     return (
                         <div key={date} className="mb-4 w-full ">
                             <h2 className="text-m font-bold mb-2">
-                                {new Date(date).toDateString()}
+                                {parseSupabaseDate(date)}
                             </h2>
                             <TaskList
                                 taskList={
