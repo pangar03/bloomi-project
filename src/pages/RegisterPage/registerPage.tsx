@@ -31,7 +31,6 @@ const Register = () => {
                 pendingPassword,
                 pin
             );
-            dispatch(setPinInStore(pin));
             dispatch(setSession(session ?? null));
             if (session) await executeBundleData();
         } catch (err) {
