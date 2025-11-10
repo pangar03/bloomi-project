@@ -17,7 +17,7 @@ const Login = () => {
             <div className="flex justify-center mt-20 mb-10">
                 <Logo variant="white" className="scale-150" />
             </div>
-            <div className="mt-auto bg-white rounded-t-4xl shadow-lg p-6 md:p-10 w-full min-h-[60vh] md:min-h-[70vh]">
+            <div className="mt-auto bg-white rounded-t-4xl shadow-lg p-6 md:p-10 w-full min-h-[70vh] md:min-h-[70vh]">
                 <div className="w-full max-w-md mx-auto">
                     <LoginForm />
                 </div>

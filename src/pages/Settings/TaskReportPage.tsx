@@ -7,6 +7,7 @@ import Button from "../../components/buttons/button";
 import { useNavigate } from "react-router-dom";
 import type { RootState } from "../../store/store";
 import { useSelector } from "react-redux";
+import { parseSupabaseDate } from "../../utils/dateUtil";
 
 const TaskReportPage = () => {
     const user = useSelector((state: RootState) => state.userSlice.user);
@@ -23,11 +24,14 @@ const TaskReportPage = () => {
                 Weekly Report
             </h1>
             <div className="w-full h-full flex flex-col items-center rounded-t-rounded bg-white mt-8 px-4 py-8 custom-scrollbar overflow-y-scroll">
+                <Button variant="white" onClick={() => navigate(-1)}>
+                    Back
+                </Button>
                 {Object.keys(user?.taskRegistry || {}).map((date) => {
                     return (
                         <div key={date} className="mb-4 w-full ">
                             <h2 className="text-m font-bold mb-2">
-                                {new Date(date).toDateString()}
+                                {parseSupabaseDate(date)}
                             </h2>
                             <TaskList
                                 taskList={
@@ -41,9 +45,6 @@ const TaskReportPage = () => {
                         </div>
                     );
                 })}
-                <Button variant="white" onClick={() => navigate(-1)}>
-                    Back
-                </Button>
             </div>
         </div>
     );

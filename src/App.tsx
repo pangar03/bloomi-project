@@ -8,7 +8,7 @@ import StartPage from "./pages/StartPage/startPage";
 import NavBar from "./components/Nav/NavBar";
 import LateralBar from "./components/LateralBar/LateralBar";
 import Dashboard from "./pages/Dashboard/dashboard";
-import { useContext, useEffect } from "react";
+import { useContext } from "react";
 import { PageContext } from "./context/PageContext/PageContext";
 import SettingsPage from "./pages/Settings/SettingsPage";
 import TaskReportPage from "./pages/Settings/TaskReportPage";
@@ -16,14 +16,8 @@ import MoodJournalReportPage from "./pages/Settings/MoodJournalPage";
 import ManageHabitsPage from "./pages/Settings/ManageHabitsPage";
 import EditProfilePage from "./pages/Settings/EditProfilePage";
 import EditParentPin from "./pages/Settings/editParentPin";
-import PinPage from "./pages/PinPage/PinPage";
-import { useDispatch } from "react-redux";
-import { setUser } from "./store/slices/userSlice";
-import { setTasks, setDailyTasks } from "./store/slices/taskListSlice";
-import { useSelector } from "react-redux";
-import type { RootState } from "./store/store";
-import { setGoals } from "./store/slices/goalListSlice";
-import { setDailyMood } from "./store/slices/moodSlice";
+import PinPage from "./pages/PinPage/pinPage";
+import ProtectedRoute from "./components/protectedRoute/protectedRoute";
 
 // pa que se muestre la pagina de start
 const ResponsiveHomePage = () => {
@@ -34,132 +28,132 @@ const ResponsiveHomePage = () => {
 };
 
 function App() {
-    const user = useSelector((state: RootState) => state.userSlice.user);
-    const dispatch = useDispatch();
-    useEffect(() => {
-        if (!user) {
-            dispatch(
-                setUser({
-                    name: "John Doe",
-                    currentPet: "BunnyBerry",
-                    ownedPets: ["BunnyBerry", "Fallxie"],
-                    currency: 100,
-                    pin: "1234",
-                    taskRegistry: {
-                        [new Date("2025-09-01").toDateString()]: [
-                            {
-                                id: "task-1",
-                                taskName: "Do homework",
-                                reward: 10,
-                                variant: "active",
-                            },
-                            {
-                                id: "task-2",
-                                taskName: "Brush teeth",
-                                reward: 20,
-                                variant: "active",
-                            },
-                        ],
-                        [new Date("2025-09-02").toDateString()]: [
-                            {
-                                id: "task-1",
-                                taskName: "Do homework",
-                                reward: 10,
-                                variant: "active",
-                            },
-                            {
-                                id: "task-2",
-                                taskName: "Brush teeth",
-                                reward: 20,
-                                variant: "active",
-                            },
-                        ],
-                    },
-                    journalEntries: [
-                        {
-                            date: new Date("2023-10-01"),
-                            mood: "Happy",
-                            entry: "Had a great day at the park!",
-                        },
-                    ],
-                })
-            );
-            dispatch(setDailyMood(null));
-            dispatch(
-                setDailyTasks([
-                    {
-                        id: "task-1",
-                        taskName: "Do homework",
-                        reward: 10,
-                        variant: "active",
-                    },
-                    {
-                        id: "task-2",
-                        taskName: "Brush teeth",
-                        reward: 20,
-                        variant: "active",
-                    },
-                    {
-                        id: "task-3",
-                        taskName: "Do the bed",
-                        reward: 15,
-                        variant: "active",
-                    },
-                ])
-            );
-            dispatch(
-                setGoals([
-                    {
-                        id: "goal-1",
-                        trackedTaskId: "task-1",
-                        goalName: "Do homework three times",
-                        reward: 50,
-                        progress: 0,
-                        goal: 3,
-                    },
-                    {
-                        id: "goal-2",
-                        trackedTaskId: "task-2",
-                        goalName: "Brush teeth five times",
-                        reward: 100,
-                        progress: 1,
-                        goal: 5,
-                    },
-                    {
-                        id: "goal-3",
-                        trackedTaskId: "task-3",
-                        goalName: "Do the bed two times",
-                        reward: 75,
-                        progress: 1,
-                        goal: 2,
-                    },
-                ])
-            );
-            dispatch(
-                setTasks([
-                    {
-                        id: "task-1",
-                        taskName: "Do homework",
-                        reward: 10,
-                        variant: "basic",
-                    },
-                    {
-                        id: "task-2",
-                        taskName: "Brush teeth",
+    // const user = useSelector((state: RootState) => state.userSlice.user);
+    // const dispatch = useDispatch();
+    // useEffect(() => {
+    //     if (!user) {
+    //         dispatch(
+    //             setUser({
+    //                 name: "John Doe",
+    //                 currentPet: "BunnyBerry",
+    //                 ownedPets: ["BunnyBerry", "Fallxie"],
+    //                 currency: 100,
+    //                 pin: "1234",
+    //                 taskRegistry: {
+    //                     [new Date("2025-09-01").toDateString()]: [
+    //                         {
+    //                             id: "task-1",
+    //                             taskName: "Do homework",
+    //                             reward: 10,
+    //                             variant: "active",
+    //                         },
+    //                         {
+    //                             id: "task-2",
+    //                             taskName: "Brush teeth",
+    //                             reward: 20,
+    //                             variant: "active",
+    //                         },
+    //                     ],
+    //                     [new Date("2025-09-02").toDateString()]: [
+    //                         {
+    //                             id: "task-1",
+    //                             taskName: "Do homework",
+    //                             reward: 10,
+    //                             variant: "active",
+    //                         },
+    //                         {
+    //                             id: "task-2",
+    //                             taskName: "Brush teeth",
+    //                             reward: 20,
+    //                             variant: "active",
+    //                         },
+    //                     ],
+    //                 },
+    //                 journalEntries: [
+    //                     {
+    //                         date: new Date("2023-10-01"),
+    //                         mood: "Happy",
+    //                         entry: "Had a great day at the park!",
+    //                     },
+    //                 ],
+    //             })
+    //         );
+    //         dispatch(setDailyMood(null));
+    //         dispatch(
+    //             setDailyTasks([
+    //                 {
+    //                     id: "task-1",
+    //                     taskName: "Do homework",
+    //                     reward: 10,
+    //                     variant: "active",
+    //                 },
+    //                 {
+    //                     id: "task-2",
+    //                     taskName: "Brush teeth",
+    //                     reward: 20,
+    //                     variant: "active",
+    //                 },
+    //                 {
+    //                     id: "task-3",
+    //                     taskName: "Do the bed",
+    //                     reward: 15,
+    //                     variant: "active",
+    //                 },
+    //             ])
+    //         );
+    //         dispatch(
+    //             setGoals([
+    //                 {
+    //                     id: "goal-1",
+    //                     trackedTaskId: "task-1",
+    //                     goalName: "Do homework three times",
+    //                     reward: 50,
+    //                     progress: 0,
+    //                     goal: 3,
+    //                 },
+    //                 {
+    //                     id: "goal-2",
+    //                     trackedTaskId: "task-2",
+    //                     goalName: "Brush teeth five times",
+    //                     reward: 100,
+    //                     progress: 1,
+    //                     goal: 5,
+    //                 },
+    //                 {
+    //                     id: "goal-3",
+    //                     trackedTaskId: "task-3",
+    //                     goalName: "Do the bed two times",
+    //                     reward: 75,
+    //                     progress: 1,
+    //                     goal: 2,
+    //                 },
+    //             ])
+    //         );
+    //         dispatch(
+    //             setTasks([
+    //                 {
+    //                     id: "task-1",
+    //                     taskName: "Do homework",
+    //                     reward: 10,
+    //                     variant: "basic",
+    //                 },
+    //                 {
+    //                     id: "task-2",
+    //                     taskName: "Brush teeth",
 
-                        reward: 20,
-                        variant: "basic",
-                    },
-                    {
-                        id: "task-3",
-                        taskName: "Do the bed",
-                        reward: 15,
-                        variant: "basic",
-                    },
-                ])
-            );
-        }
-    }, []);
+    //                     reward: 20,
+    //                     variant: "basic",
+    //                 },
+    //                 {
+    //                     id: "task-3",
+    //                     taskName: "Do the bed",
+    //                     reward: 15,
+    //                     variant: "basic",
+    //                 },
+    //             ])
+    //         );
+    //     }
+    // }, []);
 
     const { currentPage } = useContext(PageContext)!;
 
@@ -177,34 +171,86 @@ function App() {
                         <Route path="/login" element={<Login />} />
                         <Route path="/register" element={<Register />} />
                         <Route path="/pin" element={<PinPage />} />
-                        <Route path="/dashboard" element={<Dashboard />} />
-                        <Route path="/settings" element={<SettingsPage />} />
+                        <Route
+                            path="/dashboard"
+                            element={
+                                <ProtectedRoute>
+                                    <Dashboard />
+                                </ProtectedRoute>
+                            }
+                        />
+                        <Route
+                            path="/settings"
+                            element={
+                                <ProtectedRoute>
+                                    <SettingsPage />
+                                </ProtectedRoute>
+                            }
+                        />
                         <Route
                             path="/settings/reports/tasks"
-                            element={<TaskReportPage />}
+                            element={
+                                <ProtectedRoute>
+                                    <TaskReportPage />
+                                </ProtectedRoute>
+                            }
                         />
                         <Route
                             path="/settings/reports/journal"
-                            element={<MoodJournalReportPage />}
+                            element={
+                                <ProtectedRoute>
+                                    <MoodJournalReportPage />
+                                </ProtectedRoute>
+                            }
                         />
                         <Route
                             path="/settings/manage-habits"
-                            element={<ManageHabitsPage />}
+                            element={
+                                <ProtectedRoute>
+                                    <ManageHabitsPage />
+                                </ProtectedRoute>
+                            }
                         />
                         <Route
                             path="/settings/manage-habits"
-                            element={<ManageHabitsPage />}
+                            element={
+                                <ProtectedRoute>
+                                    <ManageHabitsPage />
+                                </ProtectedRoute>
+                            }
                         />
                         <Route
                             path="/settings/edit-profile"
-                            element={<EditProfilePage />}
+                            element={
+                                <ProtectedRoute>
+                                    <EditProfilePage />
+                                </ProtectedRoute>
+                            }
                         />
                         <Route
                             path="/settings/edit-parent-pin"
-                            element={<EditParentPin />}
+                            element={
+                                <ProtectedRoute>
+                                    <EditParentPin />
+                                </ProtectedRoute>
+                            }
                         />
-                        <Route path="/journal" element={<Journal />} />
-                        <Route path="/store" element={<Store />} />
+                        <Route
+                            path="/journal"
+                            element={
+                                <ProtectedRoute>
+                                    <Journal />
+                                </ProtectedRoute>
+                            }
+                        />
+                        <Route
+                            path="/store"
+                            element={
+                                <ProtectedRoute>
+                                    <Store />
+                                </ProtectedRoute>
+                            }
+                        />
                     </Routes>
                 </div>
             </div>

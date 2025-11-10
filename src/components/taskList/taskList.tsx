@@ -2,9 +2,12 @@ import TaskCard from "../cards/taskCard/taskCard";
 import { useDispatch, useSelector } from "react-redux";
 import { setDailyTasks, setTasks } from "../../store/slices/taskListSlice";
 import type { RootState } from "../../store/store";
-import { progressGoal } from "../../store/slices/goalListSlice";
-import { addCurrency } from "../../store/slices/userSlice";
+import { progressGoal, removeGoal } from "../../store/slices/goalListSlice";
+import { addTaskToRegistry, setCurrency } from "../../store/slices/userSlice";
 import type { Task } from "../../types/Task";
+import { deleteTask, markTaskAsCompleted } from "../../services/tasksDb";
+import { toSupabaseDate } from "../../utils/dateUtil";
+import type { IconVariant } from "../../types/IconVariants";
 
 // React.Dispatch<React.SetStateAction<Task[]>> is the type for the setState function on React useState hook
 type TaskListProps = React.HTMLAttributes<HTMLDivElement> & {
@@ -17,40 +20,60 @@ const TaskList: React.FC<TaskListProps> = ({ taskList, className }) => {
     );
     const basic = useSelector((state: RootState) => state.taskListSlice.tasks);
     const user = useSelector((state: RootState) => state.userSlice.user);
+    const goals = useSelector((state: RootState) => state.goalListSlice.goals);
 
     const dispatch = useDispatch();
 
-    const handleTaskCheck = (taskId: string) => {
-        const current = daily.find((t) => t.id === taskId);
-        const togglingToCompleted = current?.variant !== "completed";
+    const handleTaskCheck = async (taskId: string) => {
+        await markTaskAsCompleted(taskId, user!.id);
 
-        const nextDaily = daily.map((task) =>
-            task.id === taskId
-                ? {
-                      ...task,
-                      variant:
-                          task.variant === "completed"
-                              ? "active"
-                              : "completed",
-                  }
-                : task
+        dispatch(
+            setDailyTasks(
+                daily.map((task) =>
+                    task.id === taskId
+                        ? {
+                              ...task,
+                              variant:
+                                  task.variant === "completed"
+                                      ? "active"
+                                      : "completed",
+                          }
+                        : task
+                )
+            )
         );
 
-        dispatch(setDailyTasks(nextDaily));
+        dispatch(
+            addTaskToRegistry({
+                date: toSupabaseDate(new Date()),
+                task: basic.find((task) => task.id === taskId)!,
+            })
+        );
+
         dispatch(progressGoal(taskId));
 
-        if (togglingToCompleted) {
-            const reward = basic.find((task) => task.id === taskId)?.reward || 0;
-            if (reward > 0) dispatch(addCurrency(reward));
-        }
+        dispatch(
+            setCurrency(
+                (user?.currency || 0) +
+                    basic.find((task) => task.id === taskId)?.reward! || 0
+            )
+        );
     };
 
-    const handleTaskDelete = (taskId: string) => {
+    const handleTaskDelete = async (taskId: string) => {
         const tempBasic = basic.filter((task) => task.id !== taskId);
         const tempDaily = daily.filter((task) => task.id !== taskId);
 
+        await deleteTask(taskId, user!.id);
         dispatch(setDailyTasks(tempDaily));
         dispatch(setTasks(tempBasic));
+
+        const designatedGoal = goals.find(
+            (goal) => goal.trackedTaskId === taskId
+        );
+        if (designatedGoal) {
+            dispatch(removeGoal(designatedGoal.id));
+        }
     };
 
     return (
@@ -58,6 +81,7 @@ const TaskList: React.FC<TaskListProps> = ({ taskList, className }) => {
             {taskList &&
                 taskList.map((task) => (
                     <TaskCard
+                        icon={task.iconVariant as IconVariant}
                         key={task.id}
                         variant={task.variant}
                         taskName={task.taskName}

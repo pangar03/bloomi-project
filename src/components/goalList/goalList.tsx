@@ -1,8 +1,9 @@
 import GoalCard from "../cards/goalCard/goalCard";
 import { useDispatch, useSelector } from "react-redux";
 import type { RootState } from "../../store/store";
-import { addCurrency } from "../../store/slices/userSlice";
+import { setCurrency } from "../../store/slices/userSlice";
 import { removeGoal } from "../../store/slices/goalListSlice";
+import { completeGoal } from "../../services/goalsDb";
 
 type GoalListProps = React.HTMLAttributes<HTMLDivElement>;
 const GoalList: React.FC<GoalListProps> = ({ className }) => {
@@ -11,9 +12,12 @@ const GoalList: React.FC<GoalListProps> = ({ className }) => {
 
     const dispatch = useDispatch();
 
-    const handleGoalCheck = (goalId: string) => {
-        const reward = goals.find((goal) => goal.id === goalId)?.reward || 0;
-        if (reward > 0) dispatch(addCurrency(reward));
+    const handleGoalCheck = async (goalId: string) => {
+        const goalReward =
+            goals.find((goal) => goal.id === goalId)?.reward! || 0;
+
+        await completeGoal(goalId, user!.id);
+        dispatch(setCurrency(user!.currency + goalReward));
         dispatch(removeGoal(goalId));
     };
 

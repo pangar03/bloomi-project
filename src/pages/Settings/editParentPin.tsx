@@ -5,6 +5,7 @@ import NumPad from "../../components/NumPad/NumPad";
 import { useDispatch, useSelector } from "react-redux";
 import type { RootState } from "../../store/store";
 import { setPin } from "../../store/slices/userSlice";
+import { updateUserPin } from "../../services/userDb";
 
 const EditParentPin = () => {
     const user = useSelector((state: RootState) => state.userSlice.user);
@@ -23,22 +24,30 @@ const EditParentPin = () => {
 
     // Efecto para comparar PINs cuando confirmPin se actualiza
     useEffect(() => {
-        if (step === 2 && confirmPin.length === 4 && newPin.length === 4) {
-            if (newPin === confirmPin) {
-                // Update user PIN
-                if (user) {
-                    dispatch(setPin(newPin));
+        const updatePinIfReady = async () => {
+            if (step === 2 && confirmPin.length === 4 && newPin.length === 4) {
+                if (newPin === confirmPin) {
+                    if (user) {
+                        try {
+                            await handleUpdateUserPin(newPin);
+                            alert("PIN actualizado exitosamente");
+                            navigate("/settings/edit-profile");
+                        } catch (err) {
+                            console.error("Error updating PIN:", err);
+                            alert("Hubo un problema actualizando el PIN.");
+                        }
+                    }
+                } else {
+                    alert("Los PINs no coinciden. Inténtalo de nuevo.");
+                    setStep(1);
+                    setNewPin("");
+                    setConfirmPin("");
+                    setPinInputValue("");
                 }
-                alert("PIN actualizado exitosamente");
-                navigate("/settings/edit-profile");
-            } else {
-                alert("Los PINs no coinciden. Inténtalo de nuevo.");
-                setStep(1);
-                setNewPin("");
-                setConfirmPin("");
-                setPinInputValue("");
             }
-        }
+        };
+
+        updatePinIfReady();
     }, [confirmPin, newPin, step]);
 
     const handlePinSet = (pin: string) => {
@@ -49,6 +58,11 @@ const EditParentPin = () => {
         } else {
             setConfirmPin(pin);
         }
+    };
+
+    const handleUpdateUserPin = async (pin: string) => {
+        await updateUserPin(user!.id, pin);
+        dispatch(setPin(pin));
     };
 
     return (

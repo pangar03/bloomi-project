@@ -3,8 +3,10 @@ import { createSlice, type PayloadAction } from "@reduxjs/toolkit";
 import type { Task } from "../../types/Task";
 import type { MoodDataType } from "../../types/MoodData";
 import type { PetVariant } from "../../types/PetVariant";
+import { addTask } from "./taskListSlice";
 
-type User = {
+export type User = {
+    id: string;
     name: string;
     currentPet: PetVariant;
     ownedPets: PetVariant[];
@@ -72,6 +74,20 @@ export const userSlice = createSlice({
                 ...state.user!.journalEntries,
             ];
         },
+        addTaskToRegistry: (
+            state,
+            action: PayloadAction<{ date: string; task: Task }>
+        ) => {
+            const { date, task } = action.payload;
+            if (state.user!.taskRegistry[date]) {
+                state.user!.taskRegistry[date] = [
+                    ...state.user!.taskRegistry[date],
+                    task,
+                ];
+            } else {
+                state.user!.taskRegistry[date] = [task];
+            }
+        },
     },
 });
 
@@ -87,6 +103,7 @@ export const {
     setPin,
     setTaskRegistry,
     setJournalEntries,
+    addTaskToRegistry,
 } = userSlice.actions;
 
 //Exportar el reducer del slice

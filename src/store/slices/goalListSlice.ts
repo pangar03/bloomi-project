@@ -23,6 +23,9 @@ export const goalListSlice = createSlice({
         setGoals: (state, action: PayloadAction<Goal[]>) => {
             state.goals = action.payload;
         },
+        addGoal: (state, action: PayloadAction<Goal>) => {
+            state.goals = [action.payload, ...state.goals];
+        },
         removeGoal: (state, action: PayloadAction<string>) => {
             state.goals = state.goals.filter(
                 (goal) => goal.id !== action.payload
@@ -42,7 +45,8 @@ export const goalListSlice = createSlice({
 });
 
 //Destructurar las actions para exportarlas de manera individual
-export const { setGoals, removeGoal, progressGoal } = goalListSlice.actions;
+export const { setGoals, addGoal, removeGoal, progressGoal } =
+    goalListSlice.actions;
 
 //Exportar el reducer del slice
 export default goalListSlice.reducer;
