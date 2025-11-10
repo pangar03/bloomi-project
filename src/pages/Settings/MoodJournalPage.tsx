@@ -21,7 +21,7 @@ const MoodJournalReportPage = () => {
             <h1 className="text-xl lg:text-black text-white font-bold">
                 Mood Journal
             </h1>
-            <div className="w-full h-full flex flex-col items-center rounded-t-rounded bg-white mt-8 px-4 py-8 custom-scrollbar overflow-y-scroll mb-20">
+            <div className="w-full h-full flex flex-col items-center rounded-t-rounded bg-white mt-8 px-4 custom-scrollbar overflow-y-scroll gap-8 py-8">
                 <Button variant="white" onClick={() => navigate(-1)}>
                     Back
                 </Button>
