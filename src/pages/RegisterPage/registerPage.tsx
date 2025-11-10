@@ -44,12 +44,25 @@ const Register = () => {
         await bundleData(dispatch);
     };
 
+    const isRegisterStep = step === "register";
     return (
-        <div className="h-screen w-full overflow-hidden bg-cover bg-center flex flex-col bg-white md:bg-[url(/src/assets/background/brackground.jpg)]">
-            <div className="hidden md:flex justify-center mt-20 mb-10">
+        <div
+            className={`min-h-screen w-full overflow-hidden bg-cover bg-center flex flex-col ${
+                isRegisterStep
+                    ? "bg-[url(/src/assets/background/fondo.jpg)] md:bg-[url(/src/assets/background/brackground.jpg)]"
+                    : "bg-white"
+            }`}
+        >
+            <div
+                className={`${isRegisterStep ? "flex" : "hidden"} justify-center mt-20 mb-10`}
+            >
                 <Logo variant="white" className="scale-150" />
             </div>
-            <div className="mt-[2px] md:mt-auto bg-white rounded-t-4xl shadow-lg p-6 md:p-10 w-full flex-1">
+            <div
+                className={`${
+                    isRegisterStep ? "mt-auto" : "mt-[2px] md:mt-auto"
+                } bg-white rounded-t-4xl shadow-lg p-6 md:p-10 w-full min-h-[70vh] md:min-h-[65vh]`}
+            >
                 {step === "register" && (
                     <div className="w-full max-w-md mx-auto">
                         <RegisterForm
