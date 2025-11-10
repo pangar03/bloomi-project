@@ -8,28 +8,24 @@ import HangerIcon from "../../assets/icons/hanger.svg";
 import TrashcanIcon from "../../assets/icons/trashcan.svg";
 import TargetIcon from "../../assets/icons/target.svg";
 import BackwardsIcon from "../../assets/icons/backwards.svg";
-import TaskIcon from "../../assets/icons/Task-Icon.svg";
-import BookIcon from "../../assets/icons/Books-Icon2.svg";
-import GoalIcon from "../../assets/icons/goal.svg";
+import ToothIcon from "../../assets/icons/toothicon.svg";
+import BookIcon from "../../assets/icons/bookicon.svg";
 import type { IconVariant } from "../../types/IconVariants";
 
-
-
 const IconStyles: Record<IconVariant, string> = {
-
     CoinIcon: "filter drop-shadow-yellow fill-yellow",
     HomeIcon: "stroke-accent hover:cursor-pointer hover:stroke-accent-darker",
     StoreIcon: "stroke-accent hover:cursor-pointer hover:stroke-accent-darker",
-    JournalIcon:"stroke-accent hover:cursor-pointer hover:stroke-accent-darker",
+    JournalIcon:
+        "stroke-accent hover:cursor-pointer hover:stroke-accent-darker",
     SettingsIcon: "fill-accent hover:cursor-pointer hover:fill-accent-darker",
     LogoutIcon: "stroke-red hover:cursor-pointer hover:stroke-red-darker",
     HangerIcon: "stroke-accent hover:cursor-pointer hover:stroke-accent-darker",
     TrashcanIcon: "stroke-red hover:cursor-pointer hover:stroke-red-darker",
     TargetIcon: "stroke-purple",
     BackwardsIcon: "fill-red hover:cursor-pointer hover:fill-red-darker",
-    TaskIcon: "!fill-current !stroke-current", 
-    BookIcon: "!fill-current !stroke-current", 
-    GoalIcon: "",
+    ToothIcon: "w-12 h-12",
+    BookIcon: "w-12 h-12",
 };
 
 interface IconProps {
@@ -48,9 +44,8 @@ const ICONS: Record<IconVariant, React.FC<React.SVGProps<SVGSVGElement>>> = {
     TrashcanIcon: TrashcanIcon,
     TargetIcon: TargetIcon,
     BackwardsIcon: BackwardsIcon,
-    TaskIcon: TaskIcon, 
+    ToothIcon: ToothIcon,
     BookIcon: BookIcon,
-    GoalIcon: GoalIcon,
 };
 
 const Icon: React.FC<IconProps> = ({ variant = "CoinIcon", className }) => {
@@ -60,4 +55,3 @@ const Icon: React.FC<IconProps> = ({ variant = "CoinIcon", className }) => {
 };
 
 export default Icon;
-

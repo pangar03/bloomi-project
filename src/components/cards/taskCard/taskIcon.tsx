@@ -1,13 +1,17 @@
 import CircleContainer from "../../RoundedContainer/circleContainer";
 import Icon from "../../Icon/Icon";
 
-type TaskIconVariant = "TaskIcon" | "BookIcon";
+export type TaskIconVariant = "ToothIcon" | "BookIcon";
 
 type TaskIconProps = React.HTMLAttributes<HTMLDivElement> & {
     variant?: TaskIconVariant;
 };
 
-const TaskIcon = ({ variant = "TaskIcon", className, ...props }: TaskIconProps) => {
+const TaskIcon = ({
+    variant = "ToothIcon",
+    className,
+    ...props
+}: TaskIconProps) => {
     return (
         <div className={`w-fit h-fit ${className ?? ""}`} {...props}>
             <CircleContainer variant="blueTask">

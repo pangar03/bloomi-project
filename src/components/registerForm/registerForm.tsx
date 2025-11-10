@@ -1,28 +1,61 @@
-import { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { useEffect, useState } from "react";
+// Este formulario sólo recolecta credenciales; el registro completo se hace en RegisterPage
 import Button from "../buttons/button";
 import Input from "../Input/input";
 
-const RegisterForm = () => {
+type RegisterFormProps = {
+  onRegistered?: (email: string, password: string) => void;
+};
+
+const RegisterForm = ({ onRegistered }: RegisterFormProps) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [confirmPassword, setConfirmPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState<boolean>(false);
+  const [confirmPasswordText, setConfirmPasswordText] = useState<string>("");
+  
+  const navigate = useNavigate();
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  useEffect(() => {
+    // actualiza el flag booleano según coincidan las contraseñas
+    setConfirmPassword(password === confirmPasswordText);
+  }, [password, confirmPasswordText]);
+
+  const handleRegister = async (e: React.FormEvent) => {
     e.preventDefault();
-    console.log("Email:", email, "Password:", password);
+    if (isSubmitting) return;
+    // validación usando el flag booleano
+    if (!confirmPassword) {
+      alert("Las contraseñas no coinciden");
+      return;
+    }
+
+    setIsSubmitting(true);
+    try {
+
+      onRegistered?.(email, password);
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
+  const handleBack = () => {
+    navigate("/start");
   };
 
   return (
     <form
-      onSubmit={handleSubmit}
-      className="flex flex-col gap-4 w-full max-w-sm mx-auto"
+      onSubmit={handleRegister}
+      className="flex flex-col gap-2 w-full max-w-sm mx-auto"
     >
-      <h1 className="text-3xl font-bold text-center">Register</h1>
+      <h1 className="text-xl font-bold text-center">Register</h1>
 
       <Input
         type="email"
         label="Email"
         placeholder="e-mail"
+        autoComplete="email"
         value={email}
         onChange={(e) => setEmail(e.target.value)}
         required
@@ -32,6 +65,7 @@ const RegisterForm = () => {
         type="password"
         label="Password"
         placeholder="password"
+        autoComplete="new-password"
         value={password}
         onChange={(e) => setPassword(e.target.value)}
         required
@@ -41,20 +75,30 @@ const RegisterForm = () => {
         type="password"
         label="Confirm Password"
         placeholder="confirm password"
-        value={confirmPassword}
-        onChange={(e) => setConfirmPassword(e.target.value)}
+        autoComplete="new-password"
+        value={confirmPasswordText}
+        onChange={(e) => setConfirmPasswordText(e.target.value)}
         required
       />
 
       <p className="text-sm text-blue-900">
         already have an account?{" "}
-        <a href="/login" className="font-semibold underline">
-          Login Here 
-        </a> 
+        <Link to="/login" className="font-semibold underline">
+          Login Here
+        </Link>
       </p>
 
-      <Button type="submit" variant="primary">
+      <Button type="submit" variant="primary" disabled={isSubmitting}>
         Register
+      </Button>
+
+      <Button 
+        type="button" 
+        variant="white" 
+        onClick={handleBack}
+        className="md:hidden"
+      >
+        Back
       </Button>
     </form>
   );

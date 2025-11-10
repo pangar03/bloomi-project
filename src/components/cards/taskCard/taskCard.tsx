@@ -1,20 +1,23 @@
-import TaskIcon from './taskIcon'
-import CheckButton from '../../checkButton/checkButton'
-import IconButton from '../../buttons/iconButton'
-import Icon from '../../Icon/Icon'
+import TaskIcon, { type TaskIconVariant } from "./taskIcon";
+import CheckButton from "../../checkButton/checkButton";
+import IconButton from "../../buttons/iconButton";
+import Icon from "../../Icon/Icon";
+import type { IconVariant } from "../../../types/IconVariants";
 
 type TaskCardProps = React.HTMLAttributes<HTMLDivElement> & {
     variant?: "active" | "completed" | "deletable" | "basic";
     taskName?: string;
     reward?: number;
+    icon: IconVariant;
     onCheck?: () => void;
     onDelete?: () => void;
 };
 
-const TaskCard = ({ 
-    variant = "active", 
-    taskName = "Task Name", 
+const TaskCard = ({
+    variant = "active",
+    taskName = "Task Name",
     reward = 10,
+    icon,
     onCheck = () => {},
     onDelete = () => {},
     ...props
@@ -25,20 +28,22 @@ const TaskCard = ({
     };
 
     return (
-        <div 
-            className={`${getCardStyle()} rounded-default p-4 flex items-center max-w-sm justify-between shadow-task`}
+        <div
+            className={`${getCardStyle()} rounded-default p-4 flex items-center w-full justify-between shadow-task`}
             {...props}
         >
             <div className="flex items-center gap-4">
-                <TaskIcon variant="TaskIcon" />
+                <TaskIcon variant={icon as TaskIconVariant} />
                 <h3 className="text-base font-medium text-black">{taskName}</h3>
             </div>
-            
+
             <div className="flex flex-col items-center gap-1">
                 {variant === "completed" ? (
                     <>
                         <CheckButton isChecked={true} onClick={onCheck} />
-                        <span className="text-sm font-medium text-gray-dark">Completed</span>
+                        <span className="text-sm font-medium text-gray-dark">
+                            Completed
+                        </span>
                     </>
                 ) : variant === "deletable" ? (
                     <IconButton variant="TrashcanIcon" onClick={onDelete} />
@@ -46,7 +51,9 @@ const TaskCard = ({
                     <>
                         <CheckButton isChecked={false} onClick={onCheck} />
                         <div className="flex items-center gap-1">
-                            <span className="text-sm font-medium">{reward}</span>
+                            <span className="text-sm font-medium">
+                                {reward}
+                            </span>
                             <Icon variant="CoinIcon" className="w-4 h-4" />
                         </div>
                     </>
