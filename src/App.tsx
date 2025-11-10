@@ -8,7 +8,7 @@ import StartPage from "./pages/StartPage/startPage";
 import NavBar from "./components/Nav/NavBar";
 import LateralBar from "./components/LateralBar/LateralBar";
 import Dashboard from "./pages/Dashboard/dashboard";
-import { useContext, useEffect } from "react";
+import { useContext } from "react";
 import { PageContext } from "./context/PageContext/PageContext";
 import SettingsPage from "./pages/Settings/SettingsPage";
 import TaskReportPage from "./pages/Settings/TaskReportPage";
@@ -17,13 +17,7 @@ import ManageHabitsPage from "./pages/Settings/ManageHabitsPage";
 import EditProfilePage from "./pages/Settings/EditProfilePage";
 import EditParentPin from "./pages/Settings/editParentPin";
 import PinPage from "./pages/PinPage/pinPage";
-import { useDispatch } from "react-redux";
-import { setUser } from "./store/slices/userSlice";
-import { setTasks, setDailyTasks } from "./store/slices/taskListSlice";
-import { useSelector } from "react-redux";
-import type { RootState } from "./store/store";
-import { setGoals } from "./store/slices/goalListSlice";
-import { setDailyMood } from "./store/slices/moodSlice";
+import ProtectedRoute from "./components/protectedRoute/protectedRoute";
 
 // pa que se muestre la pagina de start
 const ResponsiveHomePage = () => {
@@ -177,34 +171,86 @@ function App() {
                         <Route path="/login" element={<Login />} />
                         <Route path="/register" element={<Register />} />
                         <Route path="/pin" element={<PinPage />} />
-                        <Route path="/dashboard" element={<Dashboard />} />
-                        <Route path="/settings" element={<SettingsPage />} />
+                        <Route
+                            path="/dashboard"
+                            element={
+                                <ProtectedRoute>
+                                    <Dashboard />
+                                </ProtectedRoute>
+                            }
+                        />
+                        <Route
+                            path="/settings"
+                            element={
+                                <ProtectedRoute>
+                                    <SettingsPage />
+                                </ProtectedRoute>
+                            }
+                        />
                         <Route
                             path="/settings/reports/tasks"
-                            element={<TaskReportPage />}
+                            element={
+                                <ProtectedRoute>
+                                    <TaskReportPage />
+                                </ProtectedRoute>
+                            }
                         />
                         <Route
                             path="/settings/reports/journal"
-                            element={<MoodJournalReportPage />}
+                            element={
+                                <ProtectedRoute>
+                                    <MoodJournalReportPage />
+                                </ProtectedRoute>
+                            }
                         />
                         <Route
                             path="/settings/manage-habits"
-                            element={<ManageHabitsPage />}
+                            element={
+                                <ProtectedRoute>
+                                    <ManageHabitsPage />
+                                </ProtectedRoute>
+                            }
                         />
                         <Route
                             path="/settings/manage-habits"
-                            element={<ManageHabitsPage />}
+                            element={
+                                <ProtectedRoute>
+                                    <ManageHabitsPage />
+                                </ProtectedRoute>
+                            }
                         />
                         <Route
                             path="/settings/edit-profile"
-                            element={<EditProfilePage />}
+                            element={
+                                <ProtectedRoute>
+                                    <EditProfilePage />
+                                </ProtectedRoute>
+                            }
                         />
                         <Route
                             path="/settings/edit-parent-pin"
-                            element={<EditParentPin />}
+                            element={
+                                <ProtectedRoute>
+                                    <EditParentPin />
+                                </ProtectedRoute>
+                            }
                         />
-                        <Route path="/journal" element={<Journal />} />
-                        <Route path="/store" element={<Store />} />
+                        <Route
+                            path="/journal"
+                            element={
+                                <ProtectedRoute>
+                                    <Journal />
+                                </ProtectedRoute>
+                            }
+                        />
+                        <Route
+                            path="/store"
+                            element={
+                                <ProtectedRoute>
+                                    <Store />
+                                </ProtectedRoute>
+                            }
+                        />
                     </Routes>
                 </div>
             </div>
