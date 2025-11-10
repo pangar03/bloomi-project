@@ -1,4 +1,5 @@
 import type { MoodDataType } from "../../types/MoodData";
+import { parseSupabaseDate } from "../../utils/dateUtil";
 import Emojis from "../MoodEmojis/emojis";
 
 const MoodEntry = ({ date, mood = "Neutral", entry }: MoodDataType) => {
@@ -6,7 +7,9 @@ const MoodEntry = ({ date, mood = "Neutral", entry }: MoodDataType) => {
         <>
             <div className="w-full flex flex-col items-center lg:mx-auto">
                 <div className="align-text-left">
-                    <h2 className="text-m font-bold">{date.toDateString()}</h2>
+                    <h2 className="text-m font-bold">
+                        {parseSupabaseDate(String(date))}
+                    </h2>
                 </div>
                 <div className="w-full flex-col items-center border-t-2 border-solid border-gray p-4">
                     <Emojis

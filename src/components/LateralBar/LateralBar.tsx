@@ -65,34 +65,36 @@ const LateralBar = () => {
                 </div>
             </div>
 
-            {/* Mobile */}
-            <div className="lg:hidden flex flex-col w-full bg-accent items-center justify-start pt-8 pb-6 px-8 rounded-b-[40px]">
-                <div className="w-full flex justify-end mb-2">
-                    <SquareContainer
-                        variant="coins"
-                        className="flex items-center"
-                    >
-                        <h2 className="text-sm text-black font-bold mr-3">
-                            {user?.currency}
-                        </h2>
-                        <Icon variant="CoinIcon" className="w-5 h-5" />
-                    </SquareContainer>
-                </div>
+            {/* Mobile (oculto en settings) */}
+            {currentPage !== "settings" && (
+                <div className="lg:hidden flex flex-col w-full bg-accent items-center justify-start pt-8 pb-6 px-8 rounded-b-[40px]">
+                    <div className="w-full flex justify-end mb-2">
+                        <SquareContainer
+                            variant="coins"
+                            className="flex items-center lg:-translate-y-12"
+                        >
+                            <h2 className="text-sm text-black font-bold mr-3">
+                                {user?.currency}
+                            </h2>
+                            <Icon variant="CoinIcon" className="w-5 h-5" />
+                        </SquareContainer>
+                    </div>
 
-                <div className="relative w-[180px] h-[180px] flex items-center justify-center">
-                    <PetMiniature
-                        variant={user?.currentPet}
-                        context="lateral"
-                        className="w-[95%] h-[95%]"
-                    />
-                    <CircleContainer
-                        variant="blue"
-                        className="absolute left-0 top-0 translate-x-[14%] translate-y-[14%] z-20 w-12 h-12"
-                    >
-                        <Icon variant="HangerIcon" className="w-7 h-7" />
-                    </CircleContainer>
+                    <div className="relative w-[180px] h-[180px] flex items-center justify-center">
+                        <PetMiniature
+                            variant={user?.currentPet}
+                            context="lateral"
+                            className="w-[95%] h-[95%]"
+                        />
+                        <CircleContainer
+                            variant="blue"
+                            className="absolute left-0 top-0 translate-x-[14%] translate-y-[14%] z-20 w-12 h-12"
+                        >
+                            <Icon variant="HangerIcon" className="w-7 h-7" />
+                        </CircleContainer>
+                    </div>
                 </div>
-            </div>
+            )}
         </div>
     );
 };

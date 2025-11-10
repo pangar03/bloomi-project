@@ -49,7 +49,7 @@ function Store() {
                 </h1>
             </div>
 
-            <div className="grid grid-cols-2 gap-8 w-full">
+            <div className="grid grid-cols-2 gap-8 w-full mb-20">
                 {storeItems.map((item) => (
                     <div key={item.id} className="w-full flex justify-center">
                         <StoreItem

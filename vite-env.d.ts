@@ -15,3 +15,16 @@ declare module "*.svg?url" {
     const src: string;
     export default src;
 }
+
+// Extiende los tipos de variables de entorno de Vite
+interface ImportMetaEnv {
+    readonly VITE_SUPABASE_URL: string;
+    readonly VITE_SUPABASE_ANON_KEY: string;
+    readonly MODE: string;
+    readonly DEV: boolean;
+    readonly PROD: boolean;
+}
+
+interface ImportMeta {
+    readonly env: ImportMetaEnv;
+}
