@@ -68,9 +68,9 @@ const SettingsPage = () => {
                 </div>
             </div>
             <div
-                className={`${isUnlocked ? "lg:w-[60%] lg:rounded-none w-full h-screen overflow-y-scroll mx-auto custom-scrollbar flex flex-col items-center justify-center gap-8 lg:px-16 px-8 py-8 bg-white" : "hidden"} `}
+                className={`${isUnlocked ? "lg:w-[60%] lg:rounded-none w-full h-screen overflow-y-scroll mx-auto custom-scrollbar flex flex-col items-center justify-center gap-[45px] lg:px-16 px-8 py-8 bg-white" : "hidden"} `}
             >
-                <div className="text-center mb-4">
+                <div className="text-center mb-5">
                     <h1 className="text-l font-bold text-black">Settings</h1>
                 </div>
                 <div className="flex flex-col gap-4 w-full">
@@ -109,15 +109,16 @@ const SettingsPage = () => {
                         }}
                     >
                         Mood Journal
-                    </Button>
-                </div>
-                <Button
+                    </Button> 
+                    
+                    <Button
                     variant="red"
-                    className="w-full mt-16"
+                    className="w-full"
                     onClick={handleLogout}
                 >
                     Log Out
                 </Button>
+                </div>  
             </div>
         </>
     );
