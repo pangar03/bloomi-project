@@ -1,12 +1,14 @@
-import TaskIcon from "./taskIcon";
+import TaskIcon, { type TaskIconVariant } from "./taskIcon";
 import CheckButton from "../../checkButton/checkButton";
 import IconButton from "../../buttons/iconButton";
 import Icon from "../../Icon/Icon";
+import type { IconVariant } from "../../../types/IconVariants";
 
 type TaskCardProps = React.HTMLAttributes<HTMLDivElement> & {
     variant?: "active" | "completed" | "deletable" | "basic";
     taskName?: string;
     reward?: number;
+    icon: IconVariant;
     onCheck?: () => void;
     onDelete?: () => void;
 };
@@ -15,6 +17,7 @@ const TaskCard = ({
     variant = "active",
     taskName = "Task Name",
     reward = 10,
+    icon,
     onCheck = () => {},
     onDelete = () => {},
     ...props
@@ -30,7 +33,7 @@ const TaskCard = ({
             {...props}
         >
             <div className="flex items-center gap-4">
-                <TaskIcon variant="ToothIcon" />
+                <TaskIcon variant={icon as TaskIconVariant} />
                 <h3 className="text-base font-medium text-black">{taskName}</h3>
             </div>
 
