@@ -19,8 +19,8 @@ function Dashboard() {
 
     return (
         <>
-            <div className="lg:w-[60%] lg:rounded-none w-full lg:h-screen overflow-y-scroll mx-auto custom-scrollbar flex flex-col items-center lg:px-16 px-4 py-8 rounded-t-rounded bg-white">
-                <div className="flex flex-row items-center justify-between w-full mt-8">
+            <div className="lg:w-[60%] lg:rounded-none w-full lg:h-screen min-h-[50vh] overflow-y-scroll mx-auto custom-scrollbar flex flex-col items-center lg:px-16 px-4 py-8 rounded-t-rounded bg-white">
+                <div className="flex flex-row items-center justify-between w-full">
                     <h1 className="lg:text-l text-m font-bold text-black">
                         Today
                     </h1>
