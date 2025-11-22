@@ -30,6 +30,10 @@ export const bundleData = async (dispatch: Dispatch) => {
     const goals = await getGoals(userData!.id);
     const moodEntries = await getUserMoodEntries(userData!.id);
     const userPets = await getUserPets(userData!.id);
+    const currentPet = userPets?.find(
+        (pet) => userData.displayed_pet === pet.id
+    );
+    console.log("CURRENT PET", currentPet);
 
     let formattedTaskRegistry = {} as { [key: string]: Task[] };
 
@@ -52,7 +56,7 @@ export const bundleData = async (dispatch: Dispatch) => {
     const userBundle = {
         id: userData!.id,
         name: "Default Name",
-        currentPet: userData?.currentPet || ("BunnyBerry" as PetVariant),
+        currentPet: currentPet.name || "FloraBunny",
         ownedPets: userPets?.map((pet) => pet.name) || [],
         currency: userData?.coins || 0,
         pin: userData?.pin || "",
