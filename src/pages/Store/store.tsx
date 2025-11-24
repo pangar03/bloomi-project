@@ -1,9 +1,16 @@
 import { useState, useContext, useEffect } from "react";
 import StoreItem from "../../components/storeItem/storeItem";
 import { PageContext } from "../../context/PageContext/PageContext";
+import { createPetForUser } from "../../services/petsDb";
+import { useDispatch, useSelector } from "react-redux";
+import type { RootState } from "../../store/store";
+import { decrementUserCoins } from "../../services/userDb";
+import { buyPet, setCurrency } from "../../store/slices/userSlice";
 
 function Store() {
     const { currentPage, setCurrentPage } = useContext(PageContext)!;
+    const user = useSelector((state: RootState) => state.userSlice.user);
+    const dispatch = useDispatch();
 
     useEffect(() => {
         if (currentPage !== "store") setCurrentPage("store");
@@ -36,9 +43,21 @@ function Store() {
         },
     ]);
 
-    const handleBuy = (itemId: string) => {
+    const handleBuy = async (itemId: string) => {
         console.log(`Comprando item ${itemId}`);
-        // Aquí iría la lógica de compra
+        const newPetData = storeItems.find((item) => item.id === itemId);
+        if (user?.ownedPets.includes(newPetData?.petVariant!)) {
+            alert(`You already own ${newPetData?.name}!`);
+            return;
+        }
+        if (newPetData) {
+            const petInDb = await createPetForUser(user!.id, newPetData.name);
+            await decrementUserCoins(user!.id, newPetData.price);
+            console.log("New pet created in DB:", petInDb);
+            alert(`You have successfully purchased ${newPetData.name}!`);
+            dispatch(buyPet(newPetData.petVariant));
+            dispatch(setCurrency(user?.currency! - newPetData.price));
+        }
     };
 
     return (

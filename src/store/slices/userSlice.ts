@@ -3,7 +3,6 @@ import { createSlice, type PayloadAction } from "@reduxjs/toolkit";
 import type { Task } from "../../types/Task";
 import type { MoodDataType } from "../../types/MoodData";
 import type { PetVariant } from "../../types/PetVariant";
-import { addTask } from "./taskListSlice";
 
 export type User = {
     id: string;
@@ -49,6 +48,10 @@ export const userSlice = createSlice({
                 ...action.payload,
             ];
         },
+        buyPet: (state, action: PayloadAction<PetVariant>) => {
+            state.user!.ownedPets.push(action.payload);
+            state.user!.currency -= 100; // Currently all pets cost 100 coins
+        },
         setCurrency: (state, action: PayloadAction<number>) => {
             state.user!.currency = action.payload;
         },
@@ -89,6 +92,7 @@ export const {
     setUser,
     setName,
     setCurrentPet,
+    buyPet,
     setOwnedPets,
     setCurrency,
     setPin,

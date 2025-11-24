@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import Icon from "../Icon/Icon";
 import SquareContainer from "../RoundedContainer/squareContainer";
 import CircleContainer from "../RoundedContainer/circleContainer";
@@ -6,10 +6,13 @@ import PetMiniature from "../PetMiniature/petMiniature";
 import { PageContext } from "../../context/PageContext/PageContext";
 import type { RootState } from "../../store/store";
 import { useSelector } from "react-redux";
+import IconButton from "../buttons/iconButton";
+import PetSelectionModal from "../PetSelection/petSelection";
 
 const LateralBar = () => {
     const user = useSelector((state: RootState) => state.userSlice.user);
     const { currentPage } = useContext(PageContext)!;
+    const [modalOpen, setModalOpen] = useState(false);
 
     const hidden =
         currentPage === "login" ||
@@ -56,12 +59,17 @@ const LateralBar = () => {
                         context="lateral"
                         className="w-[95%] h-[95%]"
                     />
-                    <CircleContainer
-                        variant="blue"
+                    <IconButton
+                        variant="HangerIcon"
                         className="absolute left-0 top-0 translate-x-[14%] translate-y-[14%] z-20 w-14 h-14"
-                    >
-                        <Icon variant="HangerIcon" className="w-8 h-8" />
-                    </CircleContainer>
+                        onClick={() => setModalOpen(true)}
+                    />
+                    {modalOpen && (
+                        <PetSelectionModal
+                            className="fixed inset-0 bg-opacity-10 flex items-center justify-center z-100"
+                            setModalClose={setModalOpen}
+                        />
+                    )}
                 </div>
             </div>
 
@@ -86,12 +94,17 @@ const LateralBar = () => {
                             context="lateral"
                             className="w-[95%] h-[95%]"
                         />
-                        <CircleContainer
-                            variant="blue"
-                            className="absolute left-0 top-0 translate-x-[14%] translate-y-[14%] z-20 w-12 h-12"
-                        >
-                            <Icon variant="HangerIcon" className="w-7 h-7" />
-                        </CircleContainer>
+                        <IconButton
+                            variant="HangerIcon"
+                            className="absolute left-0 top-0 translate-x-[14%] translate-y-[14%] z-20 w-14 h-14"
+                            onClick={() => setModalOpen(true)}
+                        />
+                        {modalOpen && (
+                            <PetSelectionModal
+                                className="fixed inset-0 bg-opacity-10 flex items-center justify-center z-100"
+                                setModalClose={setModalOpen}
+                            />
+                        )}
                     </div>
                 </div>
             )}
