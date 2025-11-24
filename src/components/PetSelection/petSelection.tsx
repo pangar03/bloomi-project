@@ -44,7 +44,7 @@ const PetSelectionModal: React.FC<PetSelectionModalProps> = ({
 
     return (
         <div
-            className={`bg-blue-100 rounded-xl flex flex-col m-5 shadow p-8 w-90 h-126  mx-auto ${className}`}
+            className={`bg-accent-lighter rounded-xl flex flex-col m-5 shadow p-8 w-90 h-126  mx-auto ${className}`}
         >
             <h2 className="text-center lg:text-xl text-m font-bold mb-4">
                 Select Your Pet
@@ -61,6 +61,7 @@ const PetSelectionModal: React.FC<PetSelectionModalProps> = ({
                         {user?.ownedPets.includes(pet.variant) ? (
                             <Button
                                 onClick={() => handleSelectPet(pet.variant)}
+                                variant="accent"
                             >
                                 Select
                             </Button>
